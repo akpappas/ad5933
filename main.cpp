@@ -15,68 +15,323 @@ using namespace std::complex_literals;
 static cyusb_handle *dev_handle = NULL;
 static unsigned int clk=16000000;
 //Register Map
-const int CTRL_MSB=0x80;
-const int CTRL_LSB=0x81;
-const int FREQ_23_16=0x82;
-const int FREQ_15_8=0x83;
-const int FREQ_7_0=0x84;
-const int STEP_23_16=0x85;
-const int STEP_15_8=0x86;
-const int STEP_7_0=0x87;
-const int INC_NUM_MSB=0x88;
-const int INC_NUM_LSB=0x89;
-const int SETTLE_MSB=0x8A;
-const int SETTLE_LSB=0x8B;
-const int SREG=0x8F;
-const int TEMPERATURE_MSB=0x92;
-const int TEMPERATURE_LSB=0x93;
-const int REAL_MSB=0x94;
-const int REAL_LSB=0x95;
-const int IMG_MSB=0x96;
-const int IMG_LSB=0x97;
-
+const uint8_t CTRL_MSB=0x80;
+const uint8_t CTRL_LSB=0x81;
+const uint8_t FREQ_23_16=0x82;
+const uint8_t FREQ_15_8=0x83;
+const uint8_t FREQ_7_0=0x84;
+const uint8_t STEP_23_16=0x85;
+const uint8_t STEP_15_8=0x86;
+const uint8_t STEP_7_0=0x87;
+const uint8_t INC_NUM_MSB=0x88;
+const uint8_t INC_NUM_LSB=0x89;
+const uint8_t SETTLE_MSB=0x8A;
+const uint8_t SETTLE_LSB=0x8B;
+const uint8_t SREG=0x8F;
+const uint8_t TEMPERATURE_MSB=0x92;
+const uint8_t TEMPERATURE_LSB=0x93;
+const uint8_t REAL_MSB=0x94;
+const uint8_t REAL_LSB=0x95;
+const uint8_t IMG_MSB=0x96;
+const uint8_t IMG_LSB=0x97;
 /*Control register map*/
 /*Bits 15 to 12*/
-const int INIT_START_FREQ=0x10;
-const int START_FREQ_SWEEP=0x20;
-const int INC_FREQ=0x30;
-const int REPEAT_FREQ=0x40;
-const int MEAS_TEMP=0x90;
-const int PD_MODE=0xa0;
-const int SB_MODE=0xb0;
+
+enum class Mode
+{
+  INIT_START_FREQ,
+  START_FREQ_SWEEP,
+  INC_FREQ,
+  REPEAT_FREQ,
+  MEAS_TEMP,
+  PD_MODE,
+  SB_MODE
+};
+
+const uint8_t INIT_START_FREQ=0x10;
+const uint8_t START_FREQ_SWEEP=0x20;
+const uint8_t INC_FREQ=0x30;
+const uint8_t REPEAT_FREQ=0x40;
+const uint8_t MEAS_TEMP=0x90;
+const uint8_t PD_MODE=0xa0;
+const uint8_t SB_MODE=0xb0;
 
 /*Output voltage range*/
 /*Bits 10 to 9*/
-const int OUTPUT_2Vpp=0x00;
-const int OUTPUT_200mVpp=0x02;
-const int OUTPUT_400mVpp=0x04;
-const int OUTPUT_1Vpp=0x06;
+enum class Voltage
+{
+  OUTPUT_2Vpp,
+  OUTPUT_200mVpp,
+  OUTPUT_400mVpp,
+  OUTPUT_1Vpp
+};
+const uint8_t OUTPUT_2Vpp=0x00;
+const uint8_t OUTPUT_200mVpp=0x02;
+const uint8_t OUTPUT_400mVpp=0x04;
+const uint8_t OUTPUT_1Vpp=0x06;
 
 /*PGA*/
 /*Bit 8*/
-const int PGA_GAIN5x=0x00;
-const int PGA_GAIN1x=0x01;
+enum class Gain{PGA5x,PGA1x};
+const uint8_t PGA_GAIN5x=0x00;
+const uint8_t PGA_GAIN1x=0x01;
 
 /*Bits 7 to 0*/
-const int RESET_SET=0x10;
-const int CLK_EXT=0x08; /*0: internal; 1: external*/
-const int CLK_INT=0x00; /*0: internal; 1: external*/
+const uint8_t RESET_SET=0x10;
+
+enum class Clk {EXT,INT};
+const uint8_t CLK_EXT=0x08; /*0: internal; 1: external*/
+const uint8_t CLK_INT=0x00; /*0: internal; 1: external*/
 
 /*Status register map*/
-const int SREG_TEMP_VALID=0x01;
-const int SREG_IMPED_VALID=0x02;
-const int SREG_SWEEP_VALID=0x04;
+const uint8_t SREG_TEMP_VALID=0x01;
+const uint8_t SREG_IMPED_VALID=0x02;
+const uint8_t SREG_SWEEP_VALID=0x04;
 
 /*Settling time map*/
-const int SETTLING_MUL_2x = 0x02;
-const int SETTLING_MUL_4x = 0x03;
+enum class Settling
+{
+  SETTLING_MUL_1x,
+  SETTLING_MUL_2x,
+  SETTLING_MUL_4x
+};
+const uint8_t SETTLING_MUL_2x = 0x02;
+const uint8_t SETTLING_MUL_4x = 0x03;
 /********************************************************************************/
+
+
 
 
 using std::pair;
 using std::make_pair;
 using std::vector;
 typedef std::complex<long double> complex_t;
+
+
+struct ad5933{
+  long double ext_clk=4000000l;
+  long double int_clk=16776000l;
+  cyusb_handle *h;
+  std::string filename="./AD5933_34FW.hex";
+  uint8_t ctrl_reg1;
+  uint8_t ctrl_reg2;
+  ad5933();
+  int read_register( uint8_t& buffer, uint8_t reg);
+  int write_register( uint8_t command,uint8_t reg);
+  void set_starting_frequency ( uint32_t start );
+  void set_frequency_step ( uint32_t inc );
+  void set_step_number ( uint32_t number );
+  void set_settling_cycles ( uint32_t cycles );
+  void set_voltage_output ( Voltage setting );
+  void set_PGA ( Gain setting );
+  void set_standby();
+  void initilize_frequency();
+  void start_sweep();
+  void increase_frequency();
+  void repeat_frequency();
+  double measure_temperature();
+  void power_down();
+  void choose_clock( Clk setting);
+};
+
+void ad5933::choose_clock( Clk setting)
+{
+  if ( setting == Clk::INT)
+  {
+    uint8_t mask=0xF7;
+    ctrl_reg1 = ctrl_reg1 && mask;
+  }
+  else
+  {
+    printf("Chosen external clock: %Lf Hz\n",ext_clk);
+    ctrl_reg1 = ctrl_reg1 || CLK_EXT;
+  }
+  this->write_register(ctrl_reg1, CTRL_LSB);
+}
+
+void ad5933::set_starting_frequency(uint32_t start)
+{
+  uint8_t r2 = ( start & 0xff0000 ) >>16;
+  uint8_t r1 = ( start & 0x00ff00 ) >>8;
+  uint8_t r0 = ( start & 0x0000ff );
+  write_register ( r1, FREQ_23_16 );
+  write_register ( r2, FREQ_15_8 );
+  write_register ( r0, FREQ_7_0 );
+}
+
+void ad5933::set_frequency_step(uint32_t inc)
+{
+  uint8_t r2 = ( inc & 0xff0000 ) >>16;
+  uint8_t r1 = ( inc & 0x00ff00 ) >>8;
+  uint8_t r0 = ( inc & 0x0000ff );
+  write_register ( r1, STEP_23_16 );
+  write_register ( r2, STEP_15_8 );
+  write_register ( r0, STEP_7_0 );
+}
+
+void ad5933::set_step_number ( uint32_t number )
+{
+  uint8_t r1 = ( number & 0x00ff00 ) >>8;
+  uint8_t r0 = ( number & 0x0000ff );
+  write_register ( r1, INC_NUM_MSB );
+  write_register ( r0, INC_NUM_LSB );
+}
+
+void ad5933::set_settling_cycles ( uint32_t cycles )
+{
+  uint8_t r1 = ( cycles & 0xFF00 ) >>8;
+  uint8_t r0 = ( cycles & 0x00FF );
+  write_register ( r1, SETTLE_MSB );
+  write_register ( r0, SETTLE_LSB );
+}
+
+void ad5933::set_voltage_output ( Voltage setting)
+{
+  ctrl_reg2 &=0x11111001; // Clear bits 8:9
+  switch (setting)
+    {
+    case (Voltage::OUTPUT_1Vpp):
+      {
+	ctrl_reg2 |= OUTPUT_1Vpp;
+	break;
+      }
+    case (Voltage::OUTPUT_200mVpp):
+      {
+	ctrl_reg2 |= OUTPUT_200mVpp;
+	break;
+      }
+    case (Voltage::OUTPUT_2Vpp):
+      {
+	ctrl_reg2 |= OUTPUT_2Vpp;
+	break;
+      }
+    case (Voltage::OUTPUT_400mVpp):
+      {
+	ctrl_reg2 |= OUTPUT_400mVpp;
+	break;
+      }
+    }
+  this->write_register(ctrl_reg2, CTRL_MSB);
+}
+
+void ad5933::set_PGA(Gain setting)
+{
+  ctrl_reg2 &= 0xFE; // Clear bit 1
+  switch (setting)
+    {
+    case (Gain::PGA1x):
+      {
+	ctrl_reg2 |= PGA_GAIN1x;
+	break;
+      }
+    case (Gain::PGA5x):
+      {
+	ctrl_reg2 |= PGA_GAIN5x;
+	break;
+      }
+    }
+}
+
+void ad5933::set_standby()
+{
+  ctrl_reg2 &= 0x0F;
+  ctrl_reg2 |= SB_MODE;
+  write_register(ctrl_reg2, CTRL_MSB);
+}
+
+void ad5933::initilize_frequency()
+{
+  ctrl_reg2 &= 0x0F;
+  ctrl_reg2 |= INIT_START_FREQ;
+  write_register(ctrl_reg2, CTRL_MSB);
+}
+
+void ad5933::increase_frequency()
+{
+  ctrl_reg2 &= 0x0F;
+  ctrl_reg2 |= INC_FREQ;
+  write_register(ctrl_reg2, CTRL_MSB);
+}
+
+int ad5933::write_register ( unsigned char value, unsigned char reg )
+{
+  auto err = cyusb_control_transfer ( dev_handle,0x40,0xDE,0x0D, value << 8 | reg,NULL,0,0 );
+  if ( err<0 )
+    {
+      cyusb_error ( err );
+    }
+  return err;
+}
+
+int ad5933::read_register ( uint8_t &buffer, uint8_t reg )
+{
+  auto err = cyusb_control_transfer ( dev_handle,0xc0,0xDE,0x0D,reg,&buffer,1,0 );
+  if ( err<0 )
+    {
+      cyusb_error ( err );
+    }
+  return err;
+}
+
+ad5933::ad5933()
+{
+  auto err = cyusb_open ( 0x0456, 0xb203 );
+  if ( err < 0 )
+  {
+    printf ( "Error opening library\n\n" );
+    std::abort();
+  }
+  else if ( err == 0 )
+  {
+    printf ( "No device found\n" );
+    std::abort();
+  }
+  if ( err > 1 )
+  {
+    printf ( "More than 1 devices of interest found. Disconnect unwanted devices\n" );
+    std::abort();
+  }
+  h = cyusb_gethandle(0);
+  if ( cyusb_getvendor ( h ) != 0x0456 )
+  {
+    printf ( "Cypress chipset not detected\n" );
+    cyusb_close();
+    std::abort();
+  }
+  if ( cyusb_getproduct ( h ) != 0xb203 )
+  {
+    printf ( "Cypress chipset not detected\n" );
+    cyusb_close();
+    std::abort();
+  }
+  err = cyusb_kernel_driver_active ( dev_handle, 0 );
+  if ( err != 0 )
+  {
+    printf ( "kernel driver active. Exitting\n" );
+    cyusb_close();
+    std::abort();
+  }
+  err = cyusb_claim_interface ( dev_handle, 0 );
+  if ( err != 0 )
+  {
+    printf ( "Error in claiming interface\n" );
+    cyusb_close();
+    std::abort();
+  }
+  else printf ( "Successfully claimed interface\n" );
+  struct stat statbuf;
+  static char filename[] = "./AD5933_34FW.hex";
+  err = stat ( filename, &statbuf );
+  printf ( "File size = %d\n", ( int ) statbuf.st_size );
+  auto extension = strtoul ( "0xA0", NULL, 16 );
+  err = cyusb_download_fx2 ( dev_handle, filename, extension );
+  if ( err )
+  {
+    printf ( "Error downloading firmware: %d\n",err );
+  }
+}
+
+
 
 void my_error(int err)
 {
@@ -389,7 +644,7 @@ int main ( int argc, char **argv )
   std::vector<std::pair<long double,long double>> system_phase;
   for (const auto& i: admitance)
   {
-   system_phase.push_back(std::make_pair<i.first,std::arg(i.second));
+    system_phase.push_back(std::make_pair(i.first,std::arg(i.second)));
   }
   std::cout<<"Change\n";
   std::string garbage;
