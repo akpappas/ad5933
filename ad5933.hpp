@@ -1,3 +1,4 @@
+#pragma once
 #include <cyusb.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -10,7 +11,6 @@
 #include <bitset>
 #include <vector>
 #include <iostream>
-using namespace std::complex_literals;
 
 //Register Map
 const uint8_t CTRL_MSB=0x80;
@@ -32,9 +32,9 @@ const uint8_t REAL_MSB=0x94;
 const uint8_t REAL_LSB=0x95;
 const uint8_t IMG_MSB=0x96;
 const uint8_t IMG_LSB=0x97;
+
 /*Control register map*/
 /*Bits 15 to 12*/
-
 enum class Mode
 {
   INIT_START_FREQ,
@@ -45,7 +45,6 @@ enum class Mode
   PD_MODE,
   SB_MODE
 };
-
 const uint8_t INIT_START_FREQ=0x10;
 const uint8_t START_FREQ_SWEEP=0x20;
 const uint8_t INC_FREQ=0x30;
@@ -67,7 +66,6 @@ const uint8_t OUTPUT_2Vpp=0x00;
 const uint8_t OUTPUT_200mVpp=0x02;
 const uint8_t OUTPUT_400mVpp=0x04;
 const uint8_t OUTPUT_1Vpp=0x06;
-
 /*PGA*/
 /*Bit 8*/
 enum class Gain{PGA5x,PGA1x};
@@ -97,14 +95,10 @@ const uint8_t SETTLING_MUL_2x = 0x02;
 const uint8_t SETTLING_MUL_4x = 0x03;
 /********************************************************************************/
 
-
-
-
 using std::pair;
 using std::make_pair;
 using std::vector;
 typedef std::complex<long double> complex_t;
-
 
 struct AD5933{
   long double ext_clk=4000000l;
@@ -478,7 +472,6 @@ double AD5933::measure_temperature()
   return temperature;
 }
 
-
 std::vector<std::pair<long double,long double>> calibrate_gain( std::vector<std::pair<long double,complex_t>> measurements,long double calibration_resistance)
 {
   std::vector<std::pair<long double,long double>> gains;
@@ -503,7 +496,7 @@ std::vector<std::pair<long double, long double>> calculate_magnitude(std::vector
 }
 
 
-long double interpolate_gain(long double f,std::pair<long double, long double> g0, std::pair<long double, long double> g1)
+long double interpolate(long double f,std::pair<long double, long double> g0, std::pair<long double, long double> g1)
 {
   long double new_gain = 0;
   if (std::abs(g0.first-f)<0.1)
@@ -519,35 +512,3 @@ long double interpolate_gain(long double f,std::pair<long double, long double> g
   return new_gain;
 }
 
-
-
-int main ( int argc, char **argv )
-{
-  AD5933 analyzer;
-  auto temp = analyzer.measure_temperature();
-  printf ( "Temperature= %f C\n",temp );
-  printf ( "Starting\n" );
-  analyzer.choose_clock(Clk::INT);
-  analyzer.set_settling_multiplier(SettlingMultiplier::MUL_1x);
-  analyzer.set_settling_cycles(15);
-  analyzer.set_voltage_output(Voltage::OUTPUT_2Vpp);
-  auto admitance = sweep_frequency ( 3e5,10,10, &analyzer );
-  auto gains=calibrate_gain(admitance,1000);
-  std::vector<std::pair<long double,long double>> system_phase;
-  for (const auto& i: admitance)
-  {
-    system_phase.push_back(std::make_pair(i.first,std::arg(i.second)));
-  }
-  std::cout<<"Change\n";
-  std::string garbage;
-  std::cin>>garbage;
-  std::cout<<"\n";
-  auto newZ = sweep_frequency ( 3e5,10,10,&analyzer );
-
-  auto mag = calculate_magnitude(newZ,gains);
-  for (int i=0;i<mag.size();++i)
-  {
-    std::cout<<mag[i].first<<": "<<mag[i].second<<" "<<std::abs(admitance[i].second)/std::abs(newZ[i].second)<<"\n";
-  }
-  return 0;
-}
