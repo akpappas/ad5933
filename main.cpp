@@ -105,7 +105,6 @@ using std::make_pair;
 using std::vector;
 typedef std::complex<long double> complex_t;
 
-
 struct AD5933{
   long double ext_clk=4000000l;
   long double int_clk=16776000l;
@@ -503,7 +502,7 @@ std::vector<std::pair<long double, long double>> calculate_magnitude(std::vector
 }
 
 
-long double interpolate_gain(long double f,std::pair<long double, long double> g0, std::pair<long double, long double> g1)
+long double interpolate(long double f,std::pair<long double, long double> g0, std::pair<long double, long double> g1)
 {
   long double new_gain = 0;
   if (std::abs(g0.first-f)<0.1)
