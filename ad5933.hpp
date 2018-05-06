@@ -11,7 +11,7 @@
 #include <bitset>
 #include <vector>
 #include <iostream>
-
+#include <libusb-1.0/libusb.h>
 //Register Map
 const uint8_t CTRL_MSB=0x80;
 const uint8_t CTRL_LSB=0x81;
@@ -472,7 +472,8 @@ double AD5933::measure_temperature()
   return temperature;
 }
 
-std::vector<std::pair<long double,long double>> calibrate_gain( std::vector<std::pair<long double,complex_t>> measurements,long double calibration_resistance)
+std::vector<std::pair<long double,long double>> calibrate_gain(const std::vector<std::pair<long double,complex_t>> &measurements,
+							       const long double &calibration_resistance)
 {
   std::vector<std::pair<long double,long double>> gains;
   for (const auto& i: measurements)
@@ -484,7 +485,8 @@ std::vector<std::pair<long double,long double>> calibrate_gain( std::vector<std:
 }
 
 
-std::vector<std::pair<long double, long double>> calculate_magnitude(std::vector<std::pair<long double,complex_t>> measurements, std::vector<std::pair<long double,long double>> gains)
+std::vector<std::pair<long double, long double>> calculate_magnitude(const std::vector<std::pair<long double,complex_t>> &measurements,
+								     const std::vector<std::pair<long double,long double>> &gains)
 {
   std::vector<std::pair<long double, long double>> magnitude;
   for (int i=0;i<measurements.size();++i)
@@ -496,7 +498,9 @@ std::vector<std::pair<long double, long double>> calculate_magnitude(std::vector
 }
 
 
-long double interpolate(long double f,std::pair<long double, long double> g0, std::pair<long double, long double> g1)
+long double interpolate(long double f,
+			const std::pair<long double, long double> &g0,
+			const std::pair<long double, long double>& g1)
 {
   long double new_gain = 0;
   if (std::abs(g0.first-f)<0.1)
@@ -507,8 +511,38 @@ long double interpolate(long double f,std::pair<long double, long double> g0, st
     {
       new_gain = g1.second;
     }
-  auto frac = (g1.second - g0.second) / (g1.first - g0.first);
-  new_gain = (1-frac)*f+g0.first*frac;
+  auto frac = (f-g0.first)/(g1.first-g0.first);
+  new_gain = (1-frac)*g0.second + frac*g1.second;
   return new_gain;
 }
 
+
+std::vector<std::pair<long double, long double>> calc_multigains(const std::vector<std::pair<long double, complex_t>> &adm,
+								 const std::vector<std::pair<long double, long double>> &cal)
+{
+  std::vector< std::pair<long double, long double>> new_g;
+  // Gains were calibrated at higher frequencies, use the gain calibrated at the lowest frequency
+  size_t k=0;
+  while (k<adm.size() && adm[k].first<cal[0].first)
+    {
+      new_g.push_back(std::make_pair(adm[k].first,cal[0].second));
+      k++;
+    }
+  // Gains were calibrated at frequencies both higher and lower frequencies. Interpolate between them.
+  for (size_t i=0;i<cal.size()-1;i++)
+    {
+      while (k<adm.size() && adm[k].first<cal[i+1].first)
+	{
+	  auto temp = interpolate(adm[k].first, cal[i],cal[i+1]);
+	  new_g.push_back(std::make_pair(adm[k].first,temp));
+	  k++;
+	}
+    }
+  //Gains were calibrated at lower frequencies, use the gain calibrated at the highest frequency.
+  while (k<adm.size())
+    {
+      new_g.push_back(std::make_pair(adm[k].first,cal.back().second));
+      k++;
+    }
+  return new_g;
+}
