@@ -107,13 +107,13 @@ using std::vector;
 typedef std::complex<long double> complex_t;
 
 struct AD5933{
-  //  std::string filename="./AD5933_34FW.hex";
+  std::string firmware = "./AD5933_34FW.hex";
   AD5933();
   complex_t read_measurement();
   libusb_device_handle *h;
   libusb_context *ctx;
   double measure_temperature();
-  int download_fx2(libusb_device_handle *h, char *filename);
+  int download_fx2();
   int read_register( uint8_t& buffer, uint8_t reg);
   int write_register( uint8_t command,uint8_t reg);
   long double clk;
@@ -422,7 +422,7 @@ AD5933::AD5933()
   sleep(1);
 
   auto extension = strtoul ( "0xA0", NULL, 16 );
-  err = download_fx2 ( h, filename);
+  err = download_fx2 ();
   if ( err )
   {
     printf ( "Error downloading firmware: %d\n",err );
@@ -435,7 +435,7 @@ AD5933::AD5933()
   printf("done constr\n");
 }
 
-int AD5933::download_fx2(libusb_device_handle *h, char *filename)
+int AD5933::download_fx2()
 {
   FILE *fp = NULL;
   char buf[256];
@@ -453,7 +453,7 @@ int AD5933::download_fx2(libusb_device_handle *h, char *filename)
   auto extension = strtoul ( "0xA0", NULL, 16 );
   unsigned char vendor_command=extension;
 
-  fp = fopen(filename, "r" );
+  fp = fopen(firmware.c_str(), "r" );
   tbuf1[2] ='\0';
   tbuf2[4] = '\0';
   tbuf3[2] = '\0';
