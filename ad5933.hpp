@@ -1,17 +1,23 @@
 #pragma once
-#include <cyusb.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <libusb-1.0/libusb.h>
+
 #include <cmath>
 #include <complex>
 #include <bitset>
 #include <vector>
 #include <iostream>
-#include <libusb-1.0/libusb.h>
+
+
+const uint16_t VID = 0x0456;
+const uint16_t PID = 0xb203;
+
 //Register Map
 const uint8_t CTRL_MSB=0x80;
 const uint8_t CTRL_LSB=0x81;
@@ -101,34 +107,48 @@ using std::vector;
 typedef std::complex<long double> complex_t;
 
 struct AD5933{
-  long double ext_clk=4000000l;
-  long double int_clk=16776000l;
-  long double clk;
-  cyusb_handle *h;
   //  std::string filename="./AD5933_34FW.hex";
-  uint8_t ctrl_reg1;
-  uint8_t ctrl_reg2;
   AD5933();
+  complex_t read_measurement();
+  libusb_device_handle *h;
+  libusb_context *ctx;
+  double measure_temperature();
+  int download_fx2(libusb_device_handle *h, char *filename);
   int read_register( uint8_t& buffer, uint8_t reg);
   int write_register( uint8_t command,uint8_t reg);
+  long double clk;
+  long double ext_clk=4000000l;
+  long double int_clk=16776000l;
+  uint8_t ctrl_reg1;
+  uint8_t ctrl_reg2;
   uint8_t get_status();
-  void set_starting_frequency ( uint32_t start );
+  void choose_clock( Clk setting);
+  void increase_frequency();
+  void initilize_frequency();
+  void power_down();
+  void repeat_frequency();
+
+  uint32_t get_frequency();
+  
+  void set_PGA ( Gain setting );
   void set_frequency_step ( uint32_t inc );
-  void set_step_number ( uint32_t number );
   void set_settling_cycles ( uint32_t cycles );
   void set_settling_multiplier (SettlingMultiplier setting);
-  void set_voltage_output ( Voltage setting );
-  void set_PGA ( Gain setting );
   void set_standby();
-  void initilize_frequency();
+  void set_starting_frequency ( uint32_t start );
+  void set_step_number ( uint32_t number );
+  void set_voltage_output ( Voltage setting );
   void start_sweep();
-  void increase_frequency();
-  void repeat_frequency();
-  double measure_temperature();
-  complex_t read_measurement();
-  void power_down();
-  void choose_clock( Clk setting);
 };
+
+uint32_t AD5933::get_frequency()
+{
+  uint8_t r0,r1,r2;
+  read_register(r0, FREQ_7_0);
+  read_register(r1, FREQ_15_8);
+  read_register(r2, FREQ_23_16);
+  return  r2*1<<16 | r1*1<<8 | r0;
+}
 
 void AD5933::set_settling_multiplier(SettlingMultiplier setting)
 {
@@ -145,6 +165,7 @@ void AD5933::set_settling_multiplier(SettlingMultiplier setting)
     case  SettlingMultiplier::MUL_4x:
       {
 	settling_msb |= SETTLING_MUL_4x;
+	break;
       }
     }
   write_register(settling_msb,SETTLE_MSB);
@@ -156,7 +177,7 @@ uint8_t AD5933::get_status()
   auto err = read_register(buf,SREG);
   if (err<0)
     {
-      cyusb_error(err);
+      libusb_strerror(libusb_error(err));
       std::abort();
     }
   return buf;
@@ -180,11 +201,13 @@ void AD5933::choose_clock( Clk setting)
 
 void AD5933::set_starting_frequency(uint32_t start)
 {
+  printf("start: %d",start);
   uint8_t r2 = ( start & 0xff0000 ) >>16;
   uint8_t r1 = ( start & 0x00ff00 ) >>8;
   uint8_t r0 = ( start & 0x0000ff );
-  write_register ( r1, FREQ_23_16 );
-  write_register ( r2, FREQ_15_8 );
+  printf("registers: 0x%X%X%X",r2,r1,r0);
+  write_register ( r2, FREQ_23_16 );
+  write_register ( r1, FREQ_15_8 );
   write_register ( r0, FREQ_7_0 );
 }
 
@@ -193,8 +216,8 @@ void AD5933::set_frequency_step(uint32_t inc)
   uint8_t r2 = ( inc & 0xff0000 ) >>16;
   uint8_t r1 = ( inc & 0x00ff00 ) >>8;
   uint8_t r0 = ( inc & 0x0000ff );
-  write_register ( r1, STEP_23_16 );
-  write_register ( r2, STEP_15_8 );
+  write_register ( r2, STEP_23_16 );
+  write_register ( r1, STEP_15_8 );
   write_register ( r0, STEP_7_0 );
 }
 
@@ -234,6 +257,8 @@ void AD5933::set_voltage_output ( Voltage setting)
 	ctrl_reg2 |= OUTPUT_400mVpp;
       }
   this->write_register(ctrl_reg2, CTRL_MSB);
+  uint8_t buf=0;
+  //  read_registe
 }
 
 void AD5933::set_PGA(Gain setting)
@@ -292,22 +317,30 @@ void AD5933::repeat_frequency()
 
 int AD5933::write_register ( uint8_t command, uint8_t reg )
 {
-  auto err = cyusb_control_transfer ( h,0x40,0xDE,0x0D, command << 8 | reg,NULL,0,0 );
+  auto err = libusb_control_transfer ( h,0x40,0xDE,0x0D, command << 8 | reg,NULL,0,0 );
   if ( err<0 )
     {
       printf("Error writing 0x%X to register 0x%X",command,reg);
-      cyusb_error ( err );
+      const char *str = libusb_strerror( libusb_error( err ));
+      fprintf(stderr,"%s\n",str);
     }
+  uint8_t data=0;
+  read_register(data,reg);
+  if (command != data){
+    printf("Invalid write!!!\n");
+    printf("Wrote %d, got %d, on reg %d\n",command,data,reg);
+  }
   return err;
 }
 
 int AD5933::read_register ( uint8_t &buffer, uint8_t reg )
 {
-  auto err = cyusb_control_transfer ( h,0xc0,0xDE,0x0D,reg,&buffer,1,0 );
+  auto err = libusb_control_transfer ( h,0xc0,0xDE,0x0D,reg,&buffer,1,0 );
   if ( err<0 )
     {
       printf("Error reading from register 0x%X",reg);
-      cyusb_error ( err );
+      const char *str = libusb_strerror( libusb_error( err ));
+      fprintf(stderr,"%s\n",str);
     }
   return err;
 }
@@ -315,92 +348,171 @@ int AD5933::read_register ( uint8_t &buffer, uint8_t reg )
 complex_t AD5933::read_measurement()
 {
   uint8_t im1,im0,re1,re0;
-  read_register ( re1, REAL_MSB );
-  read_register ( re0, REAL_LSB );
+  std::bitset<8> im1b,im0b,re1b,re0b;
+  read_register(re1, REAL_MSB );
+  re1b = re1;
+  read_register(re0, REAL_LSB );
+  re0b = re0;
+  int16_t real = re1<<8 | re0 ;
+  std::bitset<16> realb(real);
+  
   read_register ( im1, IMG_MSB );
+  im1b=im1;
   read_register ( im0, IMG_LSB );
-  int16_t real = re1<<8 | re0;
+  im0b=im0;
   int16_t img = im1<<8 | im0;
+  std::bitset<16> imb(img);
+  std::cout<<"Real:\t\t\tImag:\n";
+  std::cout<<re1b<<re0b<<"\t"<<im1b<<im0b<<"\n";
+  std::cout<<realb<<"\t"<<imb<<"\n";
   long double dreal = real;
   long double dimg = img;
+  std::cout<<dreal<<"\t\t\t"<<dimg<<"\n";
   complex_t z(dreal,dimg);
+  std::cout<<z.real()<<"\t\t\t"<<z.imag()<<"\n";
   return z;
 }
 
 
 AD5933::AD5933()
 {
-  auto err = cyusb_open ( 0x0456, 0xb203 );
-  if ( err < 0 )
+  //  auto err = cyusb_open ( 0x0456, 0xb203 );
+  h = NULL;
+  ctx= NULL;
+  auto err = libusb_init(&ctx);
+  if (err)
   {
-    printf ( "Error opening library\n\n" );
+    fprintf(stderr,"Error in initializing libusb library...\n");
+    const char *str = libusb_strerror( libusb_error( err ));
+    fprintf(stderr,"%s\n",str);
     std::abort();
   }
-  else if ( err == 0 )
+  h = libusb_open_device_with_vid_pid(ctx, VID, PID);
+  if (!h)
   {
-    printf ( "No device found\n" );
+    fprintf(stderr, "Device not found\n");
     std::abort();
   }
-  if ( err > 1 )
-  {
-    printf ( "More than 1 devices of interest found. Disconnect unwanted devices\n" );
-    std::abort();
-  }
-  h = cyusb_gethandle(0);
-  if ( cyusb_getvendor ( h ) != 0x0456 )
-  {
-    printf ( "Cypress chipset not detected\n" );
-    cyusb_close();
-    std::abort();
-  }
-  if ( cyusb_getproduct ( h ) != 0xb203 )
-  {
-    printf ( "Cypress chipset not detected\n" );
-    cyusb_close();
-    std::abort();
-  }
-  err = cyusb_kernel_driver_active ( h , 0 );
+  
+  err = libusb_kernel_driver_active ( h , 0 );
   if ( err != 0 )
   {
-    printf ( "kernel driver active. Exitting\n" );
-    cyusb_close();
-    std::abort();
+    fprintf (stderr, "Kernel driver active. Exitting\n" );
+    libusb_close(h);
+    libusb_exit(NULL);
+    std::exit(-1);
   }
-  err = cyusb_claim_interface ( h, 0 );
+  err = libusb_claim_interface ( h, 0 );
   if ( err != 0 )
   {
-    printf ( "Error in claiming interface\n" );
-    cyusb_close();
-    std::abort();
+    fprintf (stderr, "Error in claiming interface\n" );
+    libusb_close(h);
+    libusb_exit(NULL);
+    std::exit(-1);
   }
-  else printf ( "Successfully claimed interface\n" );
+  else
+  {
+    printf ( "Successfully claimed interface\n" );
+  }
+  
   struct stat statbuf;
   static char filename[] = "./AD5933_34FW.hex";
   err = stat ( filename, &statbuf );
   printf ( "File size = %d\n", ( int ) statbuf.st_size );
   sleep(1);
+
   auto extension = strtoul ( "0xA0", NULL, 16 );
-  err = cyusb_download_fx2 ( h, filename, extension );
+  err = download_fx2 ( h, filename);
   if ( err )
   {
     printf ( "Error downloading firmware: %d\n",err );
   }
-  printf("reading ctrl");
+  printf("reading ctrl\n");
+  sleep(1);
   read_register(ctrl_reg1,CTRL_LSB);
   read_register(ctrl_reg2,CTRL_MSB);
   clk=int_clk;
   printf("done constr\n");
 }
 
-
-std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t lower,uint32_t number_of_samples,double step, AD5933* h )
+int AD5933::download_fx2(libusb_device_handle *h, char *filename)
 {
+  FILE *fp = NULL;
+  char buf[256];
+  char tbuf1[3];
+  char tbuf2[5];
+  char tbuf3[3];
+  unsigned char reset = 0;
+  int r;
+  int count = 0;
+  unsigned char num_bytes = 0;
+  unsigned short address = 0;
+  unsigned char *dbuf = NULL;
+  int i;
+
+  auto extension = strtoul ( "0xA0", NULL, 16 );
+  unsigned char vendor_command=extension;
+
+  fp = fopen(filename, "r" );
+  tbuf1[2] ='\0';
+  tbuf2[4] = '\0';
+  tbuf3[2] = '\0';
+
+  reset = 1;
+  r = libusb_control_transfer(h, 0x40, 0xA0, 0xE600, 0x00, &reset, 0x01, 1000);
+  if ( !r ) {
+    printf("Error in control_transfer\n");
+    return r;
+   }
+  sleep(1);
+
+  count = 0;
+
+  while ( fgets(buf, 256, fp) != NULL ) {
+    if ( buf[8] == '1' )
+      break;
+    strncpy(tbuf1,buf+1,2);
+    num_bytes = strtoul(tbuf1,NULL,16);
+    strncpy(tbuf2,buf+3,4);
+    address = strtoul(tbuf2,NULL,16);
+    dbuf = (unsigned char *)malloc(num_bytes);
+    for ( i = 0; i < num_bytes; ++i ) {
+      strncpy(tbuf3,&buf[9+i*2],2);
+      dbuf[i] = strtoul(tbuf3,NULL,16);
+     }
+    r = libusb_control_transfer(h, 0x40, vendor_command, address, 0x00, dbuf, num_bytes, 1000);
+    if ( !r ) {
+      printf("Error in control_transfer\n");
+      free(dbuf);
+      return r;
+     }
+    count += num_bytes;
+    free(dbuf);
+   }
+  printf("Total bytes downloaded = %d\n", count);
+  sleep(1);
+  reset = 0;
+  r = libusb_control_transfer(h, 0x40, 0xA0, 0xE600, 0x00, &reset, 0x01, 1000);
+  fclose(fp);
+  return 0;
+}
+
+std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t lower,uint32_t number_of_samples,long double step, AD5933* h )
+{
+  long double clk = h->clk;
+  std::cout<<"clock "<<clk<<"\n";
   vector< pair<long double,complex_t>> measurements;
-  uint32_t conversion_factor = ( 1<<27 ) / (h->clk/4 );
-  uint32_t start = lower * conversion_factor;
-  uint32_t inc =int ( step * conversion_factor );
+  long double lowerd= lower;
+  std::cout<<"lowerd:"<<lowerd<<" "<<lower<<std::endl;
+  auto startd = (lowerd / (clk/4))* (1<<27);
+  auto incd = (step / (clk/4))*(1<<27);
+  
+  uint32_t start = startd;
+  uint32_t inc = incd;
+  printf("lower %d start = 0x%X,inc = 0x%X\n",lower,start,inc);
   h->set_starting_frequency ( start );
   h->set_frequency_step ( inc );
+  printf("Set frequency: 0x%X\n",h->get_frequency());
   h->set_step_number ( number_of_samples );
 
   h->set_standby();
@@ -419,20 +531,21 @@ std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t l
   uint8_t sreg;
   for ( ;; )
     {
+      printf("Set frequency: 0x%X\n",h->get_frequency());
       long double ar= ( cur_freq );
-      true_freq = ar/conversion_factor;
+      true_freq = ar/ ( (1<<27)/(clk/4)) ;
       /*Read SREG for valid impedance meausurement*/
       uint8_t impedance_valid=0;
-      int cnt=0;
+      std::bitset<8> sregB(h->get_status());
+      //      std::cout<<sregB<< "sreg before\n";
       do
         {
-          usleep(2*(4*16e6)/true_freq);
 	  sreg = h->get_status();
-	  cnt++;
           impedance_valid = sreg & SREG_IMPED_VALID;
         }
       while ( !impedance_valid );
-      std::cout<<"innner loops "<<cnt<<"\n";
+      sregB = h->get_status();
+      //      std::cout<<sregB<<"sreg after"<<std::endl;
       auto z = h->read_measurement();
       measurements.push_back ( make_pair ( true_freq,z ) );
       cur_freq+=inc;
@@ -511,13 +624,16 @@ long double interpolate(long double f,
     {
       new_gain = g1.second;
     }
-  auto frac = (f-g0.first)/(g1.first-g0.first);
-  new_gain = (1-frac)*g0.second + frac*g1.second;
+  else
+    {
+      auto frac = (f-g0.first)/(g1.first-g0.first);
+      new_gain = (1-frac)*g0.second + frac*g1.second;
+    }
   return new_gain;
 }
 
-
-std::vector<std::pair<long double, long double>> calc_multigains(const std::vector<std::pair<long double, complex_t>> &adm,
+template <typename T>
+std::vector<std::pair<long double, long double>> calc_multigains(const std::vector<std::pair<long double, T>> &adm,
 								 const std::vector<std::pair<long double, long double>> &cal)
 {
   std::vector< std::pair<long double, long double>> new_g;
@@ -545,4 +661,35 @@ std::vector<std::pair<long double, long double>> calc_multigains(const std::vect
       k++;
     }
   return new_g;
+}
+
+void write_to_file(const std::vector<std::pair<long double, long double>> &mag,
+		   const std::vector<std::pair<long double, long double>> &phase,
+		   const std::vector<std::pair<long double, complex_t>> &adm)
+{
+  if (mag.size()!=phase.size() || phase.size() !=adm.size())
+    {
+      fprintf(stderr, "write_to_file: Argument size not equal");
+      std::abort();
+    }
+  std::string header = "Frequency,Magnitutude,Phase,Real,Imaginary,Magnitutude\n";
+  FILE *fp =  fopen("output.csv","w");
+  if (fp==NULL)
+    {
+      perror(NULL);
+      return;
+    }
+  fprintf(fp, "%s", header.c_str());
+  for (size_t i = 0; i<mag.size();++i)
+    {
+      auto err= fprintf(fp,"%Lf,%Lf,%Lf,%Lf,%Lf,%Lf\n",
+			mag[i].first,mag[i].second,phase[i].second,
+			adm[i].second.real(),adm[i].second.imag(),std::abs(adm[i].second));
+      if (err<0)
+	{
+	  perror(NULL);
+	  return;
+	}
+    }
+  fclose(fp);
 }
