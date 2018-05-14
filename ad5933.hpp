@@ -257,8 +257,6 @@ void AD5933::set_voltage_output ( Voltage setting)
 	ctrl_reg2 |= OUTPUT_400mVpp;
       }
   this->write_register(ctrl_reg2, CTRL_MSB);
-  uint8_t buf=0;
-  //  read_registe
 }
 
 void AD5933::set_PGA(Gain setting)
@@ -277,6 +275,7 @@ void AD5933::set_PGA(Gain setting)
 	break;
       }
     }
+  this->write_register(ctrl_reg2, CTRL_MSB);
 }
 
 void AD5933::set_standby()
@@ -288,6 +287,7 @@ void AD5933::set_standby()
 
 void AD5933::initilize_frequency()
 {
+  
   ctrl_reg2 &= 0x0F;
   ctrl_reg2 |= INIT_START_FREQ;
   write_register(ctrl_reg2, CTRL_MSB);

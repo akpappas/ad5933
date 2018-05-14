@@ -20,6 +20,7 @@ int main ( int argc, char **argv )
   analyzer.set_settling_multiplier(SettlingMultiplier::MUL_1x);
   analyzer.set_settling_cycles(15);
   analyzer.set_voltage_output(Voltage::OUTPUT_2Vpp);
+  analyzer.set_PGA(Gain::PGA1x);
   auto admitance = sweep_frequency ( start,10,10, &analyzer );
   auto gains=calibrate_gain(admitance,1000);
   std::vector<std::pair<long double,long double>> system_phase;
