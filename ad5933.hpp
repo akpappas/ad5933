@@ -13,8 +13,8 @@
 #include <bitset>
 #include <vector>
 #include <iostream>
-
-
+#include <unordered_map>
+#include <sstream>
 const uint16_t VID = 0x0456;
 const uint16_t PID = 0xb203;
 
@@ -51,6 +51,9 @@ enum class Mode
   PD_MODE,
   SB_MODE
 };
+
+
+const uint8_t MODE_MASK = 0b11110000;
 const uint8_t INIT_START_FREQ=0x10;
 const uint8_t START_FREQ_SWEEP=0x20;
 const uint8_t INC_FREQ=0x30;
@@ -59,8 +62,21 @@ const uint8_t MEAS_TEMP=0x90;
 const uint8_t PD_MODE=0xa0;
 const uint8_t SB_MODE=0xb0;
 
+std::unordered_map<uint8_t,Mode> mode_map =
+  {
+    {INIT_START_FREQ,Mode::INIT_START_FREQ},
+    {START_FREQ_SWEEP,Mode::START_FREQ_SWEEP},
+    {INC_FREQ,Mode::INC_FREQ},
+    {REPEAT_FREQ,Mode::REPEAT_FREQ},
+    {MEAS_TEMP,Mode::MEAS_TEMP},
+    {PD_MODE,Mode::PD_MODE},
+    {SB_MODE,Mode::SB_MODE}
+  };
+
+
 /*Output voltage range*/
 /*Bits 10 to 9*/
+const uint8_t VOLTAGE_MASK = 0b00000110;
 enum class Voltage
 {
   OUTPUT_2Vpp,
@@ -68,19 +84,41 @@ enum class Voltage
   OUTPUT_400mVpp,
   OUTPUT_1Vpp
 };
+
 const uint8_t OUTPUT_2Vpp=0x00;
 const uint8_t OUTPUT_200mVpp=0x02;
 const uint8_t OUTPUT_400mVpp=0x04;
 const uint8_t OUTPUT_1Vpp=0x06;
+
+std::unordered_map<uint8_t,Voltage> voltage_map=
+  {
+    {OUTPUT_2Vpp,Voltage::OUTPUT_2Vpp},
+    {OUTPUT_200mVpp,Voltage::OUTPUT_200mVpp},
+    {OUTPUT_400mVpp,Voltage::OUTPUT_400mVpp},
+    {OUTPUT_1Vpp,Voltage::OUTPUT_1Vpp}
+  };
+
+
+
 /*PGA*/
 /*Bit 8*/
+const uint8_t PGA_MASK = 0b00000001;
 enum class Gain{PGA5x,PGA1x};
+
 const uint8_t PGA_GAIN5x=0x00;
 const uint8_t PGA_GAIN1x=0x01;
+
+std::unordered_map<uint8_t,Gain> gain_map =
+  {
+    {PGA_GAIN5x,Gain::PGA5x},
+    {PGA_GAIN1x,Gain::PGA1x}
+  };
+
 
 /*Bits 7 to 0*/
 const uint8_t RESET_SET=0x10;
 
+const uint8_t CLK_MASK = 0b00000100;
 enum class Clk {EXT,INT};
 const uint8_t CLK_EXT=0x08; /*0: internal; 1: external*/
 const uint8_t CLK_INT=0x00; /*0: internal; 1: external*/
@@ -90,22 +128,66 @@ const uint8_t SREG_TEMP_VALID=0x01;
 const uint8_t SREG_IMPED_VALID=0x02;
 const uint8_t SREG_SWEEP_VALID=0x04;
 
+
+std::string show_status(uint8_t reg)
+{
+  if (reg == SREG_IMPED_VALID)
+    {
+      return "Valid impedance";
+    }
+  else if (reg == SREG_SWEEP_VALID)
+    {
+      return "Valid sweep";
+    }
+  else if (reg == SREG_TEMP_VALID)
+    {
+      return "Valid temperature";
+    }
+  else
+    {
+      return "Invalid status";
+    }
+}
+
 /*Settling time map*/
+const uint8_t MUL_MASK = 0b00000110;
 enum class SettlingMultiplier
 {
   MUL_1x,
   MUL_2x,
   MUL_4x
 };
+
 const uint8_t SETTLING_MUL_2x = 0x02;
 const uint8_t SETTLING_MUL_4x = 0x03;
+
+std::string show_multiplier(uint8_t reg)
+{
+  reg &= MUL_MASK;
+  if (reg==SETTLING_MUL_2x)
+    {
+      return "Mul 2x";
+    }
+  else if (reg == SETTLING_MUL_4x)
+    {
+      return "Mul 4x";
+    }
+  else if (reg == 0)
+    {
+      return "Mul 1x";
+    }
+  else
+    {
+      return "Invalid mul";
+    }
+}
 /********************************************************************************/
+
 
 using std::pair;
 using std::make_pair;
 using std::vector;
 typedef std::complex<long double> complex_t;
-
 struct AD5933{
   std::string firmware = "./AD5933_34FW.hex";
   AD5933();
@@ -128,6 +210,8 @@ struct AD5933{
   void power_down();
   void repeat_frequency();
 
+  void print_command_registers();
+
   uint32_t get_frequency();
   
   void set_PGA ( Gain setting );
@@ -139,7 +223,185 @@ struct AD5933{
   void set_step_number ( uint32_t number );
   void set_voltage_output ( Voltage setting );
   void start_sweep();
+
+  std::string show_voltage();
+  std::string show_mode();
+  std::string show_gain();
+  std::string show_clock();
+  void print_device_state();
 };
+
+std::string AD5933::show_mode()
+{
+  uint8_t reg;
+  this->read_register(reg,CTRL_MSB);
+  reg &= MODE_MASK;
+  Mode m;
+  try
+    {
+      m = mode_map.at(reg);
+    }
+  catch (const std::out_of_range &e)
+    {
+      std::cout<<"Invalid mode value!!!";
+      return "Invalid Mode";
+    }
+  switch (m)
+    {
+    case Mode::INIT_START_FREQ:
+      {
+	return "Frequency initialization";
+      }
+    case Mode::START_FREQ_SWEEP:
+      {
+	return "Start sweep";
+      }
+    case Mode::INC_FREQ:
+      {
+	return "Increase Frequency";
+      }
+    case Mode::REPEAT_FREQ:
+      {
+	return "Repeat Frequency";
+      }
+    case Mode::MEAS_TEMP:
+      {
+	return "Measuring Temperature";
+      }
+    case Mode::PD_MODE:
+      {
+	return "Powered Down";
+      }
+    case Mode::SB_MODE:
+      {
+	return "Standby";
+      }
+    default:
+      {
+	return "Invalid Mode";
+      }
+    } 
+}
+
+
+void AD5933::print_device_state()
+{
+  this->print_command_registers();
+  std::stringstream s; 
+  s<<"Device mode:\t"<<this->show_mode()<<"\n";
+  s<<"Voltage Range:\t"<<this->show_voltage()<<"\n";
+  s<<"PGA:\t"<<this->show_gain()<<"\n";
+  s<<"Clock:\t"<<this->show_clock();
+  std::cout<<s.str()<<std::endl;
+}
+
+std::string AD5933::show_voltage()
+{
+  uint8_t reg;
+  this->read_register(reg,CTRL_MSB);
+  reg &= VOLTAGE_MASK;
+  Voltage v;
+  try
+    {
+      v = voltage_map.at(reg);
+    }
+  catch (const std::out_of_range &e)
+    {
+      std::cout<<"Invalid Voltage Command!!!";
+      return "Invalid Voltage";
+    }
+  switch (v)
+    {
+    case Voltage::OUTPUT_2Vpp:
+      {
+	return "2Vpp";
+      }
+    case Voltage::OUTPUT_200mVpp:
+      {
+	return "200mVpp";
+      }
+    case Voltage::OUTPUT_400mVpp:
+      {
+	return "400mVpp";
+      }
+    case Voltage::OUTPUT_1Vpp:
+      {
+	return "1Vpp";
+      }
+    default:
+      {
+	return "Invalid Voltage";
+      }
+    }
+}
+
+std::string AD5933::show_gain()
+{
+  uint8_t reg;
+  this->read_register(reg,CTRL_MSB);
+  reg &= PGA_MASK;
+  Gain g;
+  try
+    {
+      g = gain_map.at(reg);
+    }
+  catch (const std::out_of_range &e)
+    {
+      std::cout<<"Invalid gain!!!";
+      return "Invalid gain";
+    }
+  switch (reg)
+    {
+    case PGA_GAIN5x:
+      {
+	return "5x";
+      }
+    case PGA_GAIN1x:
+      {
+	return "1x";
+      }
+    default:
+      {
+	return "Invalid Gain";
+      }
+    }
+}
+
+std::string AD5933::show_clock()
+{
+  uint8_t reg=0;
+  this->read_register(reg, CTRL_LSB);
+  reg &= CLK_MASK;
+  if (reg)
+    {
+      return "External";
+    }
+  else
+    {
+      return "Internal";
+    }
+}
+
+
+void AD5933::print_command_registers()
+{
+  uint8_t msb,lsb;
+  read_register(msb, CTRL_MSB);
+  read_register(lsb, CTRL_LSB);
+  std::bitset<8> m(msb);
+  std::bitset<8> l(lsb);
+  for (int i=15;i>=0;i--)
+    {
+      printf("%d\t",i);
+    }
+  printf("\n");
+  //  std::cout<<"15\t14\t13\t12\t11\t10\t9\t8\t7\t6\t5\t4\t3\t2\t1\t0\n";
+  std::cout<<m[7]<<"\t"<<m[6]<<"\t"<<m[5]<<"\t"<<m[4]<<"\t"<<m[3]<<"\t"<<m[2]<<"\t"<<m[1]<<"\t"<<m[0]<<"\t"
+	   <<l[7]<<"\t"<<l[6]<<"\t"<<l[5]<<"\t"<<l[4]<<"\t"<<l[3]<<"\t"<<l[2]<<"\t"<<l[1]<<"\t"<<l[0];
+  printf("\n");
+}
+
+
 
 uint32_t AD5933::get_frequency()
 {
@@ -158,15 +420,11 @@ void AD5933::set_settling_multiplier(SettlingMultiplier setting)
   switch (setting)
     {
     case SettlingMultiplier::MUL_2x:
-      {
-	settling_msb |= SETTLING_MUL_2x;
-	break;
-      }
+      settling_msb |= SETTLING_MUL_2x;
+      break;
     case  SettlingMultiplier::MUL_4x:
-      {
-	settling_msb |= SETTLING_MUL_4x;
-	break;
-      }
+      settling_msb |= SETTLING_MUL_4x;
+      break;
     }
   write_register(settling_msb,SETTLE_MSB);
 }
@@ -201,11 +459,11 @@ void AD5933::choose_clock( Clk setting)
 
 void AD5933::set_starting_frequency(uint32_t start)
 {
-  printf("start: %d",start);
+  printf("start: %d ",start);
   uint8_t r2 = ( start & 0xff0000 ) >>16;
   uint8_t r1 = ( start & 0x00ff00 ) >>8;
   uint8_t r0 = ( start & 0x0000ff );
-  printf("registers: 0x%X%X%X",r2,r1,r0);
+  printf("registers: 0x%X%X%X\n",r2,r1,r0);
   write_register ( r2, FREQ_23_16 );
   write_register ( r1, FREQ_15_8 );
   write_register ( r0, FREQ_7_0 );
