@@ -127,20 +127,46 @@ void user_interaction(AD5933 &h)
       break;
     }
   h.print_command_registers();
+  printf("Initial Calibration:\nCalibration Resistor Value: ");
+  int rcal;
+  std::cin>>rcal;
+  auto adm = sweep_frequency(starting_frequency, steps, interval, &h);
+  printf("Full point calculation");
+  auto gains = calibrate_gain(adm, rcal);
+  std::vector<std::pair<long double,long double>> system_phase;   
+  for (const auto& i: adm)
+    {
+      long double phi = std::arg(i.second);
+      phi = phi * (180.0l/M_PIl);
+      system_phase.push_back(std::make_pair(i.first,phi));
+    }
+  std::cout<<"Please insert unknown impedance"<<std::endl;
+  int nouse;
+  std::cin>>nouse;
+  auto newZ = sweep_frequency(starting_frequency, steps, interval, &h);
+  auto mag = calculate_magnitude(newZ, gains);
+  std::vector<std::pair<long double,long double>> new_phase;
+  std::vector<long double> new_arg;
+  for (size_t i = 0; i < newZ.size(); ++i)
+  {
+    auto phiZ = std::arg(newZ[i].second);
+    phiZ = phiZ * (180.0l/M_PIl);
+    auto phi0 = phiZ - system_phase[i].second;
+    new_phase.push_back( make_pair(newZ[i].first, phi0));
+  }
+  write_to_file(mag, new_phase, newZ);
 }
 
 int main ( int argc, char **argv )
 {
   using std::make_pair;
   AD5933 analyzer;
-  user_interaction(analyzer);
-  std::cout<<"stop!";
-  int STOP;
-  std::cin>>STOP;
-  long double start=30000;
   auto temp = analyzer.measure_temperature();
   printf ( "Temperature= %f C\n",temp );
+  user_interaction(analyzer);
+  long double start=30000;
   printf ( "Starting\n" );
+  /*
   analyzer.choose_clock(Clk::INT);
   analyzer.set_settling_multiplier(SettlingMultiplier::MUL_1x);
   analyzer.set_settling_cycles(15);
@@ -208,6 +234,7 @@ int main ( int argc, char **argv )
     std::cout<<mag[i].first<<"\t"<<mag[i].second<<"\t<"<<new_phase[i].second<<"\t< "
 	     <<system_phase[i].second<<"\t<"<<new_arg[i]<<std::endl;
   }
+  */
 }
 
 
