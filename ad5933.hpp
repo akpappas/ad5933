@@ -620,14 +620,16 @@ complex_t AD5933::read_measurement()
   im0b=im0;
   int16_t img = im1<<8 | im0;
   std::bitset<16> imb(img);
+  long double dreal = real;
+  long double dimg = img;
+  complex_t z(dreal,dimg);
+#ifdef DEBUG
   std::cout<<"Real:\t\t\tImag:\n";
   std::cout<<re1b<<re0b<<"\t"<<im1b<<im0b<<"\n";
   std::cout<<realb<<"\t"<<imb<<"\n";
-  long double dreal = real;
-  long double dimg = img;
   std::cout<<dreal<<"\t\t\t"<<dimg<<"\n";
-  complex_t z(dreal,dimg);
   std::cout<<z.real()<<"\t\t\t"<<z.imag()<<"\n";
+#endif
   return z;
 }
 
@@ -758,21 +760,17 @@ int AD5933::download_fx2()
 std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t lower,uint32_t number_of_samples,long double step, AD5933* h )
 {
   long double clk = h->clk;
-  std::cout<<"clock "<<clk<<"\n";
   vector< pair<long double,complex_t>> measurements;
   long double lowerd= lower;
-  std::cout<<"lowerd:"<<lowerd<<" "<<lower<<std::endl;
   auto startd = (lowerd / (clk/4))* (1<<27);
   auto incd = (step / (clk/4))*(1<<27);
   
   uint32_t start = startd;
   uint32_t inc = incd;
-  printf("lower %d start = 0x%X,inc = 0x%X\n",lower,start,inc);
   h->set_starting_frequency ( start );
   h->set_frequency_step ( inc );
-  printf("Set frequency: 0x%X\n",h->get_frequency());
   h->set_step_number ( number_of_samples );
-
+  
   h->set_standby();
   usleep ( 5e5 );
 
@@ -781,6 +779,13 @@ std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t l
 
   h->start_sweep();
   usleep( 5e5);
+
+#ifdef DEBUG
+  std::cout<<"clock "<<clk<<"\n";
+  std::cout<<"lowerd:"<<lowerd<<" "<<lower<<std::endl;
+  printf("lower %d start = 0x%X,inc = 0x%X\n",lower,start,inc);
+  printf("Set frequency: 0x%X\n",h->get_frequency());
+#endif
   
   /*Sweep loop*/
   long double true_freq;
@@ -789,8 +794,7 @@ std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t l
   uint8_t sreg;
   for ( ;; )
     {
-      printf("Set frequency: 0x%X\n",h->get_frequency());
-      long double ar= ( cur_freq );
+      long double ar = ( cur_freq );
       true_freq = ar/ ( (1<<27)/(clk/4)) ;
       /*Read SREG for valid impedance meausurement*/
       uint8_t impedance_valid=0;
@@ -930,7 +934,7 @@ void write_to_file(const std::vector<std::pair<long double, long double>> &mag,
       fprintf(stderr, "write_to_file: Argument size not equal");
       std::abort();
     }
-  std::string header = "Frequency,Magnitutude,Phase,Real,Imaginary,Magnitutude\n";
+  std::string header = "Frequency,Impedance,Phase,Real,Imaginary,Magnitutude\n";
   FILE *fp =  fopen("output.csv","w");
   if (fp==NULL)
     {
