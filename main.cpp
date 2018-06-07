@@ -28,6 +28,7 @@ void user_interaction(AD5933 &h)
 	  std::cout<<"External clk frequency:";
 	  std::cin>>h.ext_clk;
 	  h.clk = h.ext_clk;
+	  h.choose_clock(Clk::EXT);
 	  printf("Chose internal clock (%Lf)\n",h.clk);
 	}
     } while (clk!='y' &&  clk!='n');
