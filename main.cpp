@@ -21,6 +21,7 @@ void user_interaction(AD5933 &h)
       if (clk=='y')
 	{
 	  h.clk = h.int_clk;
+	  h.choose_clock(Clk::INT);
 	  printf("Chose internal clock (%Lf)\n",h.clk);
 	}
       else if (clk=='n')
