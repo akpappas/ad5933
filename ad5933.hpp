@@ -1,3 +1,4 @@
+/*! \file */
 #pragma once
 #include <stdio.h>
 #include <string.h>
@@ -18,31 +19,31 @@
 
 //The  VID and PID of the EVAL board.
 //Those are saved in the EEPROM in the FX2LP chip
-const uint16_t VID = 0x0456;
-const uint16_t PID = 0xb203;
+const uint16_t VID = 0x0456; //! USB Vendor ID
+const uint16_t PID = 0xb203; //! USB Product ID
 
-//Register Map
+//Register List
 //As defined in the datasheet (Table 8). All bits are addressable but not
 //meaningfull.
-const uint8_t CTRL_MSB=0x80;   //Control Register bits 15-08
-const uint8_t CTRL_LSB=0x81;   //Control Register bits 07-00
-const uint8_t FREQ_23_16=0x82; //Start frequency register bits 23-16
-const uint8_t FREQ_15_8=0x83;  //Start frequency register bits 15-08
-const uint8_t FREQ_7_0=0x84;   //Start frequency register bits 07-00
-const uint8_t STEP_23_16=0x85; //Frequency increment register bits 23-16
-const uint8_t STEP_15_8=0x86;  //Frequency increment register bits 15-08
-const uint8_t STEP_7_0=0x87;   //Frequency increment register bits 07-00
-const uint8_t INC_NUM_MSB=0x88;//Number of increments register bits 15-08
-const uint8_t INC_NUM_LSB=0x89;//Number of increments register bits 07-00
-const uint8_t SETTLE_MSB=0x8A; //Number of settling time cycles bits 15-08
-const uint8_t SETTLE_LSB=0x8B; //Number of settling time cycles bits 07-00
-const uint8_t SREG=0x8F;       //Status register
-const uint8_t TEMPERATURE_MSB=0x92;//Temperature data register bits 15-08
-const uint8_t TEMPERATURE_LSB=0x93;//Temperature data register bits 07-00
-const uint8_t REAL_MSB=0x94;   //Real data register 15-08
-const uint8_t REAL_LSB=0x95;   //Read data register 07-00
-const uint8_t IMG_MSB=0x96;    //Imaginary data register 15-08
-const uint8_t IMG_LSB=0x97;    //Imaginary data register 07-00
+const uint8_t CTRL_MSB=0x80;   //!Address of the Control Register bits 15-08
+const uint8_t CTRL_LSB=0x81;   //!Address of the Control Register bits 07-00
+const uint8_t FREQ_23_16=0x82; //!Address of the Start frequency register bits 23-16
+const uint8_t FREQ_15_8=0x83;  //!Address of the Start frequency register bits 15-08
+const uint8_t FREQ_7_0=0x84;   //!Address of the Start frequency register bits 07-00
+const uint8_t STEP_23_16=0x85; //!Address of the Frequency increment register bits 23-16
+const uint8_t STEP_15_8=0x86;  //!Address of the Frequency increment register bits 15-08
+const uint8_t STEP_7_0=0x87;   //!Address of the Frequency increment register bits 07-00
+const uint8_t INC_NUM_MSB=0x88;//!Address of the Number of increments register bits 15-08
+const uint8_t INC_NUM_LSB=0x89;//!Address of the Number of increments register bits 07-00
+const uint8_t SETTLE_MSB=0x8A; //!Address of the Number of settling time cycles bits 15-08
+const uint8_t SETTLE_LSB=0x8B; //!Address of the Number of settling time cycles bits 07-00
+const uint8_t SREG=0x8F;       //!Address of the Status register
+const uint8_t TEMPERATURE_MSB=0x92;//!Address of the Temperature data register bits 15-08
+const uint8_t TEMPERATURE_LSB=0x93;//!Address of the Temperature data register bits 07-00
+const uint8_t REAL_MSB=0x94;   //!Address of the Real data register 15-08
+const uint8_t REAL_LSB=0x95;   //!Address of the Read data register 07-00
+const uint8_t IMG_MSB=0x96;    //!Address of the Imaginary data register 15-08
+const uint8_t IMG_LSB=0x97;    //!Address of the Imaginary data register 07-00
 
 
 
@@ -61,9 +62,9 @@ enum class Mode
   SB_MODE
 };
 
+//! Mask to clear/keep bits that are relevant to the Mode bits
+const uint8_t MODE_MASK = 0b11110000;
 
-const uint8_t MODE_MASK = 0b11110000; // Mask to clear/keep bits that are
-				      // relevant to the Mode bits
 
 //These constants determine the state of the impedance analyzer, as defined on
 //table 9.
@@ -688,10 +689,12 @@ int AD5933::write_register ( uint8_t command, uint8_t reg )
   return err;
 }
 
-//Read a byte from one of the AD5933 registers.
-// uint8_t buffer: The buffer where the byte will be stored
-// uint8_t reg: The address of the register to be written.
-//Returns a libusb_error code.
+//!Read a byte from one of the AD5933 registers.
+/*!
+ \param buffer The buffer where the byte will be stored 
+ \param reg The address of the register to be written.
+ \return Returns a libusb_error code.
+*/
 int AD5933::read_register ( uint8_t &buffer, uint8_t reg )
 {
   auto err = libusb_control_transfer ( h,0xc0,0xDE,0x0D,reg,&buffer,1,0 );
@@ -940,10 +943,13 @@ std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t l
 }
 
 
-//Measure temperature
-//This method sends the command for measuring the temperature, waits for a valid
-//measurement, reads the meausrements from the appropriate registers and then
-//returns a double with the temperature in Celsius.
+/*!
+\brief Measure temperature.
+
+This method sends the command for measuring the temperature, waits for a valid
+measurement, reads the meausrements from the appropriate registers and then
+returns a double with the temperature in Celsius.
+*/
 double AD5933::measure_temperature()
 {
   uint8_t mask=0x0F;
@@ -974,16 +980,17 @@ double AD5933::measure_temperature()
 
 
 
-//Function to calculate the gain factor using the measurements of a known
-//resistance.
-//
-//measurements: a vector of pairs. The pairs contain the frequency of a
-//measurement and the value that was measured.
-//calibration_resistance: the value in Ohms of the calibration resistance.
-//The vector MUST contain the measurements of the known calibrations resistance for the 
-//gain calculation to be meaningful.
-//
-//returns a vector of pair, that contain the frequency and the gain factor for that frequency.
+//! Function to calculate the gain factor using the measurements of a known
+//! resistance.
+/*!
+\param measurements: a vector of pairs. The pairs contain the frequency of a
+ measurement and the value that was measured.
+\param calibration_resistance: the value in Ohms of the calibration resistance.
+The vector MUST contain the measurements of the known calibrations resistance for the 
+gain calculation to be meaningful.
+\returns A vector of pair, that contain the frequency and the gain factor for
+that frequency.
+*/
 std::vector<std::pair<long double,long double>>
 calibrate_gain(const std::vector<std::pair<long double,complex_t>> &measurements,
 	       const long double &calibration_resistance)
