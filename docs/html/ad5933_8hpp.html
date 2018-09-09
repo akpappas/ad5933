@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EVALAD5933 for Linux/Raspberry Pi: /home/apappas/ad5933/ad5933.hpp File Reference</title>
+<title>EVALAD5933 drivers for Linux/Raspberry Pi: /home/apappas/ad5933/ad5933.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EVALAD5933 for Linux/Raspberry Pi
+   <div id="projectname">EVALAD5933 drivers for Linux/Raspberry Pi
    &#160;<span id="projectnumber">0.01</span>
    </div>
    <div id="projectbrief">Header-only C++ library for the EVALAD5933 impedance analyzer</div>
@@ -94,248 +94,503 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_a_d5933.html">AD5933</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct for the <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> device.  <a href="struct_a_d5933.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae1cf790e72cff992603d30d0abba52f3"><td class="memItemLeft" align="right" valign="top"><a id="ae1cf790e72cff992603d30d0abba52f3"></a>
-typedef std::complex&lt; long double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>complex_t</b></td></tr>
+<tr class="memitem:ae1cf790e72cff992603d30d0abba52f3"><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; long double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a></td></tr>
 <tr class="separator:ae1cf790e72cff992603d30d0abba52f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a46c8a310cf4c094f8c80e1cb8dc1f911"><td class="memItemLeft" align="right" valign="top"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911">Mode</a> { <br />
-&#160;&#160;<b>INIT_START_FREQ</b>, 
-<b>START_FREQ_SWEEP</b>, 
-<b>INC_FREQ</b>, 
-<b>REPEAT_FREQ</b>, 
+<tr class="memitem:a46c8a310cf4c094f8c80e1cb8dc1f911"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911">Mode</a> { <br />
+&#160;&#160;<a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911af15c76a56f085febeaee42b702427f32">Mode::INIT_START_FREQ</a>, 
+<a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a3cc6b4e20e9256581d136032ce82db7e">Mode::START_FREQ_SWEEP</a>, 
+<a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a900ea0de7eda45fa066bcb8d2976d834">Mode::INC_FREQ</a>, 
+<a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911ae46a74589ece18f56c70712b3d3ab813">Mode::REPEAT_FREQ</a>, 
 <br />
-&#160;&#160;<b>MEAS_TEMP</b>, 
-<b>PD_MODE</b>, 
-<b>SB_MODE</b>
+&#160;&#160;<a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911ab2706713d87f8c1d1f6e99bf91def73d">Mode::MEAS_TEMP</a>, 
+<a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a7c6d234435fe0967402da6c6b787d32e">Mode::PD_MODE</a>, 
+<a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a248da8b00edcc1bf1e52cbc65f9dad1f">Mode::SB_MODE</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a46c8a310cf4c094f8c80e1cb8dc1f911"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Imaginary data register 07-00. <br /></td></tr>
+<tr class="memdesc:a46c8a310cf4c094f8c80e1cb8dc1f911"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class enum of the possible states of the <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a>.  <a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911">More...</a><br /></td></tr>
 <tr class="separator:a46c8a310cf4c094f8c80e1cb8dc1f911"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0295b163fa728ece7beda3d933127de"><td class="memItemLeft" align="right" valign="top"><a id="ad0295b163fa728ece7beda3d933127de"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Voltage</b> { <b>OUTPUT_2Vpp</b>, 
-<b>OUTPUT_200mVpp</b>, 
-<b>OUTPUT_400mVpp</b>, 
-<b>OUTPUT_1Vpp</b>
+<tr class="memitem:ad0295b163fa728ece7beda3d933127de"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127de">Voltage</a> { <a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea2d51957c0971b256878ba19a2a3e61a1">Voltage::OUTPUT_2Vpp</a>, 
+<a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea92fcf1fe254457d38a5995014f8e54cb">Voltage::OUTPUT_200mVpp</a>, 
+<a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea287e0e371b832c67bffbcc11c22b6504">Voltage::OUTPUT_400mVpp</a>, 
+<a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea1c8cb2fa33d4391ef09ca04dc5ce68ba">Voltage::OUTPUT_1Vpp</a>
  }</td></tr>
+<tr class="memdesc:ad0295b163fa728ece7beda3d933127de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class enum of the excitation voltages levels of the <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a>.  <a href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127de">More...</a><br /></td></tr>
 <tr class="separator:ad0295b163fa728ece7beda3d933127de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bc3a010269d8968cd5e6a0c119ed1e1"><td class="memItemLeft" align="right" valign="top"><a id="a8bc3a010269d8968cd5e6a0c119ed1e1"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Gain</b> { <b>PGA5x</b>, 
-<b>PGA1x</b>
+<tr class="memitem:a8bc3a010269d8968cd5e6a0c119ed1e1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1">Gain</a> { <a class="el" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1acf6400739cd566fe5fc9a7d2f559ee25">Gain::PGA5x</a>, 
+<a class="el" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1a3a7c85f0a73ba6b804e4631c92293768">Gain::PGA1x</a>
  }</td></tr>
+<tr class="memdesc:a8bc3a010269d8968cd5e6a0c119ed1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class enum of the gains of the programmable amplifier at the receive stage.  <a href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1">More...</a><br /></td></tr>
 <tr class="separator:a8bc3a010269d8968cd5e6a0c119ed1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a252769b931abfc990c5d5396cc352d35"><td class="memItemLeft" align="right" valign="top"><a id="a252769b931abfc990c5d5396cc352d35"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Clk</b> { <b>EXT</b>, 
-<b>INT</b>
+<tr class="memitem:a252769b931abfc990c5d5396cc352d35"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a252769b931abfc990c5d5396cc352d35">Clk</a> { <a class="el" href="ad5933_8hpp.html#a252769b931abfc990c5d5396cc352d35aefd472d9664cd3e8c9e924f35e3f6c88">Clk::EXT</a>, 
+<a class="el" href="ad5933_8hpp.html#a252769b931abfc990c5d5396cc352d35a53f93baa3057821107c750323892fa92">Clk::INT</a>
  }</td></tr>
+<tr class="memdesc:a252769b931abfc990c5d5396cc352d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class enum for clock selection.  <a href="ad5933_8hpp.html#a252769b931abfc990c5d5396cc352d35">More...</a><br /></td></tr>
 <tr class="separator:a252769b931abfc990c5d5396cc352d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0556cc9a11c997a97ffc50ecb94e59b8"><td class="memItemLeft" align="right" valign="top"><a id="a0556cc9a11c997a97ffc50ecb94e59b8"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>SettlingMultiplier</b> { <b>MUL_1x</b>, 
-<b>MUL_2x</b>, 
-<b>MUL_4x</b>
+<tr class="memitem:a0556cc9a11c997a97ffc50ecb94e59b8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a0556cc9a11c997a97ffc50ecb94e59b8">SettlingMultiplier</a> { <a class="el" href="ad5933_8hpp.html#a0556cc9a11c997a97ffc50ecb94e59b8a13e0a64714d6eb0dcc01c1190044d178">SettlingMultiplier::MUL_1x</a>, 
+<a class="el" href="ad5933_8hpp.html#a0556cc9a11c997a97ffc50ecb94e59b8a087517bec32b4c5d1e5136bca43e3a27">SettlingMultiplier::MUL_2x</a>, 
+<a class="el" href="ad5933_8hpp.html#a0556cc9a11c997a97ffc50ecb94e59b8adbbd581b6d383d603ab01de0f201d3f3">SettlingMultiplier::MUL_4x</a>
  }</td></tr>
+<tr class="memdesc:a0556cc9a11c997a97ffc50ecb94e59b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class enum of the settling cycle multiplier.  <a href="ad5933_8hpp.html#a0556cc9a11c997a97ffc50ecb94e59b8">More...</a><br /></td></tr>
 <tr class="separator:a0556cc9a11c997a97ffc50ecb94e59b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a17b2e97c9e79890194a020f4b9da676e"><td class="memItemLeft" align="right" valign="top"><a id="a17b2e97c9e79890194a020f4b9da676e"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>show_status</b> (uint8_t reg)</td></tr>
+<tr class="memitem:a17b2e97c9e79890194a020f4b9da676e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a17b2e97c9e79890194a020f4b9da676e">show_status</a> (uint8_t reg)</td></tr>
+<tr class="memdesc:a17b2e97c9e79890194a020f4b9da676e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describe measurement status.  <a href="#a17b2e97c9e79890194a020f4b9da676e">More...</a><br /></td></tr>
 <tr class="separator:a17b2e97c9e79890194a020f4b9da676e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebf6955587e73547118350feebb9216f"><td class="memItemLeft" align="right" valign="top"><a id="aebf6955587e73547118350feebb9216f"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>show_multiplier</b> (uint8_t reg)</td></tr>
+<tr class="memitem:aebf6955587e73547118350feebb9216f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#aebf6955587e73547118350feebb9216f">show_multiplier</a> (uint8_t reg)</td></tr>
+<tr class="memdesc:aebf6955587e73547118350feebb9216f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describe the multiplier.  <a href="#aebf6955587e73547118350feebb9216f">More...</a><br /></td></tr>
 <tr class="separator:aebf6955587e73547118350feebb9216f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae097ed66eb0d3a562aed62529f5b0cf0"><td class="memItemLeft" align="right" valign="top"><a id="ae097ed66eb0d3a562aed62529f5b0cf0"></a>
-std::vector&lt; std::pair&lt; long double, complex_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sweep_frequency</b> (uint32_t lower, uint32_t number_of_samples, long double step, <a class="el" href="struct_a_d5933.html">AD5933</a> *h)</td></tr>
+<tr class="memitem:ae097ed66eb0d3a562aed62529f5b0cf0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ae097ed66eb0d3a562aed62529f5b0cf0">sweep_frequency</a> (uint32_t lower, uint32_t number_of_samples, long double step, <a class="el" href="struct_a_d5933.html">AD5933</a> *h)</td></tr>
+<tr class="memdesc:ae097ed66eb0d3a562aed62529f5b0cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute frequency sweep.  <a href="#ae097ed66eb0d3a562aed62529f5b0cf0">More...</a><br /></td></tr>
 <tr class="separator:ae097ed66eb0d3a562aed62529f5b0cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a861e50293a3afa48adf06476b2d814f9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; long double, long double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a861e50293a3afa48adf06476b2d814f9">calibrate_gain</a> (const std::vector&lt; std::pair&lt; long double, complex_t &gt;&gt; &amp;measurements, const long double &amp;calibration_resistance)</td></tr>
+<tr class="memitem:a861e50293a3afa48adf06476b2d814f9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; long double, long double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a861e50293a3afa48adf06476b2d814f9">calibrate_gain</a> (const std::vector&lt; std::pair&lt; long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt;&gt; &amp;measurements, const long double &amp;calibration_resistance)</td></tr>
 <tr class="separator:a861e50293a3afa48adf06476b2d814f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e7962b819f884fd174ca610f5059bc2"><td class="memItemLeft" align="right" valign="top"><a id="a9e7962b819f884fd174ca610f5059bc2"></a>
-std::vector&lt; std::pair&lt; long double, long double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculate_magnitude</b> (const std::vector&lt; std::pair&lt; long double, complex_t &gt;&gt; &amp;measurements, const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;gains)</td></tr>
+<tr class="memitem:a9e7962b819f884fd174ca610f5059bc2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; long double, long double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a9e7962b819f884fd174ca610f5059bc2">calculate_magnitude</a> (const std::vector&lt; std::pair&lt; long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt;&gt; &amp;measurements, const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;gains)</td></tr>
 <tr class="separator:a9e7962b819f884fd174ca610f5059bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b8142f289d209fc27cb1f2316bae827"><td class="memItemLeft" align="right" valign="top"><a id="a3b8142f289d209fc27cb1f2316bae827"></a>
-long double&#160;</td><td class="memItemRight" valign="bottom"><b>interpolate</b> (long double f, const std::pair&lt; long double, long double &gt; &amp;g0, const std::pair&lt; long double, long double &gt; &amp;g1)</td></tr>
+<tr class="memitem:a3b8142f289d209fc27cb1f2316bae827"><td class="memItemLeft" align="right" valign="top">long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a3b8142f289d209fc27cb1f2316bae827">interpolate</a> (long double f, const std::pair&lt; long double, long double &gt; &amp;g0, const std::pair&lt; long double, long double &gt; &amp;g1)</td></tr>
+<tr class="memdesc:a3b8142f289d209fc27cb1f2316bae827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple interpolation function.  <a href="#a3b8142f289d209fc27cb1f2316bae827">More...</a><br /></td></tr>
 <tr class="separator:a3b8142f289d209fc27cb1f2316bae827"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7174582ef3b3eb5d07979c5fe8526ac"><td class="memTemplParams" colspan="2"><a id="af7174582ef3b3eb5d07979c5fe8526ac"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:af7174582ef3b3eb5d07979c5fe8526ac"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; long double, long double &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>calc_multigains</b> (const std::vector&lt; std::pair&lt; long double, T &gt;&gt; &amp;adm, const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;cal)</td></tr>
+<tr class="memitem:af7174582ef3b3eb5d07979c5fe8526ac"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af7174582ef3b3eb5d07979c5fe8526ac"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; long double, long double &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#af7174582ef3b3eb5d07979c5fe8526ac">calc_multigains</a> (const std::vector&lt; std::pair&lt; long double, T &gt;&gt; &amp;adm, const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;cal)</td></tr>
+<tr class="memdesc:af7174582ef3b3eb5d07979c5fe8526ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate the gain factors based on the calibration data.  <a href="#af7174582ef3b3eb5d07979c5fe8526ac">More...</a><br /></td></tr>
 <tr class="separator:af7174582ef3b3eb5d07979c5fe8526ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72b16b2b75e0229bde220c830ef7c280"><td class="memItemLeft" align="right" valign="top"><a id="a72b16b2b75e0229bde220c830ef7c280"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>write_to_file</b> (const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;mag, const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;phase, const std::vector&lt; std::pair&lt; long double, complex_t &gt;&gt; &amp;adm)</td></tr>
+<tr class="memitem:a72b16b2b75e0229bde220c830ef7c280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a72b16b2b75e0229bde220c830ef7c280">write_to_file</a> (const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;mag, const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;phase, const std::vector&lt; std::pair&lt; long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt;&gt; &amp;adm)</td></tr>
+<tr class="memdesc:a72b16b2b75e0229bde220c830ef7c280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to record data.  <a href="#a72b16b2b75e0229bde220c830ef7c280">More...</a><br /></td></tr>
 <tr class="separator:a72b16b2b75e0229bde220c830ef7c280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a302752ab195a1e56e905014789ee5c40"><td class="memItemLeft" align="right" valign="top"><a id="a302752ab195a1e56e905014789ee5c40"></a>
-const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>VID</b> = 0x0456</td></tr>
+<tr class="memitem:a302752ab195a1e56e905014789ee5c40"><td class="memItemLeft" align="right" valign="top">const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a302752ab195a1e56e905014789ee5c40">VID</a> = 0x0456</td></tr>
+<tr class="memdesc:a302752ab195a1e56e905014789ee5c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">USB Vendor ID.  <a href="#a302752ab195a1e56e905014789ee5c40">More...</a><br /></td></tr>
 <tr class="separator:a302752ab195a1e56e905014789ee5c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5439eafd849dd77fb1134f18e260d2fb"><td class="memItemLeft" align="right" valign="top"><a id="a5439eafd849dd77fb1134f18e260d2fb"></a>
-const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a5439eafd849dd77fb1134f18e260d2fb">PID</a> = 0xb203</td></tr>
-<tr class="memdesc:a5439eafd849dd77fb1134f18e260d2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">USB Vendor ID. <br /></td></tr>
+<tr class="memitem:a5439eafd849dd77fb1134f18e260d2fb"><td class="memItemLeft" align="right" valign="top">const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a5439eafd849dd77fb1134f18e260d2fb">PID</a> = 0xb203</td></tr>
+<tr class="memdesc:a5439eafd849dd77fb1134f18e260d2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">USB Product ID.  <a href="#a5439eafd849dd77fb1134f18e260d2fb">More...</a><br /></td></tr>
 <tr class="separator:a5439eafd849dd77fb1134f18e260d2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2a8118ac832748dc5743d46eff346d4"><td class="memItemLeft" align="right" valign="top"><a id="af2a8118ac832748dc5743d46eff346d4"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#af2a8118ac832748dc5743d46eff346d4">CTRL_MSB</a> =0x80</td></tr>
-<tr class="memdesc:af2a8118ac832748dc5743d46eff346d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">USB Product ID. <br /></td></tr>
+<tr class="memitem:af2a8118ac832748dc5743d46eff346d4"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#af2a8118ac832748dc5743d46eff346d4">CTRL_MSB</a> =0x80</td></tr>
+<tr class="memdesc:af2a8118ac832748dc5743d46eff346d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Control Register bits 15-08.  <a href="#af2a8118ac832748dc5743d46eff346d4">More...</a><br /></td></tr>
 <tr class="separator:af2a8118ac832748dc5743d46eff346d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada7e3002fc89734be45d73e43c40991d"><td class="memItemLeft" align="right" valign="top"><a id="ada7e3002fc89734be45d73e43c40991d"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ada7e3002fc89734be45d73e43c40991d">CTRL_LSB</a> =0x81</td></tr>
-<tr class="memdesc:ada7e3002fc89734be45d73e43c40991d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Control Register bits 15-08. <br /></td></tr>
+<tr class="memitem:ada7e3002fc89734be45d73e43c40991d"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ada7e3002fc89734be45d73e43c40991d">CTRL_LSB</a> =0x81</td></tr>
+<tr class="memdesc:ada7e3002fc89734be45d73e43c40991d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Control Register bits 07-00.  <a href="#ada7e3002fc89734be45d73e43c40991d">More...</a><br /></td></tr>
 <tr class="separator:ada7e3002fc89734be45d73e43c40991d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af84f780a7262a0a8d7d24346ed526425"><td class="memItemLeft" align="right" valign="top"><a id="af84f780a7262a0a8d7d24346ed526425"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#af84f780a7262a0a8d7d24346ed526425">FREQ_23_16</a> =0x82</td></tr>
-<tr class="memdesc:af84f780a7262a0a8d7d24346ed526425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Control Register bits 07-00. <br /></td></tr>
+<tr class="memitem:af84f780a7262a0a8d7d24346ed526425"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#af84f780a7262a0a8d7d24346ed526425">FREQ_23_16</a> =0x82</td></tr>
+<tr class="memdesc:af84f780a7262a0a8d7d24346ed526425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Start frequency register bits 23-16.  <a href="#af84f780a7262a0a8d7d24346ed526425">More...</a><br /></td></tr>
 <tr class="separator:af84f780a7262a0a8d7d24346ed526425"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93d0377f5c4ffce1837c8f629b4760be"><td class="memItemLeft" align="right" valign="top"><a id="a93d0377f5c4ffce1837c8f629b4760be"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a93d0377f5c4ffce1837c8f629b4760be">FREQ_15_8</a> =0x83</td></tr>
-<tr class="memdesc:a93d0377f5c4ffce1837c8f629b4760be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Start frequency register bits 23-16. <br /></td></tr>
+<tr class="memitem:a93d0377f5c4ffce1837c8f629b4760be"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a93d0377f5c4ffce1837c8f629b4760be">FREQ_15_8</a> =0x83</td></tr>
+<tr class="memdesc:a93d0377f5c4ffce1837c8f629b4760be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Start frequency register bits 15-08.  <a href="#a93d0377f5c4ffce1837c8f629b4760be">More...</a><br /></td></tr>
 <tr class="separator:a93d0377f5c4ffce1837c8f629b4760be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f6de0e0a93fbee84a33127ecd08faa8"><td class="memItemLeft" align="right" valign="top"><a id="a8f6de0e0a93fbee84a33127ecd08faa8"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a8f6de0e0a93fbee84a33127ecd08faa8">FREQ_7_0</a> =0x84</td></tr>
-<tr class="memdesc:a8f6de0e0a93fbee84a33127ecd08faa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Start frequency register bits 15-08. <br /></td></tr>
+<tr class="memitem:a8f6de0e0a93fbee84a33127ecd08faa8"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a8f6de0e0a93fbee84a33127ecd08faa8">FREQ_7_0</a> =0x84</td></tr>
+<tr class="memdesc:a8f6de0e0a93fbee84a33127ecd08faa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Start frequency register bits 07-00.  <a href="#a8f6de0e0a93fbee84a33127ecd08faa8">More...</a><br /></td></tr>
 <tr class="separator:a8f6de0e0a93fbee84a33127ecd08faa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d4325c3247126531d9e4ff3131871d2"><td class="memItemLeft" align="right" valign="top"><a id="a1d4325c3247126531d9e4ff3131871d2"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1d4325c3247126531d9e4ff3131871d2">STEP_23_16</a> =0x85</td></tr>
-<tr class="memdesc:a1d4325c3247126531d9e4ff3131871d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Start frequency register bits 07-00. <br /></td></tr>
+<tr class="memitem:a1d4325c3247126531d9e4ff3131871d2"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1d4325c3247126531d9e4ff3131871d2">STEP_23_16</a> =0x85</td></tr>
+<tr class="memdesc:a1d4325c3247126531d9e4ff3131871d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Frequency increment register bits 23-16.  <a href="#a1d4325c3247126531d9e4ff3131871d2">More...</a><br /></td></tr>
 <tr class="separator:a1d4325c3247126531d9e4ff3131871d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa39476517abf5c0dc97c1137c5dfca6"><td class="memItemLeft" align="right" valign="top"><a id="aaa39476517abf5c0dc97c1137c5dfca6"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#aaa39476517abf5c0dc97c1137c5dfca6">STEP_15_8</a> =0x86</td></tr>
-<tr class="memdesc:aaa39476517abf5c0dc97c1137c5dfca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Frequency increment register bits 23-16. <br /></td></tr>
+<tr class="memitem:aaa39476517abf5c0dc97c1137c5dfca6"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#aaa39476517abf5c0dc97c1137c5dfca6">STEP_15_8</a> =0x86</td></tr>
+<tr class="memdesc:aaa39476517abf5c0dc97c1137c5dfca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Frequency increment register bits 15-08.  <a href="#aaa39476517abf5c0dc97c1137c5dfca6">More...</a><br /></td></tr>
 <tr class="separator:aaa39476517abf5c0dc97c1137c5dfca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bda525e253f57664c773a90ca35086b"><td class="memItemLeft" align="right" valign="top"><a id="a7bda525e253f57664c773a90ca35086b"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a7bda525e253f57664c773a90ca35086b">STEP_7_0</a> =0x87</td></tr>
-<tr class="memdesc:a7bda525e253f57664c773a90ca35086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Frequency increment register bits 15-08. <br /></td></tr>
+<tr class="memitem:a7bda525e253f57664c773a90ca35086b"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a7bda525e253f57664c773a90ca35086b">STEP_7_0</a> =0x87</td></tr>
+<tr class="memdesc:a7bda525e253f57664c773a90ca35086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Frequency increment register bits 07-00.  <a href="#a7bda525e253f57664c773a90ca35086b">More...</a><br /></td></tr>
 <tr class="separator:a7bda525e253f57664c773a90ca35086b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fa6e8057bbe1f0495634748e02637a1"><td class="memItemLeft" align="right" valign="top"><a id="a0fa6e8057bbe1f0495634748e02637a1"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a0fa6e8057bbe1f0495634748e02637a1">INC_NUM_MSB</a> =0x88</td></tr>
-<tr class="memdesc:a0fa6e8057bbe1f0495634748e02637a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Frequency increment register bits 07-00. <br /></td></tr>
+<tr class="memitem:a0fa6e8057bbe1f0495634748e02637a1"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a0fa6e8057bbe1f0495634748e02637a1">INC_NUM_MSB</a> =0x88</td></tr>
+<tr class="memdesc:a0fa6e8057bbe1f0495634748e02637a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of increments register bits 15-08.  <a href="#a0fa6e8057bbe1f0495634748e02637a1">More...</a><br /></td></tr>
 <tr class="separator:a0fa6e8057bbe1f0495634748e02637a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0678ad8d38964165527f182a09945f33"><td class="memItemLeft" align="right" valign="top"><a id="a0678ad8d38964165527f182a09945f33"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a0678ad8d38964165527f182a09945f33">INC_NUM_LSB</a> =0x89</td></tr>
-<tr class="memdesc:a0678ad8d38964165527f182a09945f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of increments register bits 15-08. <br /></td></tr>
+<tr class="memitem:a0678ad8d38964165527f182a09945f33"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a0678ad8d38964165527f182a09945f33">INC_NUM_LSB</a> =0x89</td></tr>
+<tr class="memdesc:a0678ad8d38964165527f182a09945f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of increments register bits 07-00.  <a href="#a0678ad8d38964165527f182a09945f33">More...</a><br /></td></tr>
 <tr class="separator:a0678ad8d38964165527f182a09945f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae85b2797ac5b2310744e22fc2c6ba232"><td class="memItemLeft" align="right" valign="top"><a id="ae85b2797ac5b2310744e22fc2c6ba232"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ae85b2797ac5b2310744e22fc2c6ba232">SETTLE_MSB</a> =0x8A</td></tr>
-<tr class="memdesc:ae85b2797ac5b2310744e22fc2c6ba232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of increments register bits 07-00. <br /></td></tr>
+<tr class="memitem:ae85b2797ac5b2310744e22fc2c6ba232"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ae85b2797ac5b2310744e22fc2c6ba232">SETTLE_MSB</a> =0x8A</td></tr>
+<tr class="memdesc:ae85b2797ac5b2310744e22fc2c6ba232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of settling time cycles bits 15-08.  <a href="#ae85b2797ac5b2310744e22fc2c6ba232">More...</a><br /></td></tr>
 <tr class="separator:ae85b2797ac5b2310744e22fc2c6ba232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1edf59f12a8fbb44984d23455a3bc93f"><td class="memItemLeft" align="right" valign="top"><a id="a1edf59f12a8fbb44984d23455a3bc93f"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1edf59f12a8fbb44984d23455a3bc93f">SETTLE_LSB</a> =0x8B</td></tr>
-<tr class="memdesc:a1edf59f12a8fbb44984d23455a3bc93f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of settling time cycles bits 15-08. <br /></td></tr>
+<tr class="memitem:a1edf59f12a8fbb44984d23455a3bc93f"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1edf59f12a8fbb44984d23455a3bc93f">SETTLE_LSB</a> =0x8B</td></tr>
+<tr class="memdesc:a1edf59f12a8fbb44984d23455a3bc93f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of settling time cycles bits 07-00.  <a href="#a1edf59f12a8fbb44984d23455a3bc93f">More...</a><br /></td></tr>
 <tr class="separator:a1edf59f12a8fbb44984d23455a3bc93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a08c68eb4c8407c5c37bb71ca618cb3"><td class="memItemLeft" align="right" valign="top"><a id="a3a08c68eb4c8407c5c37bb71ca618cb3"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a3a08c68eb4c8407c5c37bb71ca618cb3">SREG</a> =0x8F</td></tr>
-<tr class="memdesc:a3a08c68eb4c8407c5c37bb71ca618cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Number of settling time cycles bits 07-00. <br /></td></tr>
+<tr class="memitem:a3a08c68eb4c8407c5c37bb71ca618cb3"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a3a08c68eb4c8407c5c37bb71ca618cb3">SREG</a> =0x8F</td></tr>
+<tr class="memdesc:a3a08c68eb4c8407c5c37bb71ca618cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Status register.  <a href="#a3a08c68eb4c8407c5c37bb71ca618cb3">More...</a><br /></td></tr>
 <tr class="separator:a3a08c68eb4c8407c5c37bb71ca618cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42564d9f6b41edd1b9c6d1813b4a4adf"><td class="memItemLeft" align="right" valign="top"><a id="a42564d9f6b41edd1b9c6d1813b4a4adf"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a42564d9f6b41edd1b9c6d1813b4a4adf">TEMPERATURE_MSB</a> =0x92</td></tr>
-<tr class="memdesc:a42564d9f6b41edd1b9c6d1813b4a4adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Status register. <br /></td></tr>
+<tr class="memitem:a42564d9f6b41edd1b9c6d1813b4a4adf"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a42564d9f6b41edd1b9c6d1813b4a4adf">TEMPERATURE_MSB</a> =0x92</td></tr>
+<tr class="memdesc:a42564d9f6b41edd1b9c6d1813b4a4adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Temperature data register bits 15-08.  <a href="#a42564d9f6b41edd1b9c6d1813b4a4adf">More...</a><br /></td></tr>
 <tr class="separator:a42564d9f6b41edd1b9c6d1813b4a4adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9268ae661fcb12acbf0ef5c45401adca"><td class="memItemLeft" align="right" valign="top"><a id="a9268ae661fcb12acbf0ef5c45401adca"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a9268ae661fcb12acbf0ef5c45401adca">TEMPERATURE_LSB</a> =0x93</td></tr>
-<tr class="memdesc:a9268ae661fcb12acbf0ef5c45401adca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Temperature data register bits 15-08. <br /></td></tr>
+<tr class="memitem:a9268ae661fcb12acbf0ef5c45401adca"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a9268ae661fcb12acbf0ef5c45401adca">TEMPERATURE_LSB</a> =0x93</td></tr>
+<tr class="memdesc:a9268ae661fcb12acbf0ef5c45401adca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Temperature data register bits 07-00.  <a href="#a9268ae661fcb12acbf0ef5c45401adca">More...</a><br /></td></tr>
 <tr class="separator:a9268ae661fcb12acbf0ef5c45401adca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dcc72584e3e1b0bba3bd890bc0ab361"><td class="memItemLeft" align="right" valign="top"><a id="a6dcc72584e3e1b0bba3bd890bc0ab361"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a6dcc72584e3e1b0bba3bd890bc0ab361">REAL_MSB</a> =0x94</td></tr>
-<tr class="memdesc:a6dcc72584e3e1b0bba3bd890bc0ab361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Temperature data register bits 07-00. <br /></td></tr>
+<tr class="memitem:a6dcc72584e3e1b0bba3bd890bc0ab361"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a6dcc72584e3e1b0bba3bd890bc0ab361">REAL_MSB</a> =0x94</td></tr>
+<tr class="memdesc:a6dcc72584e3e1b0bba3bd890bc0ab361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Real data register 15-08.  <a href="#a6dcc72584e3e1b0bba3bd890bc0ab361">More...</a><br /></td></tr>
 <tr class="separator:a6dcc72584e3e1b0bba3bd890bc0ab361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2c72dd79d30fe098809201e8e230095"><td class="memItemLeft" align="right" valign="top"><a id="ab2c72dd79d30fe098809201e8e230095"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ab2c72dd79d30fe098809201e8e230095">REAL_LSB</a> =0x95</td></tr>
-<tr class="memdesc:ab2c72dd79d30fe098809201e8e230095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Real data register 15-08. <br /></td></tr>
+<tr class="memitem:ab2c72dd79d30fe098809201e8e230095"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ab2c72dd79d30fe098809201e8e230095">REAL_LSB</a> =0x95</td></tr>
+<tr class="memdesc:ab2c72dd79d30fe098809201e8e230095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Read data register 07-00.  <a href="#ab2c72dd79d30fe098809201e8e230095">More...</a><br /></td></tr>
 <tr class="separator:ab2c72dd79d30fe098809201e8e230095"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b3779bde4e9c1bf9b339d06a501f852"><td class="memItemLeft" align="right" valign="top"><a id="a1b3779bde4e9c1bf9b339d06a501f852"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1b3779bde4e9c1bf9b339d06a501f852">IMG_MSB</a> =0x96</td></tr>
-<tr class="memdesc:a1b3779bde4e9c1bf9b339d06a501f852"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Read data register 07-00. <br /></td></tr>
+<tr class="memitem:a1b3779bde4e9c1bf9b339d06a501f852"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1b3779bde4e9c1bf9b339d06a501f852">IMG_MSB</a> =0x96</td></tr>
+<tr class="memdesc:a1b3779bde4e9c1bf9b339d06a501f852"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Imaginary data register 15-08.  <a href="#a1b3779bde4e9c1bf9b339d06a501f852">More...</a><br /></td></tr>
 <tr class="separator:a1b3779bde4e9c1bf9b339d06a501f852"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d02d61cdfe9ecbd5a827761ef0df8a7"><td class="memItemLeft" align="right" valign="top"><a id="a3d02d61cdfe9ecbd5a827761ef0df8a7"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a3d02d61cdfe9ecbd5a827761ef0df8a7">IMG_LSB</a> =0x97</td></tr>
-<tr class="memdesc:a3d02d61cdfe9ecbd5a827761ef0df8a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Imaginary data register 15-08. <br /></td></tr>
+<tr class="memitem:a3d02d61cdfe9ecbd5a827761ef0df8a7"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a3d02d61cdfe9ecbd5a827761ef0df8a7">IMG_LSB</a> =0x97</td></tr>
+<tr class="memdesc:a3d02d61cdfe9ecbd5a827761ef0df8a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the Imaginary data register 07-00.  <a href="#a3d02d61cdfe9ecbd5a827761ef0df8a7">More...</a><br /></td></tr>
 <tr class="separator:a3d02d61cdfe9ecbd5a827761ef0df8a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cee30c51d60be7fe945c25d8bfe2cb5"><td class="memItemLeft" align="right" valign="top"><a id="a1cee30c51d60be7fe945c25d8bfe2cb5"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1cee30c51d60be7fe945c25d8bfe2cb5">MODE_MASK</a> = 0b11110000</td></tr>
-<tr class="memdesc:a1cee30c51d60be7fe945c25d8bfe2cb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask to clear/keep bits that are relevant to the Mode bits. <br /></td></tr>
+<tr class="memitem:a1cee30c51d60be7fe945c25d8bfe2cb5"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1cee30c51d60be7fe945c25d8bfe2cb5">MODE_MASK</a> = 0b11110000</td></tr>
+<tr class="memdesc:a1cee30c51d60be7fe945c25d8bfe2cb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask to clear/keep bits that are relevant to the Mode bits.  <a href="#a1cee30c51d60be7fe945c25d8bfe2cb5">More...</a><br /></td></tr>
 <tr class="separator:a1cee30c51d60be7fe945c25d8bfe2cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29f9e341b7430feadbea33a37374b02e"><td class="memItemLeft" align="right" valign="top"><a id="a29f9e341b7430feadbea33a37374b02e"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>INIT_START_FREQ</b> =0x10</td></tr>
+<tr class="memitem:a29f9e341b7430feadbea33a37374b02e"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a29f9e341b7430feadbea33a37374b02e">INIT_START_FREQ</a> =0x10</td></tr>
+<tr class="memdesc:a29f9e341b7430feadbea33a37374b02e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Initialize with start frequency mode.  <a href="#a29f9e341b7430feadbea33a37374b02e">More...</a><br /></td></tr>
 <tr class="separator:a29f9e341b7430feadbea33a37374b02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a345a81fa572722bbe401dffd8e12904e"><td class="memItemLeft" align="right" valign="top"><a id="a345a81fa572722bbe401dffd8e12904e"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>START_FREQ_SWEEP</b> =0x20</td></tr>
+<tr class="memitem:a345a81fa572722bbe401dffd8e12904e"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a345a81fa572722bbe401dffd8e12904e">START_FREQ_SWEEP</a> =0x20</td></tr>
+<tr class="memdesc:a345a81fa572722bbe401dffd8e12904e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Start frequency sweep mode.  <a href="#a345a81fa572722bbe401dffd8e12904e">More...</a><br /></td></tr>
 <tr class="separator:a345a81fa572722bbe401dffd8e12904e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d32bfc2191f303823236b327f10cbc4"><td class="memItemLeft" align="right" valign="top"><a id="a9d32bfc2191f303823236b327f10cbc4"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>INC_FREQ</b> =0x30</td></tr>
+<tr class="memitem:a9d32bfc2191f303823236b327f10cbc4"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a9d32bfc2191f303823236b327f10cbc4">INC_FREQ</a> =0x30</td></tr>
+<tr class="memdesc:a9d32bfc2191f303823236b327f10cbc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Increment frequency mode.  <a href="#a9d32bfc2191f303823236b327f10cbc4">More...</a><br /></td></tr>
 <tr class="separator:a9d32bfc2191f303823236b327f10cbc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56f76d08e96584bcdd9b2b498b30a22a"><td class="memItemLeft" align="right" valign="top"><a id="a56f76d08e96584bcdd9b2b498b30a22a"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>REPEAT_FREQ</b> =0x40</td></tr>
+<tr class="memitem:a56f76d08e96584bcdd9b2b498b30a22a"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a56f76d08e96584bcdd9b2b498b30a22a">REPEAT_FREQ</a> =0x40</td></tr>
+<tr class="memdesc:a56f76d08e96584bcdd9b2b498b30a22a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Repeat frequency mode.  <a href="#a56f76d08e96584bcdd9b2b498b30a22a">More...</a><br /></td></tr>
 <tr class="separator:a56f76d08e96584bcdd9b2b498b30a22a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac08294cf76b0a476bfed95e4fec47ee0"><td class="memItemLeft" align="right" valign="top"><a id="ac08294cf76b0a476bfed95e4fec47ee0"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>MEAS_TEMP</b> =0x90</td></tr>
+<tr class="memitem:ac08294cf76b0a476bfed95e4fec47ee0"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ac08294cf76b0a476bfed95e4fec47ee0">MEAS_TEMP</a> =0x90</td></tr>
+<tr class="memdesc:ac08294cf76b0a476bfed95e4fec47ee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Measure temperature mode.  <a href="#ac08294cf76b0a476bfed95e4fec47ee0">More...</a><br /></td></tr>
 <tr class="separator:ac08294cf76b0a476bfed95e4fec47ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20c4ea102b6c2ec9d89d7aa96f2f4db3"><td class="memItemLeft" align="right" valign="top"><a id="a20c4ea102b6c2ec9d89d7aa96f2f4db3"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>PD_MODE</b> =0xa0</td></tr>
+<tr class="memitem:a20c4ea102b6c2ec9d89d7aa96f2f4db3"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a20c4ea102b6c2ec9d89d7aa96f2f4db3">PD_MODE</a> =0xa0</td></tr>
+<tr class="memdesc:a20c4ea102b6c2ec9d89d7aa96f2f4db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Power-down mode.  <a href="#a20c4ea102b6c2ec9d89d7aa96f2f4db3">More...</a><br /></td></tr>
 <tr class="separator:a20c4ea102b6c2ec9d89d7aa96f2f4db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af21aad690ea7b683b6d158bd4cb0ab6c"><td class="memItemLeft" align="right" valign="top"><a id="af21aad690ea7b683b6d158bd4cb0ab6c"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SB_MODE</b> =0xb0</td></tr>
+<tr class="memitem:af21aad690ea7b683b6d158bd4cb0ab6c"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#af21aad690ea7b683b6d158bd4cb0ab6c">SB_MODE</a> =0xb0</td></tr>
+<tr class="memdesc:af21aad690ea7b683b6d158bd4cb0ab6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Standby mode.  <a href="#af21aad690ea7b683b6d158bd4cb0ab6c">More...</a><br /></td></tr>
 <tr class="separator:af21aad690ea7b683b6d158bd4cb0ab6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56fdc54f3e9cf91e830521f431c17ad2"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; uint8_t, <a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911">Mode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mode_map</b></td></tr>
+<tr class="memitem:a56fdc54f3e9cf91e830521f431c17ad2"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; uint8_t, <a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911">Mode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a56fdc54f3e9cf91e830521f431c17ad2">mode_map</a></td></tr>
+<tr class="memdesc:a56fdc54f3e9cf91e830521f431c17ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Because class enums can't be typecast to ints, a map is provided so that the enums can be matched with the corresponding byte value.  <a href="#a56fdc54f3e9cf91e830521f431c17ad2">More...</a><br /></td></tr>
 <tr class="separator:a56fdc54f3e9cf91e830521f431c17ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8835752b1ac6e39685385913032fdc38"><td class="memItemLeft" align="right" valign="top"><a id="a8835752b1ac6e39685385913032fdc38"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>VOLTAGE_MASK</b> = 0b00000110</td></tr>
+<tr class="memitem:a8835752b1ac6e39685385913032fdc38"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a8835752b1ac6e39685385913032fdc38">VOLTAGE_MASK</a> = 0b00000110</td></tr>
 <tr class="separator:a8835752b1ac6e39685385913032fdc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a04dd037521ac113daa9296ee82a2b9"><td class="memItemLeft" align="right" valign="top"><a id="a1a04dd037521ac113daa9296ee82a2b9"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>OUTPUT_2Vpp</b> =0x00</td></tr>
+<tr class="memitem:a1a04dd037521ac113daa9296ee82a2b9"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1a04dd037521ac113daa9296ee82a2b9">OUTPUT_2Vpp</a> =0x00</td></tr>
+<tr class="memdesc:a1a04dd037521ac113daa9296ee82a2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 2 Vp-p.  <a href="#a1a04dd037521ac113daa9296ee82a2b9">More...</a><br /></td></tr>
 <tr class="separator:a1a04dd037521ac113daa9296ee82a2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fdb056dedebd11231008cb0104559e8"><td class="memItemLeft" align="right" valign="top"><a id="a2fdb056dedebd11231008cb0104559e8"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>OUTPUT_200mVpp</b> =0x02</td></tr>
+<tr class="memitem:a2fdb056dedebd11231008cb0104559e8"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a2fdb056dedebd11231008cb0104559e8">OUTPUT_200mVpp</a> =0x02</td></tr>
+<tr class="memdesc:a2fdb056dedebd11231008cb0104559e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 200 mVp-p.  <a href="#a2fdb056dedebd11231008cb0104559e8">More...</a><br /></td></tr>
 <tr class="separator:a2fdb056dedebd11231008cb0104559e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfe3860d89d26c0d97960399ae349f85"><td class="memItemLeft" align="right" valign="top"><a id="adfe3860d89d26c0d97960399ae349f85"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>OUTPUT_400mVpp</b> =0x04</td></tr>
+<tr class="memitem:adfe3860d89d26c0d97960399ae349f85"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#adfe3860d89d26c0d97960399ae349f85">OUTPUT_400mVpp</a> =0x04</td></tr>
+<tr class="memdesc:adfe3860d89d26c0d97960399ae349f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 400 mVp-p.  <a href="#adfe3860d89d26c0d97960399ae349f85">More...</a><br /></td></tr>
 <tr class="separator:adfe3860d89d26c0d97960399ae349f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa49b259e6d07f43c56fcf9da9466c276"><td class="memItemLeft" align="right" valign="top"><a id="aa49b259e6d07f43c56fcf9da9466c276"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>OUTPUT_1Vpp</b> =0x06</td></tr>
+<tr class="memitem:aa49b259e6d07f43c56fcf9da9466c276"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#aa49b259e6d07f43c56fcf9da9466c276">OUTPUT_1Vpp</a> =0x06</td></tr>
+<tr class="memdesc:aa49b259e6d07f43c56fcf9da9466c276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 1 Vp-p.  <a href="#aa49b259e6d07f43c56fcf9da9466c276">More...</a><br /></td></tr>
 <tr class="separator:aa49b259e6d07f43c56fcf9da9466c276"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcb2dd01688e9f34894450726fec87f1"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; uint8_t, Voltage &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>voltage_map</b></td></tr>
+<tr class="memitem:abcb2dd01688e9f34894450726fec87f1"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; uint8_t, <a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127de">Voltage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#abcb2dd01688e9f34894450726fec87f1">voltage_map</a></td></tr>
+<tr class="memdesc:abcb2dd01688e9f34894450726fec87f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Because class enums can't be typecast to ints, a map is provided so that the enums can be matched with the corresponding byte value.  <a href="#abcb2dd01688e9f34894450726fec87f1">More...</a><br /></td></tr>
 <tr class="separator:abcb2dd01688e9f34894450726fec87f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a567f2238428825a72247225eaf7493e7"><td class="memItemLeft" align="right" valign="top"><a id="a567f2238428825a72247225eaf7493e7"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>PGA_MASK</b> = 0b00000001</td></tr>
+<tr class="memitem:a567f2238428825a72247225eaf7493e7"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a567f2238428825a72247225eaf7493e7">PGA_MASK</a> = 0b00000001</td></tr>
 <tr class="separator:a567f2238428825a72247225eaf7493e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab172343ad3fe9d02585a6cceab7cd0b"><td class="memItemLeft" align="right" valign="top"><a id="aab172343ad3fe9d02585a6cceab7cd0b"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>PGA_GAIN5x</b> =0x00</td></tr>
+<tr class="memitem:aab172343ad3fe9d02585a6cceab7cd0b"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#aab172343ad3fe9d02585a6cceab7cd0b">PGA_GAIN5x</a> =0x00</td></tr>
 <tr class="separator:aab172343ad3fe9d02585a6cceab7cd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6860fcebe42cd6d76c5daec6bdc2a615"><td class="memItemLeft" align="right" valign="top"><a id="a6860fcebe42cd6d76c5daec6bdc2a615"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>PGA_GAIN1x</b> =0x01</td></tr>
+<tr class="memitem:a6860fcebe42cd6d76c5daec6bdc2a615"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a6860fcebe42cd6d76c5daec6bdc2a615">PGA_GAIN1x</a> =0x01</td></tr>
 <tr class="separator:a6860fcebe42cd6d76c5daec6bdc2a615"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1e4fa20cbba2345e29c3b5d8549c145"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; uint8_t, Gain &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gain_map</b></td></tr>
+<tr class="memitem:af1e4fa20cbba2345e29c3b5d8549c145"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; uint8_t, <a class="el" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1">Gain</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#af1e4fa20cbba2345e29c3b5d8549c145">gain_map</a></td></tr>
 <tr class="separator:af1e4fa20cbba2345e29c3b5d8549c145"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b264cf3bc3c6de02e0b20995f178549"><td class="memItemLeft" align="right" valign="top"><a id="a8b264cf3bc3c6de02e0b20995f178549"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>RESET_SET</b> =0x10</td></tr>
+<tr class="memitem:a8b264cf3bc3c6de02e0b20995f178549"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a8b264cf3bc3c6de02e0b20995f178549">RESET_SET</a> =0x10</td></tr>
+<tr class="memdesc:a8b264cf3bc3c6de02e0b20995f178549"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to reset the device.  <a href="#a8b264cf3bc3c6de02e0b20995f178549">More...</a><br /></td></tr>
 <tr class="separator:a8b264cf3bc3c6de02e0b20995f178549"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1df5fe3ec1921e314b5e299fbdc668f6"><td class="memItemLeft" align="right" valign="top"><a id="a1df5fe3ec1921e314b5e299fbdc668f6"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>CLK_MASK</b> = 0b00000100</td></tr>
+<tr class="memitem:a1df5fe3ec1921e314b5e299fbdc668f6"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1df5fe3ec1921e314b5e299fbdc668f6">CLK_MASK</a> = 0b00000100</td></tr>
 <tr class="separator:a1df5fe3ec1921e314b5e299fbdc668f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae80925b6166b12a4418f837b82e476f1"><td class="memItemLeft" align="right" valign="top"><a id="ae80925b6166b12a4418f837b82e476f1"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>CLK_EXT</b> =0x08</td></tr>
+<tr class="memitem:ae80925b6166b12a4418f837b82e476f1"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#ae80925b6166b12a4418f837b82e476f1">CLK_EXT</a> =0x08</td></tr>
+<tr class="memdesc:ae80925b6166b12a4418f837b82e476f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to choose external clock source.  <a href="#ae80925b6166b12a4418f837b82e476f1">More...</a><br /></td></tr>
 <tr class="separator:ae80925b6166b12a4418f837b82e476f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0818260e757b1ff305be88f07224de85"><td class="memItemLeft" align="right" valign="top"><a id="a0818260e757b1ff305be88f07224de85"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>CLK_INT</b> =0x00</td></tr>
+<tr class="memitem:a0818260e757b1ff305be88f07224de85"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a0818260e757b1ff305be88f07224de85">CLK_INT</a> =0x00</td></tr>
+<tr class="memdesc:a0818260e757b1ff305be88f07224de85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to choose internal clock source.  <a href="#a0818260e757b1ff305be88f07224de85">More...</a><br /></td></tr>
 <tr class="separator:a0818260e757b1ff305be88f07224de85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1891acf6ee0acd06986ff8581ae3a22b"><td class="memItemLeft" align="right" valign="top"><a id="a1891acf6ee0acd06986ff8581ae3a22b"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SREG_TEMP_VALID</b> =0x01</td></tr>
+<tr class="memitem:a1891acf6ee0acd06986ff8581ae3a22b"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a1891acf6ee0acd06986ff8581ae3a22b">SREG_TEMP_VALID</a> =0x01</td></tr>
+<tr class="memdesc:a1891acf6ee0acd06986ff8581ae3a22b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valid temperature measurement status message.  <a href="#a1891acf6ee0acd06986ff8581ae3a22b">More...</a><br /></td></tr>
 <tr class="separator:a1891acf6ee0acd06986ff8581ae3a22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afea81ea94cf3da8bcf93b43572faedbd"><td class="memItemLeft" align="right" valign="top"><a id="afea81ea94cf3da8bcf93b43572faedbd"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SREG_IMPED_VALID</b> =0x02</td></tr>
+<tr class="memitem:afea81ea94cf3da8bcf93b43572faedbd"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#afea81ea94cf3da8bcf93b43572faedbd">SREG_IMPED_VALID</a> =0x02</td></tr>
+<tr class="memdesc:afea81ea94cf3da8bcf93b43572faedbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valid impedance measurement status message.  <a href="#afea81ea94cf3da8bcf93b43572faedbd">More...</a><br /></td></tr>
 <tr class="separator:afea81ea94cf3da8bcf93b43572faedbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77a86472fbbf199d5915309d479cf529"><td class="memItemLeft" align="right" valign="top"><a id="a77a86472fbbf199d5915309d479cf529"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SREG_SWEEP_VALID</b> =0x04</td></tr>
+<tr class="memitem:a77a86472fbbf199d5915309d479cf529"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a77a86472fbbf199d5915309d479cf529">SREG_SWEEP_VALID</a> =0x04</td></tr>
+<tr class="memdesc:a77a86472fbbf199d5915309d479cf529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valid sweep measurements status message.  <a href="#a77a86472fbbf199d5915309d479cf529">More...</a><br /></td></tr>
 <tr class="separator:a77a86472fbbf199d5915309d479cf529"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affd53d71146d17e0cdf1395fa2da8b64"><td class="memItemLeft" align="right" valign="top"><a id="affd53d71146d17e0cdf1395fa2da8b64"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>MUL_MASK</b> = 0b00000110</td></tr>
+<tr class="memitem:affd53d71146d17e0cdf1395fa2da8b64"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#affd53d71146d17e0cdf1395fa2da8b64">MUL_MASK</a> = 0b00000110</td></tr>
 <tr class="separator:affd53d71146d17e0cdf1395fa2da8b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f13afa3df31398c506558dcf7ceb90c"><td class="memItemLeft" align="right" valign="top"><a id="a5f13afa3df31398c506558dcf7ceb90c"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SETTLING_MUL_2x</b> = 0x02</td></tr>
+<tr class="memitem:a5f13afa3df31398c506558dcf7ceb90c"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#a5f13afa3df31398c506558dcf7ceb90c">SETTLING_MUL_2x</a> = 0x02</td></tr>
+<tr class="memdesc:a5f13afa3df31398c506558dcf7ceb90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set the settling multiplier to x2.  <a href="#a5f13afa3df31398c506558dcf7ceb90c">More...</a><br /></td></tr>
 <tr class="separator:a5f13afa3df31398c506558dcf7ceb90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf8540a07812da060a0dc847ba539bc3"><td class="memItemLeft" align="right" valign="top"><a id="adf8540a07812da060a0dc847ba539bc3"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SETTLING_MUL_4x</b> = 0x03</td></tr>
+<tr class="memitem:adf8540a07812da060a0dc847ba539bc3"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad5933_8hpp.html#adf8540a07812da060a0dc847ba539bc3">SETTLING_MUL_4x</a> = 0x03</td></tr>
+<tr class="memdesc:adf8540a07812da060a0dc847ba539bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte to set the settling multiplier to x4.  <a href="#adf8540a07812da060a0dc847ba539bc3">More...</a><br /></td></tr>
 <tr class="separator:adf8540a07812da060a0dc847ba539bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ae1cf790e72cff992603d30d0abba52f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1cf790e72cff992603d30d0abba52f3">&#9670;&nbsp;</a></span>complex_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::complex&lt;long double&gt; <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00302">302</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a252769b931abfc990c5d5396cc352d35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a252769b931abfc990c5d5396cc352d35">&#9670;&nbsp;</a></span>Clk</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ad5933_8hpp.html#a252769b931abfc990c5d5396cc352d35">Clk</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Class enum for clock selection. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a252769b931abfc990c5d5396cc352d35aefd472d9664cd3e8c9e924f35e3f6c88"></a>EXT&#160;</td><td class="fielddoc"><p>External clock </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a252769b931abfc990c5d5396cc352d35a53f93baa3057821107c750323892fa92"></a>INT&#160;</td><td class="fielddoc"><p>Internal clock </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00212">212</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a8bc3a010269d8968cd5e6a0c119ed1e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bc3a010269d8968cd5e6a0c119ed1e1">&#9670;&nbsp;</a></span>Gain</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1">Gain</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Class enum of the gains of the programmable amplifier at the receive stage. </p>
+<p>Because class enums can't be typecast to ints, they can't be used directly to handle bits and must be used in combination with the values defined in the consts above. This is done with the std::unordered_map&lt;int,Mode&gt; <a class="el" href="ad5933_8hpp.html#af1e4fa20cbba2345e29c3b5d8549c145">gain_map</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8bc3a010269d8968cd5e6a0c119ed1e1acf6400739cd566fe5fc9a7d2f559ee25"></a>PGA5x&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a8bc3a010269d8968cd5e6a0c119ed1e1a3a7c85f0a73ba6b804e4631c92293768"></a>PGA1x&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00191">191</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a46c8a310cf4c094f8c80e1cb8dc1f911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c8a310cf4c094f8c80e1cb8dc1f911">&#9670;&nbsp;</a></span>Mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911">Mode</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Class enum of the possible states of the <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a>. </p>
+<p>Because class enums can't be typecast to ints, they can't be used directly to handle bits and must be used in combination with the values defined in the consts above. This is done with the std::unordered_map&lt;int,Mode&gt; <a class="el" href="ad5933_8hpp.html#a56fdc54f3e9cf91e830521f431c17ad2">mode_map</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911af15c76a56f085febeaee42b702427f32"></a>INIT_START_FREQ&#160;</td><td class="fielddoc"><p>Initialize with start frequency. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911a3cc6b4e20e9256581d136032ce82db7e"></a>START_FREQ_SWEEP&#160;</td><td class="fielddoc"><p>Start frequency sweep. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911a900ea0de7eda45fa066bcb8d2976d834"></a>INC_FREQ&#160;</td><td class="fielddoc"><p>Increment frequency. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911ae46a74589ece18f56c70712b3d3ab813"></a>REPEAT_FREQ&#160;</td><td class="fielddoc"><p>Repeat frequency. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911ab2706713d87f8c1d1f6e99bf91def73d"></a>MEAS_TEMP&#160;</td><td class="fielddoc"><p>Measure temperature. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911a7c6d234435fe0967402da6c6b787d32e"></a>PD_MODE&#160;</td><td class="fielddoc"><p>Powerdown mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a46c8a310cf4c094f8c80e1cb8dc1f911a248da8b00edcc1bf1e52cbc65f9dad1f"></a>SB_MODE&#160;</td><td class="fielddoc"><p>Standby mode. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00087">87</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a0556cc9a11c997a97ffc50ecb94e59b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0556cc9a11c997a97ffc50ecb94e59b8">&#9670;&nbsp;</a></span>SettlingMultiplier</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ad5933_8hpp.html#a0556cc9a11c997a97ffc50ecb94e59b8">SettlingMultiplier</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Class enum of the settling cycle multiplier. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0556cc9a11c997a97ffc50ecb94e59b8a13e0a64714d6eb0dcc01c1190044d178"></a>MUL_1x&#160;</td><td class="fielddoc"><p>No multiplier </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0556cc9a11c997a97ffc50ecb94e59b8a087517bec32b4c5d1e5136bca43e3a27"></a>MUL_2x&#160;</td><td class="fielddoc"><p>Settling cycles are doubled </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0556cc9a11c997a97ffc50ecb94e59b8adbbd581b6d383d603ab01de0f201d3f3"></a>MUL_4x&#160;</td><td class="fielddoc"><p>Settling cycles are quadrupled </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00259">259</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ad0295b163fa728ece7beda3d933127de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0295b163fa728ece7beda3d933127de">&#9670;&nbsp;</a></span>Voltage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127de">Voltage</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Class enum of the excitation voltages levels of the <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a>. </p>
+<p>This enum lists the excitation voltages levels of the <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a>. Each excitation voltage listed is nominal and depends on the VDD provided to the device. Furthermore there is an extra DC bias provided by the <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> that by default is filtered out in the EVALAD5933 board, but should be accounted for if the transmit stage is modified. Because class enums can't be typecast to ints, they can't be used directly to handle bits and must be used in combination with the values defined in the consts above. This is done with the std::unordered_map&lt;int,Mode&gt; <a class="el" href="ad5933_8hpp.html#abcb2dd01688e9f34894450726fec87f1">voltage_map</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad0295b163fa728ece7beda3d933127dea2d51957c0971b256878ba19a2a3e61a1"></a>OUTPUT_2Vpp&#160;</td><td class="fielddoc"><p>2 Vp-p excitation voltage </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad0295b163fa728ece7beda3d933127dea92fcf1fe254457d38a5995014f8e54cb"></a>OUTPUT_200mVpp&#160;</td><td class="fielddoc"><p>200m Vp-p excitation voltage </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad0295b163fa728ece7beda3d933127dea287e0e371b832c67bffbcc11c22b6504"></a>OUTPUT_400mVpp&#160;</td><td class="fielddoc"><p>400m Vp-p excitation voltage </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad0295b163fa728ece7beda3d933127dea1c8cb2fa33d4391ef09ca04dc5ce68ba"></a>OUTPUT_1Vpp&#160;</td><td class="fielddoc"><p>1 Vp-p excitation voltage </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00156">156</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="af7174582ef3b3eb5d07979c5fe8526ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7174582ef3b3eb5d07979c5fe8526ac">&#9670;&nbsp;</a></span>calc_multigains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::pair&lt;long double, long double&gt; &gt; calc_multigains </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, T &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>adm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>cal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interpolate the gain factors based on the calibration data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">adm</td><td>Reference to the vector containing the frequency, gain pairs to be calculated. </td></tr>
+    <tr><td class="paramname">cal</td><td>Reference to the vector containing to the known frequency, gain pairs. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l01206">1206</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a9e7962b819f884fd174ca610f5059bc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e7962b819f884fd174ca610f5059bc2">&#9670;&nbsp;</a></span>calculate_magnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::pair&lt;long double, long double&gt; &gt; calculate_magnitude </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>measurements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>gains</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function to calculate the impedance of the calibration using the gain factos according to page 17 of the datasheet. <br />
+</p>
+<p><br />
+</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">measurements</td><td>Measurements of the unknown impedance </td></tr>
+    <tr><td class="paramname">gains</td><td>Gain factors as calculated with the calibrate_gain function using a known calibration resistance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of pairs, each containing the frequency of the measurement and the impedance measured at that frequency. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l01158">1158</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a861e50293a3afa48adf06476b2d814f9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a861e50293a3afa48adf06476b2d814f9">&#9670;&nbsp;</a></span>calibrate_gain()</h2>
 
@@ -345,7 +600,7 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SETTLING_MUL
         <tr>
           <td class="memname">std::vector&lt;std::pair&lt;long double,long double&gt; &gt; calibrate_gain </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, complex_t &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>measurements</em>, </td>
         </tr>
         <tr>
@@ -371,11 +626,361 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SETTLING_MUL
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A vector of pair, that contain the frequency and the gain factor for that frequency. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of pairs, which each contains the frequency and the corresponding gain factor. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l01137">1137</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a3b8142f289d209fc27cb1f2316bae827"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8142f289d209fc27cb1f2316bae827">&#9670;&nbsp;</a></span>interpolate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long double interpolate </td>
+          <td>(</td>
+          <td class="paramtype">long double&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; long double, long double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>g0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; long double, long double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>g1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Simple interpolation function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>The intermediate point where the interpolated value is located. </td></tr>
+    <tr><td class="paramname">g0</td><td>The first existing data point. </td></tr>
+    <tr><td class="paramname">g1</td><td>The second existing data point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The interpolated value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l01177">1177</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aebf6955587e73547118350feebb9216f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf6955587e73547118350feebb9216f">&#9670;&nbsp;</a></span>show_multiplier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string show_multiplier </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Describe the multiplier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg</td><td>The contents of the MSB of the Settling Cycle Register </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A std::string with the description </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00276">276</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a17b2e97c9e79890194a020f4b9da676e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17b2e97c9e79890194a020f4b9da676e">&#9670;&nbsp;</a></span>show_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string show_status </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Describe measurement status. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg</td><td>Contents of the status register. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string with the description of the status register. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00235">235</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ae097ed66eb0d3a562aed62529f5b0cf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae097ed66eb0d3a562aed62529f5b0cf0">&#9670;&nbsp;</a></span>sweep_frequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::pair&lt;long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt; &gt; sweep_frequency </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>lower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>number_of_samples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long double&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_d5933.html">AD5933</a> *&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Execute frequency sweep. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lower</td><td>Starting frequency of the sweep. </td></tr>
+    <tr><td class="paramname">number_of_samples</td><td>Frequencies measured in the sweep </td></tr>
+    <tr><td class="paramname">step</td><td>Distance between frequencies meausured in the sweep. </td></tr>
+    <tr><td class="paramname">h</td><td>Handle to the device object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function implements the flowchart on page 20 of the data sheet. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l01025">1025</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a72b16b2b75e0229bde220c830ef7c280"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b16b2b75e0229bde220c830ef7c280">&#9670;&nbsp;</a></span>write_to_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void write_to_file </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>mag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, long double &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>phase</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; long double, <a class="el" href="ad5933_8hpp.html#ae1cf790e72cff992603d30d0abba52f3">complex_t</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>adm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Helper function to record data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mag</td><td>Frequency, Impedance magnitude pairs </td></tr>
+    <tr><td class="paramname">phase</td><td>Frequency, Impedance phase pairs </td></tr>
+    <tr><td class="paramname">adm</td><td>Frequency, Admittance pairs</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function saves the measurement data to a .csv file using the same format as the one used by the Windows utility provided by Analog Devices. The output file is called </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l01246">1246</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="ae80925b6166b12a4418f837b82e476f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae80925b6166b12a4418f837b82e476f1">&#9670;&nbsp;</a></span>CLK_EXT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t CLK_EXT =0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Command to choose external clock source. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00219">219</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a0818260e757b1ff305be88f07224de85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0818260e757b1ff305be88f07224de85">&#9670;&nbsp;</a></span>CLK_INT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t CLK_INT =0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Command to choose internal clock source. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00221">221</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1df5fe3ec1921e314b5e299fbdc668f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1df5fe3ec1921e314b5e299fbdc668f6">&#9670;&nbsp;</a></span>CLK_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t CLK_MASK = 0b00000100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00209">209</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ada7e3002fc89734be45d73e43c40991d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada7e3002fc89734be45d73e43c40991d">&#9670;&nbsp;</a></span>CTRL_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t CTRL_LSB =0x81</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Control Register bits 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00035">35</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="af2a8118ac832748dc5743d46eff346d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2a8118ac832748dc5743d46eff346d4">&#9670;&nbsp;</a></span>CTRL_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t CTRL_MSB =0x80</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Control Register bits 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00033">33</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a93d0377f5c4ffce1837c8f629b4760be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93d0377f5c4ffce1837c8f629b4760be">&#9670;&nbsp;</a></span>FREQ_15_8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t FREQ_15_8 =0x83</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Start frequency register bits 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00040">40</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="af84f780a7262a0a8d7d24346ed526425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af84f780a7262a0a8d7d24346ed526425">&#9670;&nbsp;</a></span>FREQ_23_16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t FREQ_23_16 =0x82</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Start frequency register bits 23-16. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00038">38</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a8f6de0e0a93fbee84a33127ecd08faa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f6de0e0a93fbee84a33127ecd08faa8">&#9670;&nbsp;</a></span>FREQ_7_0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t FREQ_7_0 =0x84</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Start frequency register bits 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00042">42</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
 <a id="af1e4fa20cbba2345e29c3b5d8549c145"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1e4fa20cbba2345e29c3b5d8549c145">&#9670;&nbsp;</a></span>gain_map</h2>
 
@@ -383,11 +988,143 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SETTLING_MUL
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;uint8_t,Gain&gt; gain_map</td>
+          <td class="memname">std::unordered_map&lt;uint8_t,<a class="el" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1">Gain</a>&gt; gain_map</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">  {</div><div class="line">    {PGA_GAIN5x,Gain::PGA5x},</div><div class="line">    {PGA_GAIN1x,Gain::PGA1x}</div><div class="line">  }</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">  {</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#aab172343ad3fe9d02585a6cceab7cd0b">PGA_GAIN5x</a>,<a class="code" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1acf6400739cd566fe5fc9a7d2f559ee25">Gain::PGA5x</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a6860fcebe42cd6d76c5daec6bdc2a615">PGA_GAIN1x</a>,<a class="code" href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1a3a7c85f0a73ba6b804e4631c92293768">Gain::PGA1x</a>}</div><div class="line">  }</div><div class="ttc" id="ad5933_8hpp_html_a6860fcebe42cd6d76c5daec6bdc2a615"><div class="ttname"><a href="ad5933_8hpp.html#a6860fcebe42cd6d76c5daec6bdc2a615">PGA_GAIN1x</a></div><div class="ttdeci">const uint8_t PGA_GAIN1x</div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00198">ad5933.hpp:198</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a8bc3a010269d8968cd5e6a0c119ed1e1a3a7c85f0a73ba6b804e4631c92293768"><div class="ttname"><a href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1a3a7c85f0a73ba6b804e4631c92293768">Gain::PGA1x</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a8bc3a010269d8968cd5e6a0c119ed1e1acf6400739cd566fe5fc9a7d2f559ee25"><div class="ttname"><a href="ad5933_8hpp.html#a8bc3a010269d8968cd5e6a0c119ed1e1acf6400739cd566fe5fc9a7d2f559ee25">Gain::PGA5x</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_aab172343ad3fe9d02585a6cceab7cd0b"><div class="ttname"><a href="ad5933_8hpp.html#aab172343ad3fe9d02585a6cceab7cd0b">PGA_GAIN5x</a></div><div class="ttdeci">const uint8_t PGA_GAIN5x</div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00197">ad5933.hpp:197</a></div></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00200">200</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a3d02d61cdfe9ecbd5a827761ef0df8a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d02d61cdfe9ecbd5a827761ef0df8a7">&#9670;&nbsp;</a></span>IMG_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t IMG_LSB =0x97</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Imaginary data register 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00077">77</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1b3779bde4e9c1bf9b339d06a501f852"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b3779bde4e9c1bf9b339d06a501f852">&#9670;&nbsp;</a></span>IMG_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t IMG_MSB =0x96</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Imaginary data register 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00075">75</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a9d32bfc2191f303823236b327f10cbc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d32bfc2191f303823236b327f10cbc4">&#9670;&nbsp;</a></span>INC_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t INC_FREQ =0x30</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Increment frequency mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00112">112</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a0678ad8d38964165527f182a09945f33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0678ad8d38964165527f182a09945f33">&#9670;&nbsp;</a></span>INC_NUM_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t INC_NUM_LSB =0x89</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Number of increments register bits 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00054">54</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a0fa6e8057bbe1f0495634748e02637a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fa6e8057bbe1f0495634748e02637a1">&#9670;&nbsp;</a></span>INC_NUM_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t INC_NUM_MSB =0x88</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Number of increments register bits 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00052">52</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a29f9e341b7430feadbea33a37374b02e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29f9e341b7430feadbea33a37374b02e">&#9670;&nbsp;</a></span>INIT_START_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t INIT_START_FREQ =0x10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Initialize with start frequency mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00106">106</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ac08294cf76b0a476bfed95e4fec47ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac08294cf76b0a476bfed95e4fec47ee0">&#9670;&nbsp;</a></span>MEAS_TEMP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t MEAS_TEMP =0x90</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Measure temperature mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00118">118</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a56fdc54f3e9cf91e830521f431c17ad2"></a>
@@ -401,7 +1138,575 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SETTLING_MUL
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">  {</div><div class="line">    {INIT_START_FREQ,Mode::INIT_START_FREQ},</div><div class="line">    {START_FREQ_SWEEP,Mode::START_FREQ_SWEEP},</div><div class="line">    {INC_FREQ,Mode::INC_FREQ},</div><div class="line">    {REPEAT_FREQ,Mode::REPEAT_FREQ},</div><div class="line">    {MEAS_TEMP,Mode::MEAS_TEMP},</div><div class="line">    {PD_MODE,Mode::PD_MODE},</div><div class="line">    {SB_MODE,Mode::SB_MODE}</div><div class="line">  }</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">  {</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a29f9e341b7430feadbea33a37374b02e">INIT_START_FREQ</a>,<a class="code" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911af15c76a56f085febeaee42b702427f32">Mode::INIT_START_FREQ</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a345a81fa572722bbe401dffd8e12904e">START_FREQ_SWEEP</a>,<a class="code" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a3cc6b4e20e9256581d136032ce82db7e">Mode::START_FREQ_SWEEP</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a9d32bfc2191f303823236b327f10cbc4">INC_FREQ</a>,<a class="code" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a900ea0de7eda45fa066bcb8d2976d834">Mode::INC_FREQ</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a56f76d08e96584bcdd9b2b498b30a22a">REPEAT_FREQ</a>,<a class="code" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911ae46a74589ece18f56c70712b3d3ab813">Mode::REPEAT_FREQ</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#ac08294cf76b0a476bfed95e4fec47ee0">MEAS_TEMP</a>,<a class="code" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911ab2706713d87f8c1d1f6e99bf91def73d">Mode::MEAS_TEMP</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a20c4ea102b6c2ec9d89d7aa96f2f4db3">PD_MODE</a>,<a class="code" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a7c6d234435fe0967402da6c6b787d32e">Mode::PD_MODE</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#af21aad690ea7b683b6d158bd4cb0ab6c">SB_MODE</a>,<a class="code" href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a248da8b00edcc1bf1e52cbc65f9dad1f">Mode::SB_MODE</a>}</div><div class="line">  }</div><div class="ttc" id="ad5933_8hpp_html_a9d32bfc2191f303823236b327f10cbc4"><div class="ttname"><a href="ad5933_8hpp.html#a9d32bfc2191f303823236b327f10cbc4">INC_FREQ</a></div><div class="ttdeci">const uint8_t INC_FREQ</div><div class="ttdoc">Byte to set AD5933 to Increment frequency mode. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00112">ad5933.hpp:112</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a345a81fa572722bbe401dffd8e12904e"><div class="ttname"><a href="ad5933_8hpp.html#a345a81fa572722bbe401dffd8e12904e">START_FREQ_SWEEP</a></div><div class="ttdeci">const uint8_t START_FREQ_SWEEP</div><div class="ttdoc">Byte to set AD5933 to Start frequency sweep mode. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00109">ad5933.hpp:109</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a46c8a310cf4c094f8c80e1cb8dc1f911a7c6d234435fe0967402da6c6b787d32e"><div class="ttname"><a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a7c6d234435fe0967402da6c6b787d32e">Mode::PD_MODE</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a46c8a310cf4c094f8c80e1cb8dc1f911ae46a74589ece18f56c70712b3d3ab813"><div class="ttname"><a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911ae46a74589ece18f56c70712b3d3ab813">Mode::REPEAT_FREQ</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a46c8a310cf4c094f8c80e1cb8dc1f911a3cc6b4e20e9256581d136032ce82db7e"><div class="ttname"><a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a3cc6b4e20e9256581d136032ce82db7e">Mode::START_FREQ_SWEEP</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_af21aad690ea7b683b6d158bd4cb0ab6c"><div class="ttname"><a href="ad5933_8hpp.html#af21aad690ea7b683b6d158bd4cb0ab6c">SB_MODE</a></div><div class="ttdeci">const uint8_t SB_MODE</div><div class="ttdoc">Byte to set AD5933 to Standby mode. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00124">ad5933.hpp:124</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_ac08294cf76b0a476bfed95e4fec47ee0"><div class="ttname"><a href="ad5933_8hpp.html#ac08294cf76b0a476bfed95e4fec47ee0">MEAS_TEMP</a></div><div class="ttdeci">const uint8_t MEAS_TEMP</div><div class="ttdoc">Byte to set AD5933 to Measure temperature mode. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00118">ad5933.hpp:118</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a20c4ea102b6c2ec9d89d7aa96f2f4db3"><div class="ttname"><a href="ad5933_8hpp.html#a20c4ea102b6c2ec9d89d7aa96f2f4db3">PD_MODE</a></div><div class="ttdeci">const uint8_t PD_MODE</div><div class="ttdoc">Byte to set AD5933 to Power-down mode. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00121">ad5933.hpp:121</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a46c8a310cf4c094f8c80e1cb8dc1f911a248da8b00edcc1bf1e52cbc65f9dad1f"><div class="ttname"><a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a248da8b00edcc1bf1e52cbc65f9dad1f">Mode::SB_MODE</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a46c8a310cf4c094f8c80e1cb8dc1f911a900ea0de7eda45fa066bcb8d2976d834"><div class="ttname"><a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911a900ea0de7eda45fa066bcb8d2976d834">Mode::INC_FREQ</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a56f76d08e96584bcdd9b2b498b30a22a"><div class="ttname"><a href="ad5933_8hpp.html#a56f76d08e96584bcdd9b2b498b30a22a">REPEAT_FREQ</a></div><div class="ttdeci">const uint8_t REPEAT_FREQ</div><div class="ttdoc">Byte to set AD5933 to Repeat frequency mode. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00115">ad5933.hpp:115</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a29f9e341b7430feadbea33a37374b02e"><div class="ttname"><a href="ad5933_8hpp.html#a29f9e341b7430feadbea33a37374b02e">INIT_START_FREQ</a></div><div class="ttdeci">const uint8_t INIT_START_FREQ</div><div class="ttdoc">Byte to set AD5933 to Initialize with start frequency mode. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00106">ad5933.hpp:106</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a46c8a310cf4c094f8c80e1cb8dc1f911af15c76a56f085febeaee42b702427f32"><div class="ttname"><a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911af15c76a56f085febeaee42b702427f32">Mode::INIT_START_FREQ</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a46c8a310cf4c094f8c80e1cb8dc1f911ab2706713d87f8c1d1f6e99bf91def73d"><div class="ttname"><a href="ad5933_8hpp.html#a46c8a310cf4c094f8c80e1cb8dc1f911ab2706713d87f8c1d1f6e99bf91def73d">Mode::MEAS_TEMP</a></div></div>
+</div><!-- fragment -->
+<p>Because class enums can't be typecast to ints, a map is provided so that the enums can be matched with the corresponding byte value. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00130">130</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1cee30c51d60be7fe945c25d8bfe2cb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cee30c51d60be7fe945c25d8bfe2cb5">&#9670;&nbsp;</a></span>MODE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t MODE_MASK = 0b11110000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mask to clear/keep bits that are relevant to the Mode bits. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00099">99</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="affd53d71146d17e0cdf1395fa2da8b64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affd53d71146d17e0cdf1395fa2da8b64">&#9670;&nbsp;</a></span>MUL_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t MUL_MASK = 0b00000110</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00256">256</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aa49b259e6d07f43c56fcf9da9466c276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49b259e6d07f43c56fcf9da9466c276">&#9670;&nbsp;</a></span>OUTPUT_1Vpp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t OUTPUT_1Vpp =0x06</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 1 Vp-p. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00171">171</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a2fdb056dedebd11231008cb0104559e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fdb056dedebd11231008cb0104559e8">&#9670;&nbsp;</a></span>OUTPUT_200mVpp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t OUTPUT_200mVpp =0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 200 mVp-p. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00167">167</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1a04dd037521ac113daa9296ee82a2b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a04dd037521ac113daa9296ee82a2b9">&#9670;&nbsp;</a></span>OUTPUT_2Vpp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t OUTPUT_2Vpp =0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 2 Vp-p. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00165">165</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="adfe3860d89d26c0d97960399ae349f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe3860d89d26c0d97960399ae349f85">&#9670;&nbsp;</a></span>OUTPUT_400mVpp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t OUTPUT_400mVpp =0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> output to 400 mVp-p. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00169">169</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a20c4ea102b6c2ec9d89d7aa96f2f4db3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20c4ea102b6c2ec9d89d7aa96f2f4db3">&#9670;&nbsp;</a></span>PD_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PD_MODE =0xa0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Power-down mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00121">121</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a6860fcebe42cd6d76c5daec6bdc2a615"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6860fcebe42cd6d76c5daec6bdc2a615">&#9670;&nbsp;</a></span>PGA_GAIN1x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PGA_GAIN1x =0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00198">198</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aab172343ad3fe9d02585a6cceab7cd0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab172343ad3fe9d02585a6cceab7cd0b">&#9670;&nbsp;</a></span>PGA_GAIN5x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PGA_GAIN5x =0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00197">197</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a567f2238428825a72247225eaf7493e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a567f2238428825a72247225eaf7493e7">&#9670;&nbsp;</a></span>PGA_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PGA_MASK = 0b00000001</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00184">184</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a5439eafd849dd77fb1134f18e260d2fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5439eafd849dd77fb1134f18e260d2fb">&#9670;&nbsp;</a></span>PID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint16_t PID = 0xb203</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>USB Product ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00026">26</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ab2c72dd79d30fe098809201e8e230095"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2c72dd79d30fe098809201e8e230095">&#9670;&nbsp;</a></span>REAL_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t REAL_LSB =0x95</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Read data register 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00072">72</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a6dcc72584e3e1b0bba3bd890bc0ab361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dcc72584e3e1b0bba3bd890bc0ab361">&#9670;&nbsp;</a></span>REAL_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t REAL_MSB =0x94</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Real data register 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00070">70</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a56f76d08e96584bcdd9b2b498b30a22a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f76d08e96584bcdd9b2b498b30a22a">&#9670;&nbsp;</a></span>REPEAT_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t REPEAT_FREQ =0x40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Repeat frequency mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00115">115</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a8b264cf3bc3c6de02e0b20995f178549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b264cf3bc3c6de02e0b20995f178549">&#9670;&nbsp;</a></span>RESET_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t RESET_SET =0x10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Command to reset the device. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00207">207</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="af21aad690ea7b683b6d158bd4cb0ab6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af21aad690ea7b683b6d158bd4cb0ab6c">&#9670;&nbsp;</a></span>SB_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SB_MODE =0xb0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Standby mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00124">124</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1edf59f12a8fbb44984d23455a3bc93f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1edf59f12a8fbb44984d23455a3bc93f">&#9670;&nbsp;</a></span>SETTLE_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SETTLE_LSB =0x8B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Number of settling time cycles bits 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00059">59</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ae85b2797ac5b2310744e22fc2c6ba232"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae85b2797ac5b2310744e22fc2c6ba232">&#9670;&nbsp;</a></span>SETTLE_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SETTLE_MSB =0x8A</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Number of settling time cycles bits 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00057">57</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a5f13afa3df31398c506558dcf7ceb90c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f13afa3df31398c506558dcf7ceb90c">&#9670;&nbsp;</a></span>SETTLING_MUL_2x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SETTLING_MUL_2x = 0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set the settling multiplier to x2. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00267">267</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="adf8540a07812da060a0dc847ba539bc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf8540a07812da060a0dc847ba539bc3">&#9670;&nbsp;</a></span>SETTLING_MUL_4x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SETTLING_MUL_4x = 0x03</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set the settling multiplier to x4. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00269">269</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a3a08c68eb4c8407c5c37bb71ca618cb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a08c68eb4c8407c5c37bb71ca618cb3">&#9670;&nbsp;</a></span>SREG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SREG =0x8F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Status register. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00062">62</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="afea81ea94cf3da8bcf93b43572faedbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea81ea94cf3da8bcf93b43572faedbd">&#9670;&nbsp;</a></span>SREG_IMPED_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SREG_IMPED_VALID =0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valid impedance measurement status message. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00226">226</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a77a86472fbbf199d5915309d479cf529"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a86472fbbf199d5915309d479cf529">&#9670;&nbsp;</a></span>SREG_SWEEP_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SREG_SWEEP_VALID =0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valid sweep measurements status message. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00228">228</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1891acf6ee0acd06986ff8581ae3a22b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1891acf6ee0acd06986ff8581ae3a22b">&#9670;&nbsp;</a></span>SREG_TEMP_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t SREG_TEMP_VALID =0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valid temperature measurement status message. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00224">224</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a345a81fa572722bbe401dffd8e12904e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a345a81fa572722bbe401dffd8e12904e">&#9670;&nbsp;</a></span>START_FREQ_SWEEP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t START_FREQ_SWEEP =0x20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Byte to set <a class="el" href="struct_a_d5933.html" title="Struct for the AD5933 device. ">AD5933</a> to Start frequency sweep mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00109">109</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aaa39476517abf5c0dc97c1137c5dfca6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa39476517abf5c0dc97c1137c5dfca6">&#9670;&nbsp;</a></span>STEP_15_8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t STEP_15_8 =0x86</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Frequency increment register bits 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00047">47</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1d4325c3247126531d9e4ff3131871d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d4325c3247126531d9e4ff3131871d2">&#9670;&nbsp;</a></span>STEP_23_16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t STEP_23_16 =0x85</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Frequency increment register bits 23-16. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00045">45</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7bda525e253f57664c773a90ca35086b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bda525e253f57664c773a90ca35086b">&#9670;&nbsp;</a></span>STEP_7_0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t STEP_7_0 =0x87</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Frequency increment register bits 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00049">49</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a9268ae661fcb12acbf0ef5c45401adca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9268ae661fcb12acbf0ef5c45401adca">&#9670;&nbsp;</a></span>TEMPERATURE_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t TEMPERATURE_LSB =0x93</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Temperature data register bits 07-00. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00067">67</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a42564d9f6b41edd1b9c6d1813b4a4adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42564d9f6b41edd1b9c6d1813b4a4adf">&#9670;&nbsp;</a></span>TEMPERATURE_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t TEMPERATURE_MSB =0x92</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address of the Temperature data register bits 15-08. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00065">65</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a302752ab195a1e56e905014789ee5c40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a302752ab195a1e56e905014789ee5c40">&#9670;&nbsp;</a></span>VID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint16_t VID = 0x0456</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>USB Vendor ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00024">24</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
 </div>
 </div>
 <a id="abcb2dd01688e9f34894450726fec87f1"></a>
@@ -411,11 +1716,39 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SETTLING_MUL
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;uint8_t,Voltage&gt; voltage_map</td>
+          <td class="memname">std::unordered_map&lt;uint8_t,<a class="el" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127de">Voltage</a>&gt; voltage_map</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">  {</div><div class="line">    {OUTPUT_2Vpp,Voltage::OUTPUT_2Vpp},</div><div class="line">    {OUTPUT_200mVpp,Voltage::OUTPUT_200mVpp},</div><div class="line">    {OUTPUT_400mVpp,Voltage::OUTPUT_400mVpp},</div><div class="line">    {OUTPUT_1Vpp,Voltage::OUTPUT_1Vpp}</div><div class="line">  }</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">  {</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a1a04dd037521ac113daa9296ee82a2b9">OUTPUT_2Vpp</a>,<a class="code" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea2d51957c0971b256878ba19a2a3e61a1">Voltage::OUTPUT_2Vpp</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#a2fdb056dedebd11231008cb0104559e8">OUTPUT_200mVpp</a>,<a class="code" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea92fcf1fe254457d38a5995014f8e54cb">Voltage::OUTPUT_200mVpp</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#adfe3860d89d26c0d97960399ae349f85">OUTPUT_400mVpp</a>,<a class="code" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea287e0e371b832c67bffbcc11c22b6504">Voltage::OUTPUT_400mVpp</a>},</div><div class="line">    {<a class="code" href="ad5933_8hpp.html#aa49b259e6d07f43c56fcf9da9466c276">OUTPUT_1Vpp</a>,<a class="code" href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea1c8cb2fa33d4391ef09ca04dc5ce68ba">Voltage::OUTPUT_1Vpp</a>}</div><div class="line">  }</div><div class="ttc" id="ad5933_8hpp_html_ad0295b163fa728ece7beda3d933127dea92fcf1fe254457d38a5995014f8e54cb"><div class="ttname"><a href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea92fcf1fe254457d38a5995014f8e54cb">Voltage::OUTPUT_200mVpp</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a2fdb056dedebd11231008cb0104559e8"><div class="ttname"><a href="ad5933_8hpp.html#a2fdb056dedebd11231008cb0104559e8">OUTPUT_200mVpp</a></div><div class="ttdeci">const uint8_t OUTPUT_200mVpp</div><div class="ttdoc">Byte to set AD5933 output to 200 mVp-p. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00167">ad5933.hpp:167</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_a1a04dd037521ac113daa9296ee82a2b9"><div class="ttname"><a href="ad5933_8hpp.html#a1a04dd037521ac113daa9296ee82a2b9">OUTPUT_2Vpp</a></div><div class="ttdeci">const uint8_t OUTPUT_2Vpp</div><div class="ttdoc">Byte to set AD5933 output to 2 Vp-p. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00165">ad5933.hpp:165</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_ad0295b163fa728ece7beda3d933127dea2d51957c0971b256878ba19a2a3e61a1"><div class="ttname"><a href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea2d51957c0971b256878ba19a2a3e61a1">Voltage::OUTPUT_2Vpp</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_adfe3860d89d26c0d97960399ae349f85"><div class="ttname"><a href="ad5933_8hpp.html#adfe3860d89d26c0d97960399ae349f85">OUTPUT_400mVpp</a></div><div class="ttdeci">const uint8_t OUTPUT_400mVpp</div><div class="ttdoc">Byte to set AD5933 output to 400 mVp-p. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00169">ad5933.hpp:169</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_ad0295b163fa728ece7beda3d933127dea1c8cb2fa33d4391ef09ca04dc5ce68ba"><div class="ttname"><a href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea1c8cb2fa33d4391ef09ca04dc5ce68ba">Voltage::OUTPUT_1Vpp</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_aa49b259e6d07f43c56fcf9da9466c276"><div class="ttname"><a href="ad5933_8hpp.html#aa49b259e6d07f43c56fcf9da9466c276">OUTPUT_1Vpp</a></div><div class="ttdeci">const uint8_t OUTPUT_1Vpp</div><div class="ttdoc">Byte to set AD5933 output to 1 Vp-p. </div><div class="ttdef"><b>Definition:</b> <a href="ad5933_8hpp_source.html#l00171">ad5933.hpp:171</a></div></div>
+<div class="ttc" id="ad5933_8hpp_html_ad0295b163fa728ece7beda3d933127dea287e0e371b832c67bffbcc11c22b6504"><div class="ttname"><a href="ad5933_8hpp.html#ad0295b163fa728ece7beda3d933127dea287e0e371b832c67bffbcc11c22b6504">Voltage::OUTPUT_400mVpp</a></div></div>
+</div><!-- fragment -->
+<p>Because class enums can't be typecast to ints, a map is provided so that the enums can be matched with the corresponding byte value. </p>
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00176">176</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a8835752b1ac6e39685385913032fdc38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8835752b1ac6e39685385913032fdc38">&#9670;&nbsp;</a></span>VOLTAGE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t VOLTAGE_MASK = 0b00000110</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ad5933_8hpp_source.html#l00145">145</a> of file <a class="el" href="ad5933_8hpp_source.html">ad5933.hpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->

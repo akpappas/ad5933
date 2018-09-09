@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calibrate_5fgain',['calibrate_gain',['../ad5933_8hpp.html#a861e50293a3afa48adf06476b2d814f9',1,'ad5933.hpp']]]
+  ['ad5933',['AD5933',['../struct_a_d5933.html#a968eabd26cf109703c52274218f1caac',1,'AD5933']]]
 ];

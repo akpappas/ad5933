@@ -1,0 +1,24 @@
+<map id="user_interaction" name="user_interaction">
+<area shape="rect" id="node2" href="$struct_a_d5933.html#ac1504cf786233e9802f80aac58a89ef7" title="AD5933::choose_clock" alt="" coords="169,495,332,521"/>
+<area shape="rect" id="node5" href="$struct_a_d5933.html#ad90d16efcaf008887ff6cb995832671e" title="AD5933::set_starting\l_frequency" alt="" coords="405,378,552,419"/>
+<area shape="rect" id="node6" href="$struct_a_d5933.html#ab55703415fd754ccef3f3ff188903a9e" title="AD5933::set_frequency_step" alt="" coords="381,444,576,471"/>
+<area shape="rect" id="node7" href="$struct_a_d5933.html#a81d597ac151fbe62080ecd28d8b87ebb" title="AD5933::set_step_number" alt="" coords="389,327,569,353"/>
+<area shape="rect" id="node8" href="$struct_a_d5933.html#a2857afff783cc4eb459864ddff7bd151" title="AD5933::set_voltage\l_output" alt="" coords="176,546,325,587"/>
+<area shape="rect" id="node9" href="$struct_a_d5933.html#a8db9035d025b0813d1f1271c94e000be" title="AD5933::show_voltage" alt="" coords="642,568,805,595"/>
+<area shape="rect" id="node10" href="$struct_a_d5933.html#a7b534f2c2b7eb612db9e2a9a89020e19" title="AD5933::set_PGA" alt="" coords="184,612,317,639"/>
+<area shape="rect" id="node11" href="$struct_a_d5933.html#adf0b76ea665a956f1002c55360666f3d" title="AD5933::set_settling\l_multiplier" alt="" coords="405,647,552,689"/>
+<area shape="rect" id="node12" href="$struct_a_d5933.html#a789fe15e33f626caf0cfc3e068062c26" title="AD5933::print_command\l_registers" alt="" coords="638,729,809,770"/>
+<area shape="rect" id="node13" href="$ad5933_8hpp.html#ae097ed66eb0d3a562aed62529f5b0cf0" title="sweep_frequency" alt="" coords="187,225,315,252"/>
+<area shape="rect" id="node21" href="$ad5933_8hpp.html#a861e50293a3afa48adf06476b2d814f9" title="calibrate_gain" alt="" coords="197,815,304,841"/>
+<area shape="rect" id="node22" href="$ad5933_8hpp.html#a9e7962b819f884fd174ca610f5059bc2" title="calculate_magnitude" alt="" coords="177,865,324,892"/>
+<area shape="rect" id="node23" href="$ad5933_8hpp.html#a72b16b2b75e0229bde220c830ef7c280" title="write_to_file" alt="" coords="205,916,297,943"/>
+<area shape="rect" id="node3" href="$struct_a_d5933.html#a19776e361cd7e0f8139637a186d83f63" title="AD5933::write_register" alt="" coords="644,385,803,412"/>
+<area shape="rect" id="node4" href="$struct_a_d5933.html#a3fb37885bc122590a2e7d948d17889e0" title="Read a byte from one of the AD5933 registers. " alt="" coords="869,385,1028,412"/>
+<area shape="rect" id="node14" href="$struct_a_d5933.html#afb48b21e141f060170ea4065bf33f1f5" title="AD5933::set_standby" alt="" coords="403,225,554,252"/>
+<area shape="rect" id="node15" href="$struct_a_d5933.html#a622c24c6cae2aa2e0079fcd17e2e2453" title="AD5933::initilize_frequency" alt="" coords="386,276,571,303"/>
+<area shape="rect" id="node16" href="$struct_a_d5933.html#ad9a52b2c0be2b9b638203329d404e3af" title="AD5933::start_sweep" alt="" coords="403,124,554,151"/>
+<area shape="rect" id="node17" href="$struct_a_d5933.html#aa9d0a7684997e6b7f662f1ad5acc2074" title="AD5933::get_frequency" alt="" coords="641,204,805,231"/>
+<area shape="rect" id="node18" href="$struct_a_d5933.html#aa2c2053a63395fc76be01a00b91e1bec" title="AD5933::get_status" alt="" coords="653,5,793,32"/>
+<area shape="rect" id="node19" href="$struct_a_d5933.html#ad1d4ef0943cb72ab1574054d5efe5842" title="AD5933::read_measurement" alt="" coords="625,88,821,115"/>
+<area shape="rect" id="node20" href="$struct_a_d5933.html#ab0d13523bbb22eae6366815077540958" title="AD5933::increase_frequency" alt="" coords="380,175,577,201"/>
+</map>

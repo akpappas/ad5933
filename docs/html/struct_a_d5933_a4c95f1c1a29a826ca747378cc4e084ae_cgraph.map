@@ -1,0 +1,5 @@
+<map id="AD5933::measure_temperature" name="AD5933::measure_temperature">
+<area shape="rect" id="node2" href="$struct_a_d5933.html#a19776e361cd7e0f8139637a186d83f63" title="AD5933::write_register" alt="" coords="264,5,423,32"/>
+<area shape="rect" id="node3" href="$struct_a_d5933.html#a3fb37885bc122590a2e7d948d17889e0" title="Read a byte from one of the AD5933 registers. " alt="" coords="471,56,629,83"/>
+<area shape="rect" id="node4" href="$struct_a_d5933.html#aa2c2053a63395fc76be01a00b91e1bec" title="AD5933::get_status" alt="" coords="273,107,413,133"/>
+</map>

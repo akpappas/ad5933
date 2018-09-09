@@ -19,47 +19,80 @@
 
 //The  VID and PID of the EVAL board.
 //Those are saved in the EEPROM in the FX2LP chip
-const uint16_t VID = 0x0456; //! USB Vendor ID
-const uint16_t PID = 0xb203; //! USB Product ID
+
+//! USB Vendor ID
+const uint16_t VID = 0x0456;
+//! USB Product ID
+const uint16_t PID = 0xb203; 
 
 //Register List
 //As defined in the datasheet (Table 8). All bits are addressable but not
 //meaningfull.
-const uint8_t CTRL_MSB=0x80;   //!Address of the Control Register bits 15-08
-const uint8_t CTRL_LSB=0x81;   //!Address of the Control Register bits 07-00
-const uint8_t FREQ_23_16=0x82; //!Address of the Start frequency register bits 23-16
-const uint8_t FREQ_15_8=0x83;  //!Address of the Start frequency register bits 15-08
-const uint8_t FREQ_7_0=0x84;   //!Address of the Start frequency register bits 07-00
-const uint8_t STEP_23_16=0x85; //!Address of the Frequency increment register bits 23-16
-const uint8_t STEP_15_8=0x86;  //!Address of the Frequency increment register bits 15-08
-const uint8_t STEP_7_0=0x87;   //!Address of the Frequency increment register bits 07-00
-const uint8_t INC_NUM_MSB=0x88;//!Address of the Number of increments register bits 15-08
-const uint8_t INC_NUM_LSB=0x89;//!Address of the Number of increments register bits 07-00
-const uint8_t SETTLE_MSB=0x8A; //!Address of the Number of settling time cycles bits 15-08
-const uint8_t SETTLE_LSB=0x8B; //!Address of the Number of settling time cycles bits 07-00
-const uint8_t SREG=0x8F;       //!Address of the Status register
-const uint8_t TEMPERATURE_MSB=0x92;//!Address of the Temperature data register bits 15-08
-const uint8_t TEMPERATURE_LSB=0x93;//!Address of the Temperature data register bits 07-00
-const uint8_t REAL_MSB=0x94;   //!Address of the Real data register 15-08
-const uint8_t REAL_LSB=0x95;   //!Address of the Read data register 07-00
-const uint8_t IMG_MSB=0x96;    //!Address of the Imaginary data register 15-08
-const uint8_t IMG_LSB=0x97;    //!Address of the Imaginary data register 07-00
 
+//!Address of the Control Register bits 15-08
+const uint8_t CTRL_MSB=0x80;
+//!Address of the Control Register bits 07-00
+const uint8_t CTRL_LSB=0x81;
 
+//!Address of the Start frequency register bits 23-16
+const uint8_t FREQ_23_16=0x82;
+//!Address of the Start frequency register bits 15-08
+const uint8_t FREQ_15_8=0x83;
+//!Address of the Start frequency register bits 07-00
+const uint8_t FREQ_7_0=0x84;  
+
+//!Address of the Frequency increment register bits 23-16
+const uint8_t STEP_23_16=0x85;
+//!Address of the Frequency increment register bits 15-08
+const uint8_t STEP_15_8=0x86;
+//!Address of the Frequency increment register bits 07-00
+const uint8_t STEP_7_0=0x87;
+
+//!Address of the Number of increments register bits 15-08
+const uint8_t INC_NUM_MSB=0x88;
+//!Address of the Number of increments register bits 07-00
+const uint8_t INC_NUM_LSB=0x89;
+
+//!Address of the Number of settling time cycles bits 15-08
+const uint8_t SETTLE_MSB=0x8A;
+//!Address of the Number of settling time cycles bits 07-00
+const uint8_t SETTLE_LSB=0x8B;
+
+//!Address of the Status register
+const uint8_t SREG=0x8F;
+
+//!Address of the Temperature data register bits 15-08
+const uint8_t TEMPERATURE_MSB=0x92;
+//!Address of the Temperature data register bits 07-00
+const uint8_t TEMPERATURE_LSB=0x93;
+
+//!Address of the Real data register 15-08
+const uint8_t REAL_MSB=0x94;
+//!Address of the Read data register 07-00
+const uint8_t REAL_LSB=0x95;
+
+//!Address of the Imaginary data register 15-08
+const uint8_t IMG_MSB=0x96;
+//!Address of the Imaginary data register 07-00
+const uint8_t IMG_LSB=0x97;    
 
 
 //The following code is used in conjuction with 
 //Control register map bits 15-12 (Table 9)
-//This class enum enumerates the possible states of the AD5933. 
+//! Class enum of the possible states of the AD5933.
+/*!Because class enums can't be typecast to ints, they can't be used directly to
+  handle bits and must be used in combination with the values defined in the
+  consts above. This is done with the std::unordered_map<int,Mode> \link
+  mode_map\endlink. */
 enum class Mode
 {
-  INIT_START_FREQ,
-  START_FREQ_SWEEP,
-  INC_FREQ,
-  REPEAT_FREQ,
-  MEAS_TEMP,
-  PD_MODE,
-  SB_MODE
+  INIT_START_FREQ,  /*!<Initialize with start frequency. */
+  START_FREQ_SWEEP, /*!<Start frequency sweep. */
+  INC_FREQ,         /*!<Increment frequency. */
+  REPEAT_FREQ,      /*!<Repeat frequency. */
+  MEAS_TEMP,        /*!<Measure temperature. */
+  PD_MODE,          /*!<Powerdown mode. */
+  SB_MODE           /*!<Standby mode. */
 };
 
 //! Mask to clear/keep bits that are relevant to the Mode bits
@@ -68,17 +101,32 @@ const uint8_t MODE_MASK = 0b11110000;
 
 //These constants determine the state of the impedance analyzer, as defined on
 //table 9.
+
+//!Byte to set AD5933 to Initialize with start frequency mode.
 const uint8_t INIT_START_FREQ=0x10;
+
+//!Byte to set AD5933 to Start frequency sweep mode.
 const uint8_t START_FREQ_SWEEP=0x20;
+
+//!Byte to set AD5933 to Increment frequency mode.
 const uint8_t INC_FREQ=0x30;
+
+//!Byte to set AD5933 to Repeat frequency mode.
 const uint8_t REPEAT_FREQ=0x40;
+
+//!Byte to set AD5933 to Measure temperature mode.
 const uint8_t MEAS_TEMP=0x90;
+
+//!Byte to set AD5933 to Power-down mode.
 const uint8_t PD_MODE=0xa0;
+
+//!Byte to set AD5933 to Standby mode.
 const uint8_t SB_MODE=0xb0;
 
 
-//Because class enums can't be typecast to ints, we need a way to match the bit
-//values defined in the consts above. This is done with the map below.
+/** \brief Because class enums can't be typecast to ints, a map is provided so
+    that the enums can be matched with the corresponding byte value.
+ */
 std::unordered_map<uint8_t,Mode> mode_map =
   {
     {INIT_START_FREQ,Mode::INIT_START_FREQ},
@@ -95,19 +143,36 @@ std::unordered_map<uint8_t,Mode> mode_map =
 /*Output voltage range*/
 /*Bits 10 to 9*/
 const uint8_t VOLTAGE_MASK = 0b00000110;
+
+//! Class enum of the excitation voltages levels of the AD5933.
+/*! This enum lists the excitation voltages levels of the AD5933. Each
+  excitation voltage listed is nominal and depends on the VDD provided to the
+  device. Furthermore there is an extra DC bias provided by the AD5933 that by
+  default is filtered out in the EVALAD5933 board, but should be accounted for
+  if the transmit stage is modified. Because class enums can't be typecast to
+  ints, they can't be used directly to handle bits and must be used in
+  combination with the values defined in the consts above. This is done with the
+  std::unordered_map<int,Mode> \link voltage_map\endlink. */
 enum class Voltage
 {
-  OUTPUT_2Vpp,
-  OUTPUT_200mVpp,
-  OUTPUT_400mVpp,
-  OUTPUT_1Vpp
+  OUTPUT_2Vpp,     /*!< 2 Vp-p excitation voltage */
+  OUTPUT_200mVpp, /*!< 200m Vp-p excitation voltage */
+  OUTPUT_400mVpp, /*!< 400m Vp-p excitation voltage */
+  OUTPUT_1Vpp     /*!< 1 Vp-p excitation voltage */
 };
 
+//!Byte to set AD5933 output to 2 Vp-p
 const uint8_t OUTPUT_2Vpp=0x00;
+//!Byte to set AD5933 output to 200 mVp-p
 const uint8_t OUTPUT_200mVpp=0x02;
+//!Byte to set AD5933 output to 400 mVp-p
 const uint8_t OUTPUT_400mVpp=0x04;
+//!Byte to set AD5933 output to 1 Vp-p
 const uint8_t OUTPUT_1Vpp=0x06;
 
+/** \brief Because class enums can't be typecast to ints, a map is provided so
+    that the enums can be matched with the corresponding byte value.
+ */
 std::unordered_map<uint8_t,Voltage> voltage_map=
   {
     {OUTPUT_2Vpp,Voltage::OUTPUT_2Vpp},
@@ -116,12 +181,18 @@ std::unordered_map<uint8_t,Voltage> voltage_map=
     {OUTPUT_1Vpp,Voltage::OUTPUT_1Vpp}
   };
 
-
-
-/*PGA*/
-/*Bit 8*/
 const uint8_t PGA_MASK = 0b00000001;
-enum class Gain{PGA5x,PGA1x};
+
+//! Class enum of the gains of the programmable amplifier at the receive stage.
+/*! Because class enums can't be typecast to ints, they can't be used directly
+  to handle bits and must be used in combination with the values defined in the
+  consts above. This is done with the std::unordered_map<int,Mode> \link
+  gain_map\endlink. */
+enum class Gain
+{
+ PGA5x, /*!<  */
+ PGA1x  /*!< */
+};
 
 const uint8_t PGA_GAIN5x=0x00;
 const uint8_t PGA_GAIN1x=0x01;
@@ -132,21 +203,35 @@ std::unordered_map<uint8_t,Gain> gain_map =
     {PGA_GAIN1x,Gain::PGA1x}
   };
 
-
-/*Bits 7 to 0*/
+//! Command to reset the device.
 const uint8_t RESET_SET=0x10;
 
 const uint8_t CLK_MASK = 0b00000100;
-enum class Clk {EXT,INT};
-const uint8_t CLK_EXT=0x08; /*0: internal; 1: external*/
-const uint8_t CLK_INT=0x00; /*0: internal; 1: external*/
 
-/*Status register map*/
+//! Class enum for clock selection
+enum class Clk
+{
+ EXT, /*!< External clock */
+ INT  /*!< Internal clock */
+};
+
+//! Command to choose external clock source.
+const uint8_t CLK_EXT=0x08;
+//! Command to choose internal clock source.
+const uint8_t CLK_INT=0x00; 
+
+//! Valid temperature measurement status message.
 const uint8_t SREG_TEMP_VALID=0x01;
+//! Valid impedance  measurement status message.
 const uint8_t SREG_IMPED_VALID=0x02;
+//! Valid sweep measurements status message.
 const uint8_t SREG_SWEEP_VALID=0x04;
 
-
+//! Describe measurement status.
+/*!
+\param reg Contents of the status register.
+\return std::string with the description of the status register.
+ */
 std::string show_status(uint8_t reg)
 {
   if (reg == SREG_IMPED_VALID)
@@ -167,18 +252,27 @@ std::string show_status(uint8_t reg)
     }
 }
 
-/*Settling time map*/
+
 const uint8_t MUL_MASK = 0b00000110;
+
+//! Class enum of the settling cycle multiplier.
 enum class SettlingMultiplier
 {
-  MUL_1x,
-  MUL_2x,
-  MUL_4x
+ MUL_1x, /*!< No multiplier */
+ MUL_2x, /*!< Settling cycles are doubled*/
+ MUL_4x  /*!< Settling cycles are quadrupled*/
 };
 
+//!Byte to set the settling multiplier to x2.
 const uint8_t SETTLING_MUL_2x = 0x02;
+//!Byte to set the settling multiplier to x4.
 const uint8_t SETTLING_MUL_4x = 0x03;
 
+//!Describe the multiplier
+/*!
+\param reg The contents of the MSB of the Settling Cycle Register
+\return A std::string with the description
+*/
 std::string show_multiplier(uint8_t reg)
 {
   reg &= MUL_MASK;
@@ -206,33 +300,45 @@ using std::pair;
 using std::make_pair;
 using std::vector;
 typedef std::complex<long double> complex_t;
+//! Struct for the AD5933 device.
+/*! This struct is the interface to the AD5933. All device functions are exposed
+  through it. Furthermore communication with the device is initialized in the
+  constructor and some diagnostic methods are provided. The struct supports
+  only one instantiation but can be trivially be extended to support multiple.*/
 struct AD5933{
-  std::string firmware = "./AD5933_34FW.hex"; // Location of the FX2LP firmware
-					      // in the filesystem.
+  //!Location of the FX2LP firmware in the filesystem.
+  std::string firmware = "./AD5933_34FW.hex";
+  
+  //! Device handle for the libusb struct. Needed for USB communication with libusb.
+  libusb_device_handle *h;
+  //! Struct needed to issue libusb_control_transfer.
+  libusb_context *ctx;
+
+  //! Current clock source frequency.
+  long double clk;
+  //! External clock frequency
+  long double ext_clk=4000000l;
+  //! Internal clock frequency 
+  long double int_clk=16776000l;
+  //! Buffer for the contents of the lower byte of the control register
+  uint8_t ctrl_reg1;
+  //! Buffer for the contents of the upper byte of the control register
+  uint8_t ctrl_reg2; 
+
   AD5933();
   complex_t read_measurement();
-  libusb_device_handle *h; // Device handle for the libusb struct.
-  libusb_context *ctx; // Struct needed to issue libusb control transfer.
   double measure_temperature();
   int download_fx2();
   int read_register( uint8_t& buffer, uint8_t reg);
   int write_register( uint8_t command,uint8_t reg);
-  long double clk; // Current clock frequency.
-  long double ext_clk=4000000l; // External clock frequency
-  long double int_clk=16776000l;// Internal clock frequency 
-  uint8_t ctrl_reg1; // Place to store the contents of the control register
-  uint8_t ctrl_reg2; // Place to store the contents of the control register
   uint8_t get_status();
   void choose_clock( Clk setting);
   void increase_frequency();
   void initilize_frequency();
   void power_down();
   void repeat_frequency();
-
   void print_command_registers();
-
   uint32_t get_frequency();
-  
   void set_PGA ( Gain setting );
   void set_frequency_step ( uint32_t inc );
   void set_settling_cycles ( uint32_t cycles );
@@ -242,7 +348,6 @@ struct AD5933{
   void set_step_number ( uint32_t number );
   void set_voltage_output ( Voltage setting );
   void start_sweep();
-
   std::string show_voltage();
   std::string show_mode();
   std::string show_gain();
@@ -252,9 +357,9 @@ struct AD5933{
 
 
 
-// Describe the device state
-// This method reads the upper byte of the control register, parses its contents
-// and returns a string describing the device state.
+//! Describe the device state
+/*! This method reads the upper byte of the control register, parses
+  its contents and returns a string describing the device state.*/
 std::string AD5933::show_mode()
 {
   uint8_t reg;
@@ -307,9 +412,10 @@ std::string AD5933::show_mode()
     } 
 }
 
-// Print device state
-// Usefull for debugging, this function prints the device mode, the excitation
-// voltage, the gain of the programmable amplifier and the clock source.
+//! Print device state
+/*! Usefull for debugging, this function prints the device mode, the
+  excitation voltage, the gain of the programmable amplifier and the
+  clock source.*/
 void AD5933::print_device_state()
 {
   this->print_command_registers();
@@ -321,9 +427,10 @@ void AD5933::print_device_state()
   std::cout<<s.str()<<std::endl;
 }
 
-// Describe the excitation voltage.
-// This method reads the upper byte of the control register, parses its contents
-// and returns a string describing the excitation voltage.
+//! Describe the excitation voltage.
+/*! This method reads the upper byte of the control register, parses
+ its contents and returns a string describing the excitation
+ voltage.*/
 std::string AD5933::show_voltage()
 {
   uint8_t reg;
@@ -364,9 +471,9 @@ std::string AD5933::show_voltage()
     }
 }
 
-// Describe programmable amplifier gain.
-// This method reads the upper byte of the control register, parses its contents
-// and returns a string describing the gain of the programmable amplifier.
+//! Describe the programmable amplifier gain.
+/*! This method reads the upper byte of the control register, parses its contents
+  and returns a string describing the gain of the programmable amplifier.*/
 std::string AD5933::show_gain()
 {
   uint8_t reg;
@@ -399,9 +506,9 @@ std::string AD5933::show_gain()
     }
 }
 
-// Describe clock source
-// This method reads the lower byte of the control register, parses its contents
-// and returns a string describing the clock source.
+//! Describe clock source
+/*! This method reads the lower byte of the control register, parses its contents
+  and returns a string describing the clock source.*/
 std::string AD5933::show_clock()
 {
   uint8_t reg=0;
@@ -417,9 +524,9 @@ std::string AD5933::show_clock()
     }
 }
 
-// Print the contents of the command register.
-// Reads both bytes of the command register and print their contents without
-// parsing them.
+//! Print the contents of the command register.
+/*! Reads both bytes of the command register and print their contents without
+  parsing them.*/
 void AD5933::print_command_registers()
 {
   uint8_t msb,lsb;
@@ -438,9 +545,9 @@ void AD5933::print_command_registers()
 }
 
 
-// Get content of Start Frequency register
-// Reads the content of the Start Frequency register without parsing it and
-// returns it as an unsigned integer.
+//! Get content of Start Frequency register
+/*! Reads the content of the Start Frequency register without parsing it and
+  returns it as an unsigned integer.*/
 uint32_t AD5933::get_frequency()
 {
   uint8_t r0,r1,r2;
@@ -450,9 +557,9 @@ uint32_t AD5933::get_frequency()
   return  r2*1<<16 | r1*1<<8 | r0;
 }
 
-// Set Settling Cycle Multiplier setting.
-// Sets the appropriate bits of the the Settling Cycle register to match the
-// setting.
+//! Set Settling Cycle Multiplier setting.
+/*! Sets the appropriate bits of the the Settling Cycle register to match the
+  setting.*/
 void AD5933::set_settling_multiplier(SettlingMultiplier setting)
 {
   uint8_t settling_msb=0;
@@ -470,7 +577,9 @@ void AD5933::set_settling_multiplier(SettlingMultiplier setting)
   write_register(settling_msb,SETTLE_MSB);
 }
 
-// Get contents of status register
+//! Get contents of status register
+/*!\return The contents of the status register
+ */
 uint8_t AD5933::get_status()
 {
   uint8_t buf=0;
@@ -484,7 +593,9 @@ uint8_t AD5933::get_status()
 }
 
 
-//Choose clock source
+//!Choose clock source
+/*!\param The desired clock source.
+ */
 void AD5933::choose_clock( Clk setting)
 {
   if ( setting == Clk::INT)
@@ -500,12 +611,15 @@ void AD5933::choose_clock( Clk setting)
   this->write_register(ctrl_reg1, CTRL_LSB);
 }
 
-//Set Starting Frequency bits.
-//Sets the bits of the starting frequency register. Those must be calculated
-//according to the equation 1 in page 14 of the datasheet. The contents of this
-//register are not updated as the sweep progresses, so if you need the current
-//excitation frequency, you need to keep track of the increments of the sweep
-//that have elapsed.
+//!Set Starting Frequency bits.
+/*!\param start Starting frequency word.
+
+Sets the bits of the starting frequency register. Those must be calculated
+according to the equation 1 in page 14 of the datasheet. The contents of this
+register are not updated as the sweep progresses, so if you need the current
+excitation frequency, you need to keep track of the increments of the sweep that
+have elapsed.
+*/
 void AD5933::set_starting_frequency(uint32_t start)
 {
   printf("start: %d ",start);
@@ -518,13 +632,15 @@ void AD5933::set_starting_frequency(uint32_t start)
   write_register ( r0, FREQ_7_0 );
 }
 
-//Set Frequency Increment register.
-//Those must be calculated according to the equation 2 in page 14 of the
-//datasheet. The increment remains constant throughout the sweep. In order to
-//change it, the sweep must be first stopped and a new "Start Frequency" command
-//must be issued. The default value upon reset is as follows: D23 to D0 are not
-//reset on power-up. After a reset command, the contents of this register //are
-//not reset.
+//!Set Frequency Increment register.
+/*! \param inc  Frequency increment word.
+
+Those must be calculated according to the equation 2 in page 14 of the
+datasheet. The increment remains constant throughout the sweep. In order to
+change it, the sweep must be first stopped and a new "Start Frequency" command
+must be issued. The default value upon reset is as follows: D23 to D0 are not
+reset on power-up. After a reset command, the contents of this register are not
+reset. */
 void AD5933::set_frequency_step(uint32_t inc)
 {
   uint8_t r2 = ( inc & 0xff0000 ) >>16;
@@ -549,13 +665,15 @@ void AD5933::set_step_number ( uint32_t number )
   write_register ( r1, INC_NUM_MSB );
   write_register ( r0, INC_NUM_LSB );
 }
-//Set Settling Cycles bits of the Settling Cycle register.
-//Only the bits 8-0 of the register are affected. The register determines the
-//number of output excitation cycles that are allowed to pass through the
-//unknown impedance, after receipt of a start frequency sweep, increment
-//frequency, or repeat frequency command, before the ADC is triggered to perform
-//a conversion of the response signal. The cycles can be doubled or quadrupled
-//by using the set_settling_multiplier method.
+//! Set Settling Cycles bits of the Settling Cycle register.
+/*! \param cycles The number of settling cycles.
+
+Input cannot exceed 511. The cycles can be doubled or quadrupled by using the
+set_settling_multiplier method. Only the bits 8-0 of the register are
+affected. The register determines the number of output excitation cycles that
+are allowed to pass through the unknown impedance, after receipt of a start
+frequency sweep, increment frequency, or repeat frequency command, before the
+ADC is triggered to perform a conversion of the response signal. */
 void AD5933::set_settling_cycles ( uint32_t cycles )
 {
   uint8_t r1 = ( cycles & 0xFF00 ) >>8;
@@ -565,8 +683,11 @@ void AD5933::set_settling_cycles ( uint32_t cycles )
 }
 
 
-//Set Voltage Range bits of control register (10-9)
-//This must be done before the starting sweep frequency initialization.
+//! Set Voltage Range bits of control register (10-9)
+/*! \param setting The desired range.
+
+This must be done before the starting sweep frequency initialization.
+ */
 void AD5933::set_voltage_output ( Voltage setting)
 {
   ctrl_reg2 &=0x11111001; // Clear bits 8:9
@@ -590,8 +711,10 @@ void AD5933::set_voltage_output ( Voltage setting)
 }
 
 
-//Sets the PGA bit of the control register.
-//This must be done before the starting sweep frequency initialization.
+//!Sets the PGA bit of the control register.
+/*! \param setting The desired gain.
+
+This must be done before the starting sweep frequency initialization.*/
 void AD5933::set_PGA(Gain setting)
 {
   ctrl_reg2 &= 0xFE; // Clear bit 1
@@ -611,8 +734,9 @@ void AD5933::set_PGA(Gain setting)
   this->write_register(ctrl_reg2, CTRL_MSB);
 }
 
-//Sets the AD5933 to standby mode.
-//In this mode both pins of the unknown impedance are connected to ground.
+//!Sets the AD5933 to standby mode.
+/*!
+In this mode both pins of the unknown impedance are connected to ground.*/
 void AD5933::set_standby()
 {
   ctrl_reg2 &= 0x0F;
@@ -620,12 +744,13 @@ void AD5933::set_standby()
   write_register(ctrl_reg2, CTRL_MSB);
 }
 
-//Sets the AD5933 to initialize frequency mode.
-//This command enables the DDS to output the programmed start frequency for an
-//indefinite time. It is used to excite the unknown impedance initially. When
-//the unknown impedance has settled after a time determined by the user, the
-//user must initiate a start frequency sweep command to begin the frequency
-//sweep.
+//!Sets the AD5933 to initialize frequency mode.
+/*!  
+This command enables the DDS to output the programmed start frequency for
+an indefinite time. It is used to excite the unknown impedance initially. When
+the unknown impedance has settled after a time determined by the user, the user
+must initiate a start frequency sweep command to begin the frequency sweep.
+*/
 void AD5933::initilize_frequency()
 {
   
@@ -634,9 +759,11 @@ void AD5933::initilize_frequency()
   write_register(ctrl_reg2, CTRL_MSB);
 }
 
-//Starts the frequency sweep.
-//After calling this function ,the ADC starts measuring after the programmed
-//number of settling time cycles has elapsed.
+//!Starts the frequency sweep.
+/*!
+After calling this function ,the ADC starts measuring after the programmed
+number of settling time cycles has elapsed.
+*/
 void AD5933::start_sweep()
 {
   ctrl_reg2 &= 0x0F;
@@ -645,8 +772,10 @@ void AD5933::start_sweep()
 }
 
 
-//Moves the sweep to the next frequency point.
-//This function must be called after a valid meausurement is retrieved.
+//!Moves the sweep to the next frequency point.
+/*!
+This function must be called after a valid meausurement is retrieved.
+*/
 void AD5933::increase_frequency()
 {
   ctrl_reg2 &= 0x0F;
@@ -654,12 +783,13 @@ void AD5933::increase_frequency()
   write_register(ctrl_reg2, CTRL_MSB);
 }
 
-//Repeat the measurement at the current frequency without moving to the next
-//point of the sweep.
-//This function can be used to take multiple measurements of the unknown
-//impedance at the same frequency and average them, as a noise reduction
-//strategy. Always remember to retrieve the measurement from the Imaginary and
-//Real registers before they are overwritten.
+//!Repeat the measurement at the current frequency without moving to the next
+//!point of the sweep.
+
+/*!This function can be used to take multiple measurements
+of the unknown impedance at the same frequency and average them, as a noise
+reduction strategy. Always remember to retrieve the measurement from the
+Imaginary and Real registers before they are overwritten.*/
 void AD5933::repeat_frequency()
 {
   ctrl_reg2 &= 0x0F;
@@ -667,10 +797,12 @@ void AD5933::repeat_frequency()
   write_register(ctrl_reg2, CTRL_MSB);
 }
 
-//Write a byte to one of the AD5933 registers.
-// uint8_t command: The byte to write to the register.
-// uint8_t reg: The address of the register to be written.
-//Returns a libusb_error code.
+//!Write a byte to one of the AD5933 registers.
+/*!
+ \param command The byte to write to the register.
+ \param reg The address of the register to be written.
+ \return A libusb_error code.
+*/
 int AD5933::write_register ( uint8_t command, uint8_t reg )
 {
   auto err = libusb_control_transfer ( h,0x40,0xDE,0x0D, command << 8 | reg,NULL,0,0 );
@@ -691,9 +823,9 @@ int AD5933::write_register ( uint8_t command, uint8_t reg )
 
 //!Read a byte from one of the AD5933 registers.
 /*!
- \param buffer The buffer where the byte will be stored 
+ \param buffer The buffer where the byte will be stored.
  \param reg The address of the register to be written.
- \return Returns a libusb_error code.
+ \return A libusb_error code.
 */
 int AD5933::read_register ( uint8_t &buffer, uint8_t reg )
 {
@@ -708,10 +840,13 @@ int AD5933::read_register ( uint8_t &buffer, uint8_t reg )
 }
 
 
-// Reads the contents of the Imaginary and Real registers and returns the
-// measured admittance.
-// This should be called after checking whether the valid measurement flag of
-// the status register is on.
+//! Reads the contents of the Imaginary and Real registers and returns the
+//! measured admittance.
+/*! \return The measured admittance 
+
+This should be called after checking whether the valid measurement flag of the
+status register is on.
+*/
 complex_t AD5933::read_measurement()
 {
   uint8_t im1,im0,re1,re0;
@@ -744,10 +879,12 @@ complex_t AD5933::read_measurement()
 
 
 
-//Constructor for the AD5933 device handle.
-//The constructor initializes the communication of the host with the AD5933
-//through the FX2LP chip using the libusb-1.0 library. As implemented only one
-//device per host is supported. 
+//!Constructor for the AD5933 device handle.
+/*!
+The constructor initializes the communication of the host with the AD5933
+through the FX2LP chip using the libusb-1.0 library. As implemented only one
+device per host is supported. 
+*/
 AD5933::AD5933()
 {
   //  auto err = cyusb_open ( 0x0456, 0xb203 );
@@ -809,8 +946,10 @@ AD5933::AD5933()
   printf("done constr\n");
 }
 
-//Function to load the AD5933 firmware to the FX2LP chip.
-//This was copied from the FX2 Linux SDK.
+//!Function to load the AD5933 firmware to the FX2LP chip.
+/*! 
+This was copied from the FX2 Linux SDK.
+*/
 int AD5933::download_fx2()
 {
   FILE *fp = NULL;
@@ -874,12 +1013,15 @@ int AD5933::download_fx2()
 }
 
 
-//Execute frequency sweep.
-// lower: Starting frequency of the sweep.
-// number_of_samples: Frequencies measured in the sweep
-// step: Distance between frequencies meausured in the sweep.
-// h: Handle to the device object.
-//The function implements the flowchart on page 20 of the data sheet.
+//!Execute frequency sweep.
+/*! 
+\param lower Starting frequency of the sweep.
+\param number_of_samples Frequencies measured in the sweep
+\param step Distance between frequencies meausured in the sweep.
+\param h Handle to the device object.
+
+The function implements the flowchart on page 20 of the data sheet.
+*/
 std::vector<  std::pair<long double,  complex_t > > sweep_frequency ( uint32_t lower,uint32_t number_of_samples,long double step, AD5933* h )
 {
   long double clk = h->clk;
@@ -988,8 +1130,8 @@ double AD5933::measure_temperature()
 \param calibration_resistance: the value in Ohms of the calibration resistance.
 The vector MUST contain the measurements of the known calibrations resistance for the 
 gain calculation to be meaningful.
-\returns A vector of pair, that contain the frequency and the gain factor for
-that frequency.
+\returns A vector of pairs, which each contains the frequency and the
+corresponding gain factor.
 */
 std::vector<std::pair<long double,long double>>
 calibrate_gain(const std::vector<std::pair<long double,complex_t>> &measurements,
@@ -1004,13 +1146,14 @@ calibrate_gain(const std::vector<std::pair<long double,complex_t>> &measurements
   return gains;
 }
 
-//Function to calculate the impedance of the calibration using the gain
-//factor resistance according to page 17 of the datasheet.
-//measurements: Measurements of the unknown impedance
-//gains: Gain factors as calculated with the calibrate_gain function using a
-//known calibration resistance.
-//Returns  a vector of pairs containing the frequency of the measurement and the
-//impedance measured.
+//!Function to calculate the impedance of the calibration using the gain
+//!factos according to page 17 of the datasheet.
+/*!
+\param measurements Measurements of the unknown impedance
+\param gains Gain factors as calculated with the calibrate_gain function using a
+known calibration resistance.
+\return A vector of pairs, each containing the frequency of the measurement and the
+impedance measured at that frequency.*/
 std::vector<std::pair<long double, long double>>
 calculate_magnitude(const std::vector<std::pair<long double,complex_t>> &measurements,
 		    const std::vector<std::pair<long double,long double>> &gains)
@@ -1024,11 +1167,13 @@ calculate_magnitude(const std::vector<std::pair<long double,complex_t>> &measure
   return magnitude;
 }
 
-//Simple interpolation function.
-// f: the intermediate point where the interpolated value lies
-// g0: the first existing data point
-// g1: the second existing data point
-//Returns the interpolated value.
+//!Simple interpolation function.
+/*!
+\param f The intermediate point where the interpolated value is located.
+\param g0 The first existing data point.
+\param g1 The second existing data point.
+\returns The interpolated value.
+*/
 long double interpolate(long double f,
 			const std::pair<long double, long double> &g0,
 			const std::pair<long double, long double> &g1)
@@ -1050,9 +1195,12 @@ long double interpolate(long double f,
   return new_gain;
 }
 
-//Interpolate the gain factors based on the calibration data.
-// adm: reference to the vector containing the frequency, gain pairs to be calcualted
-// cal: reference to the vector containing to the known frequency, gain pairs.
+//!Interpolate the gain factors based on the calibration data.
+/*!
+ \param adm Reference to the vector containing the frequency, gain pairs to be calculated.
+ \param cal Reference to the vector containing to the known frequency, gain
+ pairs.
+*/
 template <typename T>
 std::vector<std::pair<long double, long double>>
 calc_multigains(const std::vector<std::pair<long double, T>> &adm,
@@ -1086,13 +1234,15 @@ calc_multigains(const std::vector<std::pair<long double, T>> &adm,
 }
 
 
-//Helper function to record data.
-//mag: Frequency, Impedance magnitude pairs
-//phase: Frequency, Impedance phase pairs
-//adm: Frequency, Admittance pairs
-//This function saves the measurement data to a .csv file using the same format
-//as the one used by the Windows utility provided by Analog Devices. The output
-//file is called 
+//!Helper function to record data.
+/*!
+\param mag Frequency, Impedance magnitude pairs
+\param phase Frequency, Impedance phase pairs
+\param adm Frequency, Admittance pairs
+
+This function saves the measurement data to a .csv file using the same format as
+the one used by the Windows utility provided by Analog Devices. The output file
+is called */
 void write_to_file(const std::vector<std::pair<long double, long double>> &mag,
 		   const std::vector<std::pair<long double, long double>> &phase,
 		   const std::vector<std::pair<long double, complex_t>> &adm)

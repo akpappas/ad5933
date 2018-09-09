@@ -1,0 +1,655 @@
+\hypertarget{struct_a_d5933}{}\section{A\+D5933 Struct Reference}
+\label{struct_a_d5933}\index{A\+D5933@{A\+D5933}}
+
+
+Struct for the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} device.  
+
+
+
+
+{\ttfamily \#include $<$ad5933.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_a_d5933_a968eabd26cf109703c52274218f1caac}{A\+D5933}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} device handle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ad5933_8hpp_ae1cf790e72cff992603d30d0abba52f3}{complex\+\_\+t}} \mbox{\hyperlink{struct_a_d5933_ad1d4ef0943cb72ab1574054d5efe5842}{read\+\_\+measurement}} ()
+\item 
+double \mbox{\hyperlink{struct_a_d5933_a4c95f1c1a29a826ca747378cc4e084ae}{measure\+\_\+temperature}} ()
+\begin{DoxyCompactList}\small\item\em Measure temperature. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_a_d5933_a18b02bd0ab0239c9c96aafac457fb387}{download\+\_\+fx2}} ()
+\begin{DoxyCompactList}\small\item\em Function to load the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} firmware to the F\+X2\+LP chip. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_a_d5933_a3fb37885bc122590a2e7d948d17889e0}{read\+\_\+register}} (uint8\+\_\+t \&buffer, uint8\+\_\+t reg)
+\begin{DoxyCompactList}\small\item\em Read a byte from one of the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} registers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_a_d5933_a19776e361cd7e0f8139637a186d83f63}{write\+\_\+register}} (uint8\+\_\+t command, uint8\+\_\+t reg)
+\begin{DoxyCompactList}\small\item\em Write a byte to one of the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} registers. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_a_d5933_aa2c2053a63395fc76be01a00b91e1bec}{get\+\_\+status}} ()
+\begin{DoxyCompactList}\small\item\em Get contents of status register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_ac1504cf786233e9802f80aac58a89ef7}{choose\+\_\+clock}} (\mbox{\hyperlink{ad5933_8hpp_a252769b931abfc990c5d5396cc352d35}{Clk}} setting)
+\begin{DoxyCompactList}\small\item\em Choose clock source. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_ab0d13523bbb22eae6366815077540958}{increase\+\_\+frequency}} ()
+\begin{DoxyCompactList}\small\item\em Moves the sweep to the next frequency point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_a622c24c6cae2aa2e0079fcd17e2e2453}{initilize\+\_\+frequency}} ()
+\begin{DoxyCompactList}\small\item\em Sets the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} to initialize frequency mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_afa4853c8fab1437072b6c8d860a99e2d}{power\+\_\+down}} ()
+\item 
+void \mbox{\hyperlink{struct_a_d5933_ae45640525e7312ee70e98bb6f1a0c3ae}{repeat\+\_\+frequency}} ()
+\item 
+void \mbox{\hyperlink{struct_a_d5933_a789fe15e33f626caf0cfc3e068062c26}{print\+\_\+command\+\_\+registers}} ()
+\begin{DoxyCompactList}\small\item\em Print the contents of the command register. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_a_d5933_aa9d0a7684997e6b7f662f1ad5acc2074}{get\+\_\+frequency}} ()
+\begin{DoxyCompactList}\small\item\em Get content of Start Frequency register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_a7b534f2c2b7eb612db9e2a9a89020e19}{set\+\_\+\+P\+GA}} (\mbox{\hyperlink{ad5933_8hpp_a8bc3a010269d8968cd5e6a0c119ed1e1}{Gain}} setting)
+\begin{DoxyCompactList}\small\item\em Sets the P\+GA bit of the control register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_ab55703415fd754ccef3f3ff188903a9e}{set\+\_\+frequency\+\_\+step}} (uint32\+\_\+t inc)
+\begin{DoxyCompactList}\small\item\em Set Frequency Increment register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_a210f3b7d58fdd3504d69d7ecba962662}{set\+\_\+settling\+\_\+cycles}} (uint32\+\_\+t cycles)
+\begin{DoxyCompactList}\small\item\em Set Settling Cycles bits of the Settling Cycle register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_adf0b76ea665a956f1002c55360666f3d}{set\+\_\+settling\+\_\+multiplier}} (\mbox{\hyperlink{ad5933_8hpp_a0556cc9a11c997a97ffc50ecb94e59b8}{Settling\+Multiplier}} setting)
+\begin{DoxyCompactList}\small\item\em Set Settling Cycle Multiplier setting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_afb48b21e141f060170ea4065bf33f1f5}{set\+\_\+standby}} ()
+\begin{DoxyCompactList}\small\item\em Sets the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} to standby mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_ad90d16efcaf008887ff6cb995832671e}{set\+\_\+starting\+\_\+frequency}} (uint32\+\_\+t start)
+\begin{DoxyCompactList}\small\item\em Set Starting Frequency bits. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_a81d597ac151fbe62080ecd28d8b87ebb}{set\+\_\+step\+\_\+number}} (uint32\+\_\+t number)
+\item 
+void \mbox{\hyperlink{struct_a_d5933_a2857afff783cc4eb459864ddff7bd151}{set\+\_\+voltage\+\_\+output}} (\mbox{\hyperlink{ad5933_8hpp_ad0295b163fa728ece7beda3d933127de}{Voltage}} setting)
+\begin{DoxyCompactList}\small\item\em Set Voltage Range bits of control register (10-\/9) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_ad9a52b2c0be2b9b638203329d404e3af}{start\+\_\+sweep}} ()
+\begin{DoxyCompactList}\small\item\em Starts the frequency sweep. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{struct_a_d5933_a8db9035d025b0813d1f1271c94e000be}{show\+\_\+voltage}} ()
+\begin{DoxyCompactList}\small\item\em Describe the excitation voltage. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{struct_a_d5933_a2b05a8fa5cab640c277ae0ece4f6d7cd}{show\+\_\+mode}} ()
+\begin{DoxyCompactList}\small\item\em Describe the device state. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{struct_a_d5933_a2cbd4c63481455a0fe83a4b5413bd292}{show\+\_\+gain}} ()
+\begin{DoxyCompactList}\small\item\em Describe the programmable amplifier gain. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{struct_a_d5933_afbb03853efb175d6e60ebccefb13af50}{show\+\_\+clock}} ()
+\begin{DoxyCompactList}\small\item\em Describe clock source. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_a_d5933_ac180b673bdde8afa6d368a70886ecf8a}{print\+\_\+device\+\_\+state}} ()
+\begin{DoxyCompactList}\small\item\em Print device state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_a_d5933_ac9313bfb503cad74b1b6d60d2c3a406d}{firmware}} = \char`\"{}./A\+D5933\+\_\+34\+F\+W.\+hex\char`\"{}
+\begin{DoxyCompactList}\small\item\em Location of the F\+X2\+LP firmware in the filesystem. \end{DoxyCompactList}\item 
+libusb\+\_\+device\+\_\+handle $\ast$ \mbox{\hyperlink{struct_a_d5933_a9703faf65218591bf85b8338289e5162}{h}}
+\begin{DoxyCompactList}\small\item\em Device handle for the libusb struct. Needed for U\+SB communication with libusb. \end{DoxyCompactList}\item 
+libusb\+\_\+context $\ast$ \mbox{\hyperlink{struct_a_d5933_a4399d7961b63bcaccb5f15974d1aa551}{ctx}}
+\begin{DoxyCompactList}\small\item\em Struct needed to issue libusb\+\_\+control\+\_\+transfer. \end{DoxyCompactList}\item 
+long double \mbox{\hyperlink{struct_a_d5933_a552da2a3ded06d4b125857bfd98c4af3}{clk}}
+\begin{DoxyCompactList}\small\item\em Current clock source frequency. \end{DoxyCompactList}\item 
+long double \mbox{\hyperlink{struct_a_d5933_a7b6a28a12eb6a913a04e895499c68176}{ext\+\_\+clk}} =4000000l
+\begin{DoxyCompactList}\small\item\em External clock frequency. \end{DoxyCompactList}\item 
+long double \mbox{\hyperlink{struct_a_d5933_ad02bf6e28b287b4d1cc29804abf5d61b}{int\+\_\+clk}} =16776000l
+\begin{DoxyCompactList}\small\item\em Internal clock frequency. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_a_d5933_ad9e85de1ff2845c130ced2d96767ec8d}{ctrl\+\_\+reg1}}
+\begin{DoxyCompactList}\small\item\em Buffer for the contents of the lower byte of the control register. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_a_d5933_ad69ea003f71612df5cdcaddd3cfb32dd}{ctrl\+\_\+reg2}}
+\begin{DoxyCompactList}\small\item\em Buffer for the contents of the upper byte of the control register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Struct for the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} device. 
+
+This struct is the interface to the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}}. All device functions are exposed through it. Furthermore communication with the device is initialized in the constructor and some diagnostic methods are provided. The struct supports only one instantiation but can be trivially be extended to support multiple. 
+
+Definition at line 308 of file ad5933.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_a_d5933_a968eabd26cf109703c52274218f1caac}\label{struct_a_d5933_a968eabd26cf109703c52274218f1caac}} 
+\index{A\+D5933@{A\+D5933}!A\+D5933@{A\+D5933}}
+\index{A\+D5933@{A\+D5933}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{A\+D5933()}{AD5933()}}
+{\footnotesize\ttfamily A\+D5933\+::\+A\+D5933 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} device handle. 
+
+The constructor initializes the communication of the host with the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} through the F\+X2\+LP chip using the libusb-\/1.\+0 library. As implemented only one device per host is supported. 
+
+Definition at line 888 of file ad5933.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_a_d5933_ac1504cf786233e9802f80aac58a89ef7}\label{struct_a_d5933_ac1504cf786233e9802f80aac58a89ef7}} 
+\index{A\+D5933@{A\+D5933}!choose\+\_\+clock@{choose\+\_\+clock}}
+\index{choose\+\_\+clock@{choose\+\_\+clock}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{choose\+\_\+clock()}{choose\_clock()}}
+{\footnotesize\ttfamily void A\+D5933\+::choose\+\_\+clock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ad5933_8hpp_a252769b931abfc990c5d5396cc352d35}{Clk}}}]{setting }\end{DoxyParamCaption})}
+
+
+
+Choose clock source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & desired clock source. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 599 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a18b02bd0ab0239c9c96aafac457fb387}\label{struct_a_d5933_a18b02bd0ab0239c9c96aafac457fb387}} 
+\index{A\+D5933@{A\+D5933}!download\+\_\+fx2@{download\+\_\+fx2}}
+\index{download\+\_\+fx2@{download\+\_\+fx2}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{download\+\_\+fx2()}{download\_fx2()}}
+{\footnotesize\ttfamily int A\+D5933\+::download\+\_\+fx2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to load the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} firmware to the F\+X2\+LP chip. 
+
+This was copied from the F\+X2 Linux S\+DK. 
+
+Definition at line 953 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_aa9d0a7684997e6b7f662f1ad5acc2074}\label{struct_a_d5933_aa9d0a7684997e6b7f662f1ad5acc2074}} 
+\index{A\+D5933@{A\+D5933}!get\+\_\+frequency@{get\+\_\+frequency}}
+\index{get\+\_\+frequency@{get\+\_\+frequency}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{get\+\_\+frequency()}{get\_frequency()}}
+{\footnotesize\ttfamily uint32\+\_\+t A\+D5933\+::get\+\_\+frequency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get content of Start Frequency register. 
+
+Reads the content of the Start Frequency register without parsing it and returns it as an unsigned integer. 
+
+Definition at line 551 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_aa2c2053a63395fc76be01a00b91e1bec}\label{struct_a_d5933_aa2c2053a63395fc76be01a00b91e1bec}} 
+\index{A\+D5933@{A\+D5933}!get\+\_\+status@{get\+\_\+status}}
+\index{get\+\_\+status@{get\+\_\+status}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{get\+\_\+status()}{get\_status()}}
+{\footnotesize\ttfamily uint8\+\_\+t A\+D5933\+::get\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get contents of status register. 
+
+\begin{DoxyReturn}{Returns}
+The contents of the status register 
+\end{DoxyReturn}
+
+
+Definition at line 583 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ab0d13523bbb22eae6366815077540958}\label{struct_a_d5933_ab0d13523bbb22eae6366815077540958}} 
+\index{A\+D5933@{A\+D5933}!increase\+\_\+frequency@{increase\+\_\+frequency}}
+\index{increase\+\_\+frequency@{increase\+\_\+frequency}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{increase\+\_\+frequency()}{increase\_frequency()}}
+{\footnotesize\ttfamily void A\+D5933\+::increase\+\_\+frequency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves the sweep to the next frequency point. 
+
+This function must be called after a valid meausurement is retrieved. 
+
+Definition at line 779 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a622c24c6cae2aa2e0079fcd17e2e2453}\label{struct_a_d5933_a622c24c6cae2aa2e0079fcd17e2e2453}} 
+\index{A\+D5933@{A\+D5933}!initilize\+\_\+frequency@{initilize\+\_\+frequency}}
+\index{initilize\+\_\+frequency@{initilize\+\_\+frequency}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{initilize\+\_\+frequency()}{initilize\_frequency()}}
+{\footnotesize\ttfamily void A\+D5933\+::initilize\+\_\+frequency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} to initialize frequency mode. 
+
+This command enables the D\+DS to output the programmed start frequency for an indefinite time. It is used to excite the unknown impedance initially. When the unknown impedance has settled after a time determined by the user, the user must initiate a start frequency sweep command to begin the frequency sweep. 
+
+Definition at line 754 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a4c95f1c1a29a826ca747378cc4e084ae}\label{struct_a_d5933_a4c95f1c1a29a826ca747378cc4e084ae}} 
+\index{A\+D5933@{A\+D5933}!measure\+\_\+temperature@{measure\+\_\+temperature}}
+\index{measure\+\_\+temperature@{measure\+\_\+temperature}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{measure\+\_\+temperature()}{measure\_temperature()}}
+{\footnotesize\ttfamily double A\+D5933\+::measure\+\_\+temperature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Measure temperature. 
+
+This method sends the command for measuring the temperature, waits for a valid measurement, reads the meausrements from the appropriate registers and then returns a double with the temperature in Celsius. 
+
+Definition at line 1095 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_afa4853c8fab1437072b6c8d860a99e2d}\label{struct_a_d5933_afa4853c8fab1437072b6c8d860a99e2d}} 
+\index{A\+D5933@{A\+D5933}!power\+\_\+down@{power\+\_\+down}}
+\index{power\+\_\+down@{power\+\_\+down}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{power\+\_\+down()}{power\_down()}}
+{\footnotesize\ttfamily void A\+D5933\+::power\+\_\+down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{struct_a_d5933_a789fe15e33f626caf0cfc3e068062c26}\label{struct_a_d5933_a789fe15e33f626caf0cfc3e068062c26}} 
+\index{A\+D5933@{A\+D5933}!print\+\_\+command\+\_\+registers@{print\+\_\+command\+\_\+registers}}
+\index{print\+\_\+command\+\_\+registers@{print\+\_\+command\+\_\+registers}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{print\+\_\+command\+\_\+registers()}{print\_command\_registers()}}
+{\footnotesize\ttfamily void A\+D5933\+::print\+\_\+command\+\_\+registers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print the contents of the command register. 
+
+Reads both bytes of the command register and print their contents without parsing them. 
+
+Definition at line 530 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ac180b673bdde8afa6d368a70886ecf8a}\label{struct_a_d5933_ac180b673bdde8afa6d368a70886ecf8a}} 
+\index{A\+D5933@{A\+D5933}!print\+\_\+device\+\_\+state@{print\+\_\+device\+\_\+state}}
+\index{print\+\_\+device\+\_\+state@{print\+\_\+device\+\_\+state}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{print\+\_\+device\+\_\+state()}{print\_device\_state()}}
+{\footnotesize\ttfamily void A\+D5933\+::print\+\_\+device\+\_\+state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print device state. 
+
+Usefull for debugging, this function prints the device mode, the excitation voltage, the gain of the programmable amplifier and the clock source. 
+
+Definition at line 419 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ad1d4ef0943cb72ab1574054d5efe5842}\label{struct_a_d5933_ad1d4ef0943cb72ab1574054d5efe5842}} 
+\index{A\+D5933@{A\+D5933}!read\+\_\+measurement@{read\+\_\+measurement}}
+\index{read\+\_\+measurement@{read\+\_\+measurement}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{read\+\_\+measurement()}{read\_measurement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ad5933_8hpp_ae1cf790e72cff992603d30d0abba52f3}{complex\+\_\+t}} A\+D5933\+::read\+\_\+measurement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads the contents of the Imaginary and Real registers and returns the measured admittance. ~\newline
+\begin{DoxyVerb}\return The measured admittance 
+\end{DoxyVerb}
+
+
+This should be called after checking whether the valid measurement flag of the status register is on. 
+
+Definition at line 850 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a3fb37885bc122590a2e7d948d17889e0}\label{struct_a_d5933_a3fb37885bc122590a2e7d948d17889e0}} 
+\index{A\+D5933@{A\+D5933}!read\+\_\+register@{read\+\_\+register}}
+\index{read\+\_\+register@{read\+\_\+register}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{read\+\_\+register()}{read\_register()}}
+{\footnotesize\ttfamily int A\+D5933\+::read\+\_\+register (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \&}]{buffer,  }\item[{uint8\+\_\+t}]{reg }\end{DoxyParamCaption})}
+
+
+
+Read a byte from one of the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} registers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The buffer where the byte will be stored. \\
+\hline
+{\em reg} & The address of the register to be written. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A libusb\+\_\+error code. 
+\end{DoxyReturn}
+
+
+Definition at line 830 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ae45640525e7312ee70e98bb6f1a0c3ae}\label{struct_a_d5933_ae45640525e7312ee70e98bb6f1a0c3ae}} 
+\index{A\+D5933@{A\+D5933}!repeat\+\_\+frequency@{repeat\+\_\+frequency}}
+\index{repeat\+\_\+frequency@{repeat\+\_\+frequency}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{repeat\+\_\+frequency()}{repeat\_frequency()}}
+{\footnotesize\ttfamily void A\+D5933\+::repeat\+\_\+frequency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Repeat the measurement at the current frequency without moving to the next point of the sweep. ~\newline
+ This function can be used to take multiple measurements of the unknown impedance at the same frequency and average them, as a noise reduction strategy. Always remember to retrieve the measurement from the Imaginary and Real registers before they are overwritten. 
+
+Definition at line 793 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ab55703415fd754ccef3f3ff188903a9e}\label{struct_a_d5933_ab55703415fd754ccef3f3ff188903a9e}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+frequency\+\_\+step@{set\+\_\+frequency\+\_\+step}}
+\index{set\+\_\+frequency\+\_\+step@{set\+\_\+frequency\+\_\+step}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+frequency\+\_\+step()}{set\_frequency\_step()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+frequency\+\_\+step (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{inc }\end{DoxyParamCaption})}
+
+
+
+Set Frequency Increment register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inc} & Frequency increment word.\\
+\hline
+\end{DoxyParams}
+Those must be calculated according to the equation 2 in page 14 of the datasheet. The increment remains constant throughout the sweep. In order to change it, the sweep must be first stopped and a new \char`\"{}\+Start Frequency\char`\"{} command must be issued. The default value upon reset is as follows\+: D23 to D0 are not reset on power-\/up. After a reset command, the contents of this register are not reset. 
+
+Definition at line 644 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a7b534f2c2b7eb612db9e2a9a89020e19}\label{struct_a_d5933_a7b534f2c2b7eb612db9e2a9a89020e19}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+\+P\+GA@{set\+\_\+\+P\+GA}}
+\index{set\+\_\+\+P\+GA@{set\+\_\+\+P\+GA}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+\+P\+G\+A()}{set\_PGA()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+\+P\+GA (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ad5933_8hpp_a8bc3a010269d8968cd5e6a0c119ed1e1}{Gain}}}]{setting }\end{DoxyParamCaption})}
+
+
+
+Sets the P\+GA bit of the control register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em setting} & The desired gain.\\
+\hline
+\end{DoxyParams}
+This must be done before the starting sweep frequency initialization. 
+
+Definition at line 718 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a210f3b7d58fdd3504d69d7ecba962662}\label{struct_a_d5933_a210f3b7d58fdd3504d69d7ecba962662}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+settling\+\_\+cycles@{set\+\_\+settling\+\_\+cycles}}
+\index{set\+\_\+settling\+\_\+cycles@{set\+\_\+settling\+\_\+cycles}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+settling\+\_\+cycles()}{set\_settling\_cycles()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+settling\+\_\+cycles (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{cycles }\end{DoxyParamCaption})}
+
+
+
+Set Settling Cycles bits of the Settling Cycle register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cycles} & The number of settling cycles.\\
+\hline
+\end{DoxyParams}
+Input cannot exceed 511. The cycles can be doubled or quadrupled by using the set\+\_\+settling\+\_\+multiplier method. Only the bits 8-\/0 of the register are affected. The register determines the number of output excitation cycles that are allowed to pass through the unknown impedance, after receipt of a start frequency sweep, increment frequency, or repeat frequency command, before the A\+DC is triggered to perform a conversion of the response signal. 
+
+Definition at line 677 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_adf0b76ea665a956f1002c55360666f3d}\label{struct_a_d5933_adf0b76ea665a956f1002c55360666f3d}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+settling\+\_\+multiplier@{set\+\_\+settling\+\_\+multiplier}}
+\index{set\+\_\+settling\+\_\+multiplier@{set\+\_\+settling\+\_\+multiplier}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+settling\+\_\+multiplier()}{set\_settling\_multiplier()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+settling\+\_\+multiplier (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ad5933_8hpp_a0556cc9a11c997a97ffc50ecb94e59b8}{Settling\+Multiplier}}}]{setting }\end{DoxyParamCaption})}
+
+
+
+Set Settling Cycle Multiplier setting. 
+
+Sets the appropriate bits of the the Settling Cycle register to match the setting. 
+
+Definition at line 563 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_afb48b21e141f060170ea4065bf33f1f5}\label{struct_a_d5933_afb48b21e141f060170ea4065bf33f1f5}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+standby@{set\+\_\+standby}}
+\index{set\+\_\+standby@{set\+\_\+standby}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+standby()}{set\_standby()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+standby (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} to standby mode. 
+
+In this mode both pins of the unknown impedance are connected to ground. 
+
+Definition at line 740 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ad90d16efcaf008887ff6cb995832671e}\label{struct_a_d5933_ad90d16efcaf008887ff6cb995832671e}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+starting\+\_\+frequency@{set\+\_\+starting\+\_\+frequency}}
+\index{set\+\_\+starting\+\_\+frequency@{set\+\_\+starting\+\_\+frequency}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+starting\+\_\+frequency()}{set\_starting\_frequency()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+starting\+\_\+frequency (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{start }\end{DoxyParamCaption})}
+
+
+
+Set Starting Frequency bits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting frequency word.\\
+\hline
+\end{DoxyParams}
+Sets the bits of the starting frequency register. Those must be calculated according to the equation 1 in page 14 of the datasheet. The contents of this register are not updated as the sweep progresses, so if you need the current excitation frequency, you need to keep track of the increments of the sweep that have elapsed. 
+
+Definition at line 623 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a81d597ac151fbe62080ecd28d8b87ebb}\label{struct_a_d5933_a81d597ac151fbe62080ecd28d8b87ebb}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+step\+\_\+number@{set\+\_\+step\+\_\+number}}
+\index{set\+\_\+step\+\_\+number@{set\+\_\+step\+\_\+number}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+step\+\_\+number()}{set\_step\_number()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+step\+\_\+number (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{number }\end{DoxyParamCaption})}
+
+
+
+Definition at line 661 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a2857afff783cc4eb459864ddff7bd151}\label{struct_a_d5933_a2857afff783cc4eb459864ddff7bd151}} 
+\index{A\+D5933@{A\+D5933}!set\+\_\+voltage\+\_\+output@{set\+\_\+voltage\+\_\+output}}
+\index{set\+\_\+voltage\+\_\+output@{set\+\_\+voltage\+\_\+output}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{set\+\_\+voltage\+\_\+output()}{set\_voltage\_output()}}
+{\footnotesize\ttfamily void A\+D5933\+::set\+\_\+voltage\+\_\+output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ad5933_8hpp_ad0295b163fa728ece7beda3d933127de}{Voltage}}}]{setting }\end{DoxyParamCaption})}
+
+
+
+Set Voltage Range bits of control register (10-\/9) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em setting} & The desired range.\\
+\hline
+\end{DoxyParams}
+This must be done before the starting sweep frequency initialization. 
+
+Definition at line 691 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_afbb03853efb175d6e60ebccefb13af50}\label{struct_a_d5933_afbb03853efb175d6e60ebccefb13af50}} 
+\index{A\+D5933@{A\+D5933}!show\+\_\+clock@{show\+\_\+clock}}
+\index{show\+\_\+clock@{show\+\_\+clock}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{show\+\_\+clock()}{show\_clock()}}
+{\footnotesize\ttfamily std\+::string A\+D5933\+::show\+\_\+clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Describe clock source. 
+
+This method reads the lower byte of the control register, parses its contents and returns a string describing the clock source. 
+
+Definition at line 512 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a2cbd4c63481455a0fe83a4b5413bd292}\label{struct_a_d5933_a2cbd4c63481455a0fe83a4b5413bd292}} 
+\index{A\+D5933@{A\+D5933}!show\+\_\+gain@{show\+\_\+gain}}
+\index{show\+\_\+gain@{show\+\_\+gain}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{show\+\_\+gain()}{show\_gain()}}
+{\footnotesize\ttfamily std\+::string A\+D5933\+::show\+\_\+gain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Describe the programmable amplifier gain. 
+
+This method reads the upper byte of the control register, parses its contents and returns a string describing the gain of the programmable amplifier. 
+
+Definition at line 477 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a2b05a8fa5cab640c277ae0ece4f6d7cd}\label{struct_a_d5933_a2b05a8fa5cab640c277ae0ece4f6d7cd}} 
+\index{A\+D5933@{A\+D5933}!show\+\_\+mode@{show\+\_\+mode}}
+\index{show\+\_\+mode@{show\+\_\+mode}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{show\+\_\+mode()}{show\_mode()}}
+{\footnotesize\ttfamily std\+::string A\+D5933\+::show\+\_\+mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Describe the device state. 
+
+This method reads the upper byte of the control register, parses its contents and returns a string describing the device state. 
+
+Definition at line 363 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a8db9035d025b0813d1f1271c94e000be}\label{struct_a_d5933_a8db9035d025b0813d1f1271c94e000be}} 
+\index{A\+D5933@{A\+D5933}!show\+\_\+voltage@{show\+\_\+voltage}}
+\index{show\+\_\+voltage@{show\+\_\+voltage}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{show\+\_\+voltage()}{show\_voltage()}}
+{\footnotesize\ttfamily std\+::string A\+D5933\+::show\+\_\+voltage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Describe the excitation voltage. 
+
+This method reads the upper byte of the control register, parses its contents and returns a string describing the excitation voltage. 
+
+Definition at line 434 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ad9a52b2c0be2b9b638203329d404e3af}\label{struct_a_d5933_ad9a52b2c0be2b9b638203329d404e3af}} 
+\index{A\+D5933@{A\+D5933}!start\+\_\+sweep@{start\+\_\+sweep}}
+\index{start\+\_\+sweep@{start\+\_\+sweep}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{start\+\_\+sweep()}{start\_sweep()}}
+{\footnotesize\ttfamily void A\+D5933\+::start\+\_\+sweep (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts the frequency sweep. 
+
+After calling this function ,the A\+DC starts measuring after the programmed number of settling time cycles has elapsed. 
+
+Definition at line 767 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a19776e361cd7e0f8139637a186d83f63}\label{struct_a_d5933_a19776e361cd7e0f8139637a186d83f63}} 
+\index{A\+D5933@{A\+D5933}!write\+\_\+register@{write\+\_\+register}}
+\index{write\+\_\+register@{write\+\_\+register}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{write\+\_\+register()}{write\_register()}}
+{\footnotesize\ttfamily int A\+D5933\+::write\+\_\+register (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command,  }\item[{uint8\+\_\+t}]{reg }\end{DoxyParamCaption})}
+
+
+
+Write a byte to one of the \mbox{\hyperlink{struct_a_d5933}{A\+D5933}} registers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The byte to write to the register. \\
+\hline
+{\em reg} & The address of the register to be written. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A libusb\+\_\+error code. 
+\end{DoxyReturn}
+
+
+Definition at line 806 of file ad5933.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_a_d5933_a552da2a3ded06d4b125857bfd98c4af3}\label{struct_a_d5933_a552da2a3ded06d4b125857bfd98c4af3}} 
+\index{A\+D5933@{A\+D5933}!clk@{clk}}
+\index{clk@{clk}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{clk}{clk}}
+{\footnotesize\ttfamily long double A\+D5933\+::clk}
+
+
+
+Current clock source frequency. 
+
+
+
+Definition at line 318 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ad9e85de1ff2845c130ced2d96767ec8d}\label{struct_a_d5933_ad9e85de1ff2845c130ced2d96767ec8d}} 
+\index{A\+D5933@{A\+D5933}!ctrl\+\_\+reg1@{ctrl\+\_\+reg1}}
+\index{ctrl\+\_\+reg1@{ctrl\+\_\+reg1}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{ctrl\+\_\+reg1}{ctrl\_reg1}}
+{\footnotesize\ttfamily uint8\+\_\+t A\+D5933\+::ctrl\+\_\+reg1}
+
+
+
+Buffer for the contents of the lower byte of the control register. 
+
+
+
+Definition at line 324 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ad69ea003f71612df5cdcaddd3cfb32dd}\label{struct_a_d5933_ad69ea003f71612df5cdcaddd3cfb32dd}} 
+\index{A\+D5933@{A\+D5933}!ctrl\+\_\+reg2@{ctrl\+\_\+reg2}}
+\index{ctrl\+\_\+reg2@{ctrl\+\_\+reg2}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{ctrl\+\_\+reg2}{ctrl\_reg2}}
+{\footnotesize\ttfamily uint8\+\_\+t A\+D5933\+::ctrl\+\_\+reg2}
+
+
+
+Buffer for the contents of the upper byte of the control register. 
+
+
+
+Definition at line 326 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a4399d7961b63bcaccb5f15974d1aa551}\label{struct_a_d5933_a4399d7961b63bcaccb5f15974d1aa551}} 
+\index{A\+D5933@{A\+D5933}!ctx@{ctx}}
+\index{ctx@{ctx}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{ctx}{ctx}}
+{\footnotesize\ttfamily libusb\+\_\+context$\ast$ A\+D5933\+::ctx}
+
+
+
+Struct needed to issue libusb\+\_\+control\+\_\+transfer. 
+
+
+
+Definition at line 315 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a7b6a28a12eb6a913a04e895499c68176}\label{struct_a_d5933_a7b6a28a12eb6a913a04e895499c68176}} 
+\index{A\+D5933@{A\+D5933}!ext\+\_\+clk@{ext\+\_\+clk}}
+\index{ext\+\_\+clk@{ext\+\_\+clk}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{ext\+\_\+clk}{ext\_clk}}
+{\footnotesize\ttfamily long double A\+D5933\+::ext\+\_\+clk =4000000l}
+
+
+
+External clock frequency. 
+
+
+
+Definition at line 320 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ac9313bfb503cad74b1b6d60d2c3a406d}\label{struct_a_d5933_ac9313bfb503cad74b1b6d60d2c3a406d}} 
+\index{A\+D5933@{A\+D5933}!firmware@{firmware}}
+\index{firmware@{firmware}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{firmware}{firmware}}
+{\footnotesize\ttfamily std\+::string A\+D5933\+::firmware = \char`\"{}./A\+D5933\+\_\+34\+F\+W.\+hex\char`\"{}}
+
+
+
+Location of the F\+X2\+LP firmware in the filesystem. 
+
+
+
+Definition at line 310 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_a9703faf65218591bf85b8338289e5162}\label{struct_a_d5933_a9703faf65218591bf85b8338289e5162}} 
+\index{A\+D5933@{A\+D5933}!h@{h}}
+\index{h@{h}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{h}{h}}
+{\footnotesize\ttfamily libusb\+\_\+device\+\_\+handle$\ast$ A\+D5933\+::h}
+
+
+
+Device handle for the libusb struct. Needed for U\+SB communication with libusb. 
+
+
+
+Definition at line 313 of file ad5933.\+hpp.
+
+\mbox{\Hypertarget{struct_a_d5933_ad02bf6e28b287b4d1cc29804abf5d61b}\label{struct_a_d5933_ad02bf6e28b287b4d1cc29804abf5d61b}} 
+\index{A\+D5933@{A\+D5933}!int\+\_\+clk@{int\+\_\+clk}}
+\index{int\+\_\+clk@{int\+\_\+clk}!A\+D5933@{A\+D5933}}
+\subsubsection{\texorpdfstring{int\+\_\+clk}{int\_clk}}
+{\footnotesize\ttfamily long double A\+D5933\+::int\+\_\+clk =16776000l}
+
+
+
+Internal clock frequency. 
+
+
+
+Definition at line 322 of file ad5933.\+hpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/apappas/ad5933/\mbox{\hyperlink{ad5933_8hpp}{ad5933.\+hpp}}\end{DoxyCompactItemize}
